@@ -169,6 +169,25 @@ footer .fine{margin-top:28px;color:var(--muted);font-size:.82rem;display:flex;fl
 #ai-form button{background:var(--accent);color:var(--on-accent);border:0;border-radius:10px;padding:0 14px;font-weight:600;cursor:pointer}
 .ai-note{font-size:.74rem;color:var(--muted);padding:0 14px 10px}
 @media (prefers-reduced-motion:no-preference){.dial .spin{transform-origin:200px 200px;animation:sp 60s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}}
+
+/* CL4322B: catalogue overview inverse layout, text left / images right */
+.products-overview{padding:62px 16px 76px;background:#090b0d;color:#f8f8f7}
+.products-overview .in{max-width:1120px}
+.products-overview .p-eyebrow{color:#d8b983;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.products-overview h2{font-family:var(--display);font-size:clamp(2rem,4.5vw,3.4rem);color:#fff;margin:12px 0 10px}
+.products-overview .p-intro{color:#b9b9b6;max-width:780px;margin-bottom:27px}
+.products-overview .p-list{border:1px solid #393b3b;border-radius:22px;overflow:hidden;background:#0a0c0e}
+.products-overview .p-row{display:grid;grid-template-columns:minmax(0,1fr) clamp(100px,22vw,220px);gap:22px;align-items:center;padding:26px 30px;color:#fff;text-decoration:none;min-height:210px;transition:background-color .2s}
+.products-overview .p-row+.p-row{border-top:1px solid #313334}
+.products-overview .p-row:hover,.products-overview .p-row:focus-visible{background:#191b1c;outline-offset:-3px}
+.products-overview .p-row h3{font-size:clamp(1.4rem,2.8vw,2.05rem);line-height:1.13;margin:0 0 10px;color:#fff;font-family:var(--display)}
+.products-overview .p-row p{font-size:clamp(.98rem,1.6vw,1.18rem);line-height:1.5;color:#bdbfbe;max-width:700px;margin:0}
+.products-overview .p-row .p-hint{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-weight:700;font-size:.83rem;color:#dcbc8c}
+.products-overview .p-row img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:20px;display:block;background:#242424}
+.products-overview .p-arrow{display:inline-grid;place-items:center;width:25px;height:25px;border:1px solid #a99b83;border-radius:50%;font-size:.9rem}
+.products-overview .p-outro{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:24px;flex-wrap:wrap;color:#a8a8a5}
+.products-overview .p-outro a{color:#f3d6a3;font-weight:700;text-decoration:underline;text-underline-offset:5px}
+@media(max-width:640px){.products-overview{padding:44px 16px 58px}.products-overview .p-row{grid-template-columns:minmax(0,1fr) 103px;gap:14px;padding:19px 16px;min-height:158px}.products-overview .p-row h3{font-size:clamp(1.22rem,5.6vw,1.58rem)}.products-overview .p-row p{font-size:.89rem;line-height:1.45}.products-overview .p-row img{border-radius:16px}.products-overview .p-row .p-hint{font-size:.76rem}.products-overview .p-intro{font-size:.95rem}}
 </style>
 </head>
 <body>
@@ -185,6 +204,11 @@ footer .fine{margin-top:28px;color:var(--muted);font-size:.82rem;display:flex;fl
 <div class="trust"><span><b>Autorizat ISCIR</b> pentru centrale</span><span><b>ANRE</b> pentru gaze</span><span><b>F-gaz</b> pentru freon</span><span><b>24 luni</b> garanție montaj</span></div>
 </div></section>
 <section class="sec g"><div class="in stack"><p class="eyebrow">Ce facem</p><h2>Alegeți ce aveți nevoie</h2><nav class="flist" aria-label="Familii de servicii"><a class="frow" href="servicii.html#incalzire"><img src="img/incalzire.webp" alt="Încăpere luminoasă încălzită, cu radiator" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=400&q=80'"><div><h3>Încălzire — 29 servicii</h3><p>Centrale, punere în funcțiune ISCIR, revizie și VTP, calorifere, boilere, pardoseală, pompe de căldură.</p><span class="hint">Vezi serviciile și prețurile</span></div><span class="go" aria-hidden="true">→</span></a><a class="frow" href="servicii.html#climatizare"><img src="img/climatizare.webp" alt="Living luminos cu aparat de aer condiționat pe perete" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=400&q=80'"><div><h3>Climatizare — 11 servicii</h3><p>Montaj aer condiționat, igienizare, freon, reparații, mutare și demontare.</p><span class="hint">Vezi serviciile și prețurile</span></div><span class="go" aria-hidden="true">→</span></a><a class="frow" href="servicii.html#sanitare"><img src="img/sanitare.webp" alt="Baie modernă cu duș și lavoar" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=400&q=80'"><div><h3>Sanitare — 10 servicii</h3><p>Obiecte sanitare, WC suspendat, țevi noi, desfundare, inspecție video, canalizare.</p><span class="hint">Vezi serviciile și prețurile</span></div><span class="go" aria-hidden="true">→</span></a></nav></div></section>
+<section class="products-overview" aria-labelledby="our-products-title"><div class="in"><p class="p-eyebrow">ECHIPAMENTE ȘI MATERIALE PENTRU CASA TA</p><h2 id="our-products-title">Produsele noastre</h2><p class="p-intro">Descoperă ce echipamente sunt potrivite pentru locuința ta. Atinge categoria pentru descrieri, modele, componente și condiții de ofertare.</p><nav class="p-list" aria-label="Familii de produse">
+<a class="p-row" href="produse.html#incalzire" aria-label="Explorează produsele de încălzire"><div><h3>Încălzire</h3><p>Centrale termice, pompe de căldură, calorifere, distribuitoare, țevi și termostate.</p><span class="p-hint">Vezi produsele <span class="p-arrow" aria-hidden="true">↗</span></span></div><img src="img/incalzire.webp" alt="Echipamente pentru încălzirea locuinței" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=450&q=80'"></a>
+<a class="p-row" href="produse.html#sanitare" aria-label="Explorează produsele sanitare"><div><h3>Sanitare</h3><p>Lavoare, baterii, cabine de duș, rezervoare WC, robineți, filtre și conducte.</p><span class="p-hint">Vezi produsele <span class="p-arrow" aria-hidden="true">↗</span></span></div><img src="img/sanitare.webp" alt="Obiecte sanitare pentru baie și bucătărie" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=450&q=80'"></a>
+<a class="p-row" href="produse.html#climatizare" aria-label="Explorează produsele de climatizare"><div><h3>Climatizare</h3><p>Aer condiționat split și multisplit, ventilatoare, filtre, accesorii și sisteme de ventilație.</p><span class="p-hint">Vezi produsele <span class="p-arrow" aria-hidden="true">↗</span></span></div><img src="img/climatizare.webp" alt="Aparat de aer condiționat într-un living luminos" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=450&q=80'"></a>
+</nav><div class="p-outro"><span>Miniimaginile sunt ilustrative; prețul și disponibilitatea se confirmă prin ofertă.</span><a href="produse.html">Deschide catalogul complet de produse ↗</a></div></div></section>
 <section class="sec g"><div class="in stack"><p class="eyebrow">Cum lucrăm</p><h2>De la telefon la căldură în casă</h2>
 <div class="steps">
 <div class="step"><h3>Sunați sau scrieți</h3><p>Ne spuneți ce aveți nevoie. Vă dăm prețul orientativ pe loc.</p></div>
