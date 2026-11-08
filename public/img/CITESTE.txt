@@ -1,0 +1,5 @@
+Puneți aici imaginile proprii:
+- incalzire.webp
+- climatizare.webp
+- sanitare.webp
+Dacă lipsesc, site-ul folosește fotografii Unsplash.

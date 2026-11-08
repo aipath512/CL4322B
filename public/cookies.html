@@ -6,7 +6,7 @@
 <title>Politica de cookies — CL4322B</title>
 <meta name="description" content="Politica de cookies pentru site-ul CL4322B.">
 <meta name="robots" content="noindex, nofollow">
-<meta name="generator" content="CL4322B v1.4 2026-11-08">
+<meta name="generator" content="CL4322B v1.6 2026-11-08">
 <meta property="og:title" content="Politica de cookies — CL4322B"><meta property="og:description" content="Politica de cookies pentru site-ul CL4322B."><meta property="og:locale" content="ro_RO">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Ccircle cx='17' cy='17' r='15' fill='%23c2541f'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
@@ -117,6 +117,41 @@ footer h3{font-size:.95rem;margin-bottom:8px}
 footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
 footer a{color:var(--ink)}
 footer .fine{margin-top:28px;color:var(--muted);font-size:.82rem;display:flex;flex-direction:column;gap:6px}
+/* hero carusel */
+.hx{position:relative;overflow:hidden;min-height:clamp(520px,78vh,680px);display:flex;align-items:center;background:#0d1216;color:#fff}
+.hx .sl{position:absolute;inset:0;opacity:0;transition:opacity .8s ease}
+.hx .sl.on{opacity:1}
+.hx .sl img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% center}
+.hx .sl::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,14,18,.96) 0%,rgba(10,14,18,.86) 34%,rgba(10,14,18,.55) 58%,rgba(10,14,18,.08) 88%)}
+.hx .in{position:relative;z-index:2;width:100%;padding-block:64px;display:flex;flex-direction:column;gap:18px}
+.hx .eyebrow{color:#d7dde2}
+.hx h1{max-width:13ch;color:#fff}
+.hx h1 .w1{color:#f4a273}.hx h1 .w2{color:#8cc4ef}.hx h1 .w3{color:#79d9c2}
+.hx .slt{min-height:7.5em;max-width:560px;display:flex;flex-direction:column;gap:8px}
+.hx .slt h2{font-size:clamp(1.4rem,2.8vw,2rem);color:#fff}
+.hx .slt p{color:#e3e8ec;font-size:1.08rem}
+.hx .slt .k{font:500 .76rem var(--mono);text-transform:uppercase;letter-spacing:.08em}
+.hx .btn{border-color:#fff;color:#fff}.hx .btn.pri{background:#ee8a58;border-color:#ee8a58;color:#1a0d06}
+.dots{display:flex;align-items:center;gap:10px}
+.dots button{width:34px;height:6px;border-radius:3px;border:0;background:rgba(255,255,255,.35);cursor:pointer;padding:0}
+.dots button[aria-current="true"]{background:#fff}
+.dots .pz{width:auto;height:auto;background:none;color:#fff;font:500 .78rem var(--mono);border:1px solid rgba(255,255,255,.45);border-radius:999px;padding:4px 10px}
+.hx .trust{color:#cfd6dc}.hx .trust b{color:#fff}
+@media (max-width:640px){.hx .sl::after{background:linear-gradient(90deg,rgba(10,14,18,.95),rgba(10,14,18,.78) 62%,rgba(10,14,18,.35))}.hx .sl img{object-position:62% center}}
+/* familii ca listă de carduri cu imagine */
+.flist{border:1px solid var(--line);border-radius:22px;background:var(--surface);overflow:hidden}
+.frow{display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:22px;align-items:center;padding:22px;text-decoration:none;color:var(--ink);cursor:pointer;transition:background .2s}
+.frow+.frow{border-top:1px solid var(--line)}
+.frow img{width:150px;height:150px;border-radius:22px;object-fit:cover;display:block;transition:transform .3s}
+.frow h3{font-size:clamp(1.3rem,2.6vw,1.8rem);font-weight:700}
+.frow p{color:var(--muted);font-size:1.05rem;margin-top:6px}
+.frow .go{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:1.3rem;transition:transform .2s,background .2s,color .2s}
+.frow:hover,.frow:focus-visible{background:var(--sunk)}
+.frow:hover img{transform:scale(1.04)}
+.frow:hover .go,.frow:focus-visible .go{background:var(--accent);color:var(--on-accent);border-color:var(--accent);transform:translateX(4px)}
+.frow .hint{display:inline-block;margin-top:10px;font:500 .78rem var(--mono);color:var(--accent);text-transform:uppercase;letter-spacing:.06em}
+@media (max-width:640px){.frow{grid-template-columns:96px minmax(0,1fr);gap:16px;padding:16px}.frow img{width:96px;height:96px;border-radius:16px}.frow .go{display:none}}
+@media (prefers-reduced-motion:reduce){.hx .sl,.frow,.frow img,.frow .go{transition:none}}
 /* asistent */
 #ai-btn{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40;background:var(--ink);color:var(--bg);border:0;border-radius:999px;padding:12px 18px;font:600 .98rem var(--body);box-shadow:0 6px 24px rgba(0,0,0,.25);cursor:pointer}
 #ai-panel{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:41;width:min(380px,calc(100vw - 32px));height:min(540px,calc(100vh - 140px));background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.25);display:flex;flex-direction:column;overflow:hidden}
@@ -134,24 +169,6 @@ footer .fine{margin-top:28px;color:var(--muted);font-size:.82rem;display:flex;fl
 #ai-form button{background:var(--accent);color:var(--on-accent);border:0;border-radius:10px;padding:0 14px;font-weight:600;cursor:pointer}
 .ai-note{font-size:.74rem;color:var(--muted);padding:0 14px 10px}
 @media (prefers-reduced-motion:no-preference){.dial .spin{transform-origin:200px 200px;animation:sp 60s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}}
-
-/* UX mobile v1.6: un singur control vizibil pentru asistent */
-#ai-btn[aria-expanded="true"]{display:none!important}
-#ai-btn{max-width:calc(100vw - 32px);white-space:nowrap}
-#ai-panel{max-height:calc(100dvh - 110px);min-height:0}
-#ai-panel header{flex-shrink:0}
-#ai-panel #ai-log{min-height:0;overscroll-behavior:contain}
-#ai-panel #ai-form{flex-shrink:0}
-#ai-panel .ai-note{flex-shrink:0;font-size:.72rem;line-height:1.4}
-@media(max-width:640px){
- #ai-btn{right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));font-size:.88rem;padding:10px 15px}
- #ai-panel{right:10px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));width:auto;height:min(55dvh,420px);max-height:calc(100dvh - 80px);border-radius:18px}
- #ai-panel header{padding:10px 14px}
- #ai-panel #ai-log{padding:12px;gap:8px}
- #ai-panel .m{font-size:.9rem;padding:8px 10px}
- #ai-panel .ai-note{padding:0 12px 7px}
- #ai-panel #ai-form{padding:8px}
-}
 </style>
 </head>
 <body>
@@ -173,7 +190,7 @@ footer .fine{margin-top:28px;color:var(--muted);font-size:.82rem;display:flex;fl
 <div><h3>Site</h3><ul><li><a href="despre.html">Despre</a></li><li><a href="servicii.html">Servicii</a></li><li><a href="produse.html">Produse</a></li><li><a href="mentenanta.html">Mentenanță</a></li><li><a href="garantii.html">Garanții</a></li><li><a href="certificari.html">Certificări</a></li><li><a href="oferta.html">Ofertă</a></li></ul></div>
 <div><h3>Legal</h3><ul><li><a href="termeni.html">Termeni și condiții</a></li><li><a href="cookies.html">Politica de cookies</a></li><li><a href="confidentialitate.html">Confidențialitate (GDPR)</a></li><li><a href="ai-act.html">Transparență AI (AI Act)</a></li></ul></div>
 <div><h3>Date firmă</h3><p>CUI RO00004322</p><p>Reg. Com. J40/0004/2014</p><p>CAEN 4322 — Lucrări de instalații sanitare, de încălzire și de aer condiționat</p><p>Autorizat ISCIR, ANRE, F-gaz (vezi <a href="certificari.html">Certificări</a>)</p></div>
-</div><div class="fine"><p><b>Site etalon demonstrativ.</b> CL4322B SRL, persoanele, adresa, telefonul, CUI-ul și numerele de autorizare sunt fictive. Prețurile firmei sunt exemplificative și sunt calculate din prețurile publice observate pe piața din București la 8 noiembrie 2026; intervalele „Piață București” provin din surse publice listate pe pagina <a href="oferta.html#surse">Ofertă</a>.</p><p>CL4322B v1.4 · 2026-11-08</p></div></div></footer>
+</div><div class="fine"><p><b>Site etalon demonstrativ.</b> CL4322B SRL, persoanele, adresa, telefonul, CUI-ul și numerele de autorizare sunt fictive. Prețurile firmei sunt exemplificative și sunt calculate din prețurile publice observate pe piața din București la 8 noiembrie 2026; intervalele „Piață București” provin din surse publice listate pe pagina <a href="oferta.html#surse">Ofertă</a>.</p><p>CL4322B v1.6 · 2026-11-08</p></div></div></footer>
 <button id="ai-btn" aria-controls="ai-panel" aria-expanded="false">Asistent AI</button>
 <section id="ai-panel" hidden aria-label="Asistent AI"><header><b>Asistent CL4322B</b><span class="eyebrow">AI</span><button id="ai-x" aria-label="Închide">×</button></header>
 <div id="ai-log" aria-live="polite"></div><p class="ai-note">Vorbiți cu un sistem de inteligență artificială. Răspunsurile sunt orientative; programarea și prețul final le confirmă un om. <a href="ai-act.html">Detalii</a></p>

@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>CL4322B — instalații încălzire, climatizare, sanitare în București</title>
-<meta name="description" content="Site etalon demonstrativ de instalații pentru apartamente și case din București. Descoperă încălzire, climatizare, sanitare, produse și cerere de ofertă.">
+<meta name="description" content="Montaj, service și mentenanță pentru centrale termice, aer condiționat și instalații sanitare în București și Ilfov. Prețuri afișate, garanție scrisă.">
 <meta name="robots" content="noindex, nofollow">
-<meta name="generator" content="CL4322B premium B2C v2.0 2026-11-08">
+<meta name="generator" content="CL4322B v1.6 2026-11-08">
 <meta property="og:title" content="CL4322B — instalații încălzire, climatizare, sanitare în București"><meta property="og:description" content="Montaj, service și mentenanță pentru centrale termice, aer condiționat și instalații sanitare în București și Ilfov. Prețuri afișate, garanție scrisă."><meta property="og:locale" content="ro_RO">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Ccircle cx='17' cy='17' r='15' fill='%23c2541f'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "HVACBusiness", "name": "CL4322B SRL", "email": "email@etalon.com", "telephone": "021 000 4322", "address": {"@type": "PostalAddress", "streetAddress": "Str. Etalonului nr. 22, Sector 3", "addressLocality": "București", "addressCountry": "RO"}, "areaServed": ["București", "Ilfov"], "description": "Site etalon demonstrativ al unei firme fictive CAEN 4322."}</script>
@@ -117,6 +117,41 @@ footer h3{font-size:.95rem;margin-bottom:8px}
 footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
 footer a{color:var(--ink)}
 footer .fine{margin-top:28px;color:var(--muted);font-size:.82rem;display:flex;flex-direction:column;gap:6px}
+/* hero carusel */
+.hx{position:relative;overflow:hidden;min-height:clamp(520px,78vh,680px);display:flex;align-items:center;background:#0d1216;color:#fff}
+.hx .sl{position:absolute;inset:0;opacity:0;transition:opacity .8s ease}
+.hx .sl.on{opacity:1}
+.hx .sl img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% center}
+.hx .sl::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,14,18,.96) 0%,rgba(10,14,18,.86) 34%,rgba(10,14,18,.55) 58%,rgba(10,14,18,.08) 88%)}
+.hx .in{position:relative;z-index:2;width:100%;padding-block:64px;display:flex;flex-direction:column;gap:18px}
+.hx .eyebrow{color:#d7dde2}
+.hx h1{max-width:13ch;color:#fff}
+.hx h1 .w1{color:#f4a273}.hx h1 .w2{color:#8cc4ef}.hx h1 .w3{color:#79d9c2}
+.hx .slt{min-height:7.5em;max-width:560px;display:flex;flex-direction:column;gap:8px}
+.hx .slt h2{font-size:clamp(1.4rem,2.8vw,2rem);color:#fff}
+.hx .slt p{color:#e3e8ec;font-size:1.08rem}
+.hx .slt .k{font:500 .76rem var(--mono);text-transform:uppercase;letter-spacing:.08em}
+.hx .btn{border-color:#fff;color:#fff}.hx .btn.pri{background:#ee8a58;border-color:#ee8a58;color:#1a0d06}
+.dots{display:flex;align-items:center;gap:10px}
+.dots button{width:34px;height:6px;border-radius:3px;border:0;background:rgba(255,255,255,.35);cursor:pointer;padding:0}
+.dots button[aria-current="true"]{background:#fff}
+.dots .pz{width:auto;height:auto;background:none;color:#fff;font:500 .78rem var(--mono);border:1px solid rgba(255,255,255,.45);border-radius:999px;padding:4px 10px}
+.hx .trust{color:#cfd6dc}.hx .trust b{color:#fff}
+@media (max-width:640px){.hx .sl::after{background:linear-gradient(90deg,rgba(10,14,18,.95),rgba(10,14,18,.78) 62%,rgba(10,14,18,.35))}.hx .sl img{object-position:62% center}}
+/* familii ca listă de carduri cu imagine */
+.flist{border:1px solid var(--line);border-radius:22px;background:var(--surface);overflow:hidden}
+.frow{display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:22px;align-items:center;padding:22px;text-decoration:none;color:var(--ink);cursor:pointer;transition:background .2s}
+.frow+.frow{border-top:1px solid var(--line)}
+.frow img{width:150px;height:150px;border-radius:22px;object-fit:cover;display:block;transition:transform .3s}
+.frow h3{font-size:clamp(1.3rem,2.6vw,1.8rem);font-weight:700}
+.frow p{color:var(--muted);font-size:1.05rem;margin-top:6px}
+.frow .go{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:1.3rem;transition:transform .2s,background .2s,color .2s}
+.frow:hover,.frow:focus-visible{background:var(--sunk)}
+.frow:hover img{transform:scale(1.04)}
+.frow:hover .go,.frow:focus-visible .go{background:var(--accent);color:var(--on-accent);border-color:var(--accent);transform:translateX(4px)}
+.frow .hint{display:inline-block;margin-top:10px;font:500 .78rem var(--mono);color:var(--accent);text-transform:uppercase;letter-spacing:.06em}
+@media (max-width:640px){.frow{grid-template-columns:96px minmax(0,1fr);gap:16px;padding:16px}.frow img{width:96px;height:96px;border-radius:16px}.frow .go{display:none}}
+@media (prefers-reduced-motion:reduce){.hx .sl,.frow,.frow img,.frow .go{transition:none}}
 /* asistent */
 #ai-btn{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40;background:var(--ink);color:var(--bg);border:0;border-radius:999px;padding:12px 18px;font:600 .98rem var(--body);box-shadow:0 6px 24px rgba(0,0,0,.25);cursor:pointer}
 #ai-panel{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:41;width:min(380px,calc(100vw - 32px));height:min(540px,calc(100vh - 140px));background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.25);display:flex;flex-direction:column;overflow:hidden}
@@ -134,104 +169,6 @@ footer .fine{margin-top:28px;color:var(--muted);font-size:.82rem;display:flex;fl
 #ai-form button{background:var(--accent);color:var(--on-accent);border:0;border-radius:10px;padding:0 14px;font-weight:600;cursor:pointer}
 .ai-note{font-size:.74rem;color:var(--muted);padding:0 14px 10px}
 @media (prefers-reduced-motion:no-preference){.dial .spin{transform-origin:200px 200px;animation:sp 60s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}}
-
-/* UX mobile v1.6: un singur control vizibil pentru asistent */
-#ai-btn[aria-expanded="true"]{display:none!important}
-#ai-btn{max-width:calc(100vw - 32px);white-space:nowrap}
-#ai-panel{max-height:calc(100dvh - 110px);min-height:0}
-#ai-panel header{flex-shrink:0}
-#ai-panel #ai-log{min-height:0;overscroll-behavior:contain}
-#ai-panel #ai-form{flex-shrink:0}
-#ai-panel .ai-note{flex-shrink:0;font-size:.72rem;line-height:1.4}
-@media(max-width:640px){
- #ai-btn{right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));font-size:.88rem;padding:10px 15px}
- #ai-panel{right:10px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));width:auto;height:min(55dvh,420px);max-height:calc(100dvh - 80px);border-radius:18px}
- #ai-panel header{padding:10px 14px}
- #ai-panel #ai-log{padding:12px;gap:8px}
- #ai-panel .m{font-size:.9rem;padding:8px 10px}
- #ai-panel .ai-note{padding:0 12px 7px}
- #ai-panel #ai-form{padding:8px}
-}
-
-/* PREMIUM B2C HOMEPAGE v2 */
-:root, :root[data-theme="dark"]{--bg:#fbfaf7;--surface:#fff;--sunk:#f2f0eb;--ink:#1d302b;--muted:#62716d;--line:#e4e8e3;--accent:#206a59;--on-accent:#fff;--heat:#9e724f;--cool:#206a76;--water:#5f907e;--demo:#776c50;--demo-bg:#f1efe7;color-scheme:light}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#fbfaf7;--surface:#fff;--sunk:#f2f0eb;--ink:#1d302b;--muted:#62716d;--line:#e4e8e3;--accent:#206a59;--on-accent:#fff;--heat:#9e724f;--cool:#206a76;--water:#5f907e;--demo:#776c50;--demo-bg:#f1efe7;color-scheme:light}}
-body{font-family:"Barlow",Arial,sans-serif;background:#fbfaf7;color:#1d302b}
-header.top{background:#fbfaf7;border-color:#e6e8e3;position:sticky}
-.bar{min-height:78px;gap:17px}
-.logo{font-size:1.28rem}
-.menu{gap:6px 15px}
-.menu a{font-size:.87rem;color:#253f36}
-.menu a:hover{color:#206a59}
-.bar .call{background:#206a59;color:white;font-size:.87rem;padding:11px 17px}
-.premium-hero{min-height:min(750px,83svh);background:#203a32;position:relative;display:flex;align-items:center;isolation:isolate;overflow:hidden}
-.premium-photo{position:absolute;inset:0;background:url("https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=2200&q=85") center 51%/cover no-repeat;z-index:-2}
-.premium-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,39,34,.96) 0%,rgba(13,39,34,.86) 32%,rgba(13,39,34,.37) 65%,rgba(13,39,34,.13) 100%);z-index:-1}
-.premium-hero-inner{width:100%;padding:108px 24px 105px}
-.premium-kicker,.premium-overline{font:700 .77rem "Barlow",sans-serif;letter-spacing:.16em;text-transform:uppercase}
-.premium-kicker{color:#ddede6;display:flex;align-items:center;gap:9px;margin-bottom:30px}
-.premium-dot{width:7px;height:7px;background:#d8cba8;border-radius:50%;display:inline-block}
-.premium-hero h1{font-size:clamp(3.3rem,7vw,6.6rem);color:#fff;max-width:850px;font-family:"Bricolage Grotesque",Arial,sans-serif;line-height:1.02;letter-spacing:-.045em;text-wrap:balance}
-.premium-hero h1 em{font-style:normal;color:#e2d0ab}
-.premium-hero-inner>p:not(.premium-kicker){font-size:clamp(1.05rem,1.7vw,1.23rem);max-width:570px;color:#e8eee9;line-height:1.6;margin-top:26px}
-.premium-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:33px}
-.premium-btn{display:inline-flex;align-items:center;justify-content:space-between;gap:20px;border-radius:7px;padding:15px 21px;font-size:.94rem;line-height:1.3;font-weight:700;text-decoration:none;transition:transform .18s,background-color .18s}
-.premium-btn:hover{transform:translateY(-2px)}
-.premium-btn.white{background:#fff;color:#19362c}
-.premium-btn.outline{border:1px solid rgba(255,255,255,.72);color:#fff;background:rgba(255,255,255,.06)}
-.premium-btn.dark{background:#1d4c40;color:white}
-.premium-hero-foot{margin-top:38px;font-size:.8rem;letter-spacing:.04em;color:#d5e2d9}
-.premium-hero-foot span{padding:0 10px}
-.premium-intro,.premium-popular,.premium-after{padding:100px 24px}
-.premium-section-heading{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:36px}
-.premium-overline{color:#357262;margin-bottom:15px}
-.premium-section-heading h2,.premium-feature h2,.premium-process h2{font-family:"Bricolage Grotesque",Arial,sans-serif;letter-spacing:-.035em;line-height:1.08;font-size:clamp(2.1rem,4.2vw,3.9rem);max-width:760px;color:#203d34}
-.premium-section-heading>p{max-width:385px;color:#61716b;line-height:1.65;font-size:.99rem}
-.premium-service-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-.premium-service{border:1px solid #e2e8e1;background:#fff;overflow:hidden;border-radius:14px;box-shadow:0 16px 35px rgba(30,58,42,.045)}
-.premium-service-image{height:240px;background-position:center;background-size:cover}
-.premium-service-image.heatphoto{background-image:url("https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=950&q=82")}
-.premium-service-image.coolphoto{background-image:url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=950&q=82")}
-.premium-service-image.waterphoto{background-image:url("https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=950&q=82")}
-.premium-service-copy{padding:28px}
-.premium-service-copy>span,.premium-popular-grid a>span{color:#5e8777;font-weight:800;font-size:.74rem;letter-spacing:.11em}
-.premium-service h3{font-family:"Bricolage Grotesque",sans-serif;font-size:clamp(1.5rem,2.1vw,2.05rem);line-height:1.15;margin:13px 0 15px}
-.premium-service p{color:#67746d;line-height:1.6;min-height:80px}
-.premium-service a{display:flex;justify-content:space-between;align-items:center;font-weight:800;color:#236b59;text-decoration:none;margin-top:20px;border-top:1px solid #e5eae4;padding-top:18px}
-.premium-feature{padding:100px 24px;background:#e9eee9}
-.premium-feature-layout{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
-.premium-feature-image{min-height:540px;border-radius:17px;background:url("https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1250&q=85") center/cover;box-shadow:22px 22px 0 #d9e3d9}
-.premium-feature-copy h2 i{font-style:normal;color:#558e7b}
-.premium-feature-copy>p:not(.premium-overline){color:#5d6c66;max-width:485px;font-size:1.07rem;line-height:1.7;margin-top:25px}
-.premium-checks{display:flex;flex-direction:column;gap:9px;margin:27px 0 32px;color:#315749;font-weight:600}
-.premium-popular-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
-.premium-popular-grid a{display:flex;flex-direction:column;gap:13px;min-height:188px;background:#fff;padding:26px;border-radius:12px;border:1px solid #e2e9e4;text-decoration:none;color:#23382f;transition:box-shadow .2s}
-.premium-popular-grid a:hover{box-shadow:0 10px 30px rgba(28,61,47,.12)}
-.premium-popular-grid strong{font-family:"Bricolage Grotesque",sans-serif;font-size:1.4rem;line-height:1.23}
-.premium-popular-grid small{font-weight:700;color:#32705d;margin-top:auto;font-size:.84rem}
-.premium-all{display:flex;justify-content:center;margin-top:34px}
-.premium-process{padding:95px 24px;background:#214a3e;color:#fff}
-.premium-process .premium-overline{color:#b2d9c6}
-.premium-process h2{color:#fff}
-.premium-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:35px;margin-top:47px}
-.premium-steps>div{border-top:1px solid #ffffff5d;padding-top:18px}
-.premium-steps span{font:800 1.8rem "Bricolage Grotesque",sans-serif;color:#bad5c5}
-.premium-steps h3{font-size:1.35rem;margin:12px 0;color:white}
-.premium-steps p{color:#dae6db;max-width:300px}
-.premium-after-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
-.premium-after-grid>a{border:1px solid #dfe7df;background:white;padding:26px;border-radius:12px;text-decoration:none;color:#253e34}
-.premium-after-grid span{font-size:.78rem;color:#397b65}
-.premium-after-grid h3{font-family:"Bricolage Grotesque",sans-serif;font-size:1.35rem;margin:17px 0 13px}
-.premium-after-grid p{color:#64756b;min-height:67px}
-.premium-after-grid b{font-size:.88rem;color:#36715c}
-.premium-disclaimer{padding:22px 24px;background:#eeeae0;color:#625f52;font-size:.82rem;line-height:1.55}
-.premium-disclaimer a{color:#205f4c}
-#ai-btn{background:#206a59;color:white;box-shadow:0 9px 30px #1a413437}
-#ai-btn[aria-expanded="true"]{display:none!important}
-#ai-panel{--surface:#fff;--sunk:#edf4ef;--ink:#20392f;--muted:#63766c;--line:#dce8df;--accent:#206a59;--on-accent:#fff;color:#20392f;background:#fff}
-@media(max-width:900px){.bar .call{order:initial;margin-left:0}.menu{order:4}.premium-section-heading{display:block}.premium-section-heading>p{margin-top:17px;max-width:640px}.premium-feature-layout{gap:37px}}
-@media(max-width:760px){.premium-service-grid,.premium-popular-grid,.premium-after-grid,.premium-steps{grid-template-columns:1fr}.premium-feature-layout{grid-template-columns:1fr}.premium-feature-image{min-height:300px;box-shadow:10px 10px 0 #d9e3d9}.premium-intro,.premium-popular,.premium-after,.premium-feature,.premium-process{padding:65px 20px}.premium-service-image{height:240px}.premium-service p,.premium-after-grid p{min-height:0}.premium-popular-grid a{min-height:155px}.premium-steps{gap:25px}.premium-hero{min-height:650px}.premium-hero-inner{padding:80px 20px}.premium-hero h1{font-size:clamp(2.8rem,11vw,4.4rem)}.premium-hero-inner>p:not(.premium-kicker){font-size:1.04rem}.premium-shade{background:linear-gradient(90deg,rgba(14,38,34,.94),rgba(14,38,34,.62))}.premium-actions{align-items:stretch;flex-direction:column}.premium-actions a{width:100%}.premium-hero-foot{font-size:.74rem}}
-@media(max-width:480px){header.top .bar{gap:10px}.logo{font-size:1.08rem}.bar .call{font-size:.7rem;padding:9px 11px}#mt{font-size:.85rem;padding:6px 8px}.premium-hero h1{letter-spacing:-.05em}}
 </style>
 </head>
 <body>
@@ -239,40 +176,42 @@ header.top{background:#fbfaf7;border-color:#e6e8e3;position:sticky}
 <header class="top g"><div class="in bar"><a class="logo" href="index.html"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="16" fill="none" stroke="var(--ink)" stroke-width="2"/><path d="M17 5a12 12 0 0 1 10.4 6" stroke="var(--heat)" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M27.4 23A12 12 0 0 1 6.6 23" stroke="var(--cool)" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M6.6 11A12 12 0 0 1 12 6.2" stroke="var(--water)" stroke-width="4" fill="none" stroke-linecap="round"/><text x="17" y="21" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" font-weight="600" fill="var(--ink)">4322</text></svg><span>CL4322B</span></a>
 <button id="mt" aria-expanded="false" aria-controls="menu">Meniu</button>
 <nav class="menu" id="menu" aria-label="Meniu principal"><a href="index.html" aria-current="page">Acasă</a><a href="despre.html">Despre</a><a href="servicii.html">Servicii</a><a href="produse.html">Produse</a><a href="mentenanta.html">Mentenanță</a><a href="garantii.html">Garanții</a><a href="certificari.html">Certificări</a><a href="oferta.html">Ofertă</a></nav><a class="call" href="tel:+40210004322">021 000 4322</a></div></header>
-<main id="main">
-<section class="premium-hero" aria-labelledby="home-title"><div class="premium-photo" role="img" aria-label="Interior luminos, modern, cu materiale naturale — fotografie de atmosferă"></div><div class="premium-shade"></div><div class="premium-hero-inner in">
-<div class="premium-kicker"><span class="premium-dot"></span> INSTALAȚII PENTRU APARTAMENTE ȘI CASE · BUCUREȘTI</div>
-<h1 id="home-title">Mai mult confort.<br><em>Mai mult acasă.</em></h1>
-<p>De la căldura din living la aerul răcoros din dormitor și baia pe care ți-o dorești. Descoperă soluții de încălzire, climatizare și sanitare, explicate simplu.</p>
-<div class="premium-actions"><a class="premium-btn white" href="servicii.html">Descoperă toate serviciile <span aria-hidden="true">↗</span></a><a class="premium-btn outline" href="oferta.html">Pregătește cererea de ofertă <span aria-hidden="true">→</span></a></div>
-<div class="premium-hero-foot">Un singur catalog pentru confortul locuinței <span aria-hidden="true">·</span> Model comercial demonstrativ</div>
+<main><section class="hx g" aria-roledescription="carusel" aria-label="Ce facem"><div class="sl on" data-i="0"><img src="img/incalzire.webp" alt="Încăpere luminoasă încălzită, cu radiator" loading="eager" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1800&q=80'"></div><div class="sl" data-i="1"><img src="img/climatizare.webp" alt="Living luminos cu aparat de aer condiționat pe perete" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1800&q=80'"></div><div class="sl" data-i="2"><img src="img/sanitare.webp" alt="Baie modernă cu duș și lavoar" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=1800&q=80'"></div><div class="in">
+<p class="eyebrow">Instalații în București și Ilfov · din 2014</p>
+<h1>Căldură <span class="w1">iarna</span>, răcoare <span class="w2">vara</span>, apă <span class="w3">fără griji</span>.</h1>
+<div aria-live="polite"><div class="slt" data-i="0"><span class="k" style="color:#f4a273">Încălzire</span><h2>Centrală nouă, montată și autorizată ISCIR</h2><p>Montaj, punere în funcțiune, revizie și VTP, calorifere și pompe de căldură. Garanție de montaj 24 de luni.</p></div><div class="slt" data-i="1" hidden><span class="k" style="color:#8cc4ef">Climatizare</span><h2>Aer condiționat montat corect, cu vidare</h2><p>Montaj de la 575 lei, igienizare, freon și reparații, în toată Bucureștiul și Ilfov.</p></div><div class="slt" data-i="2" hidden><span class="k" style="color:#79d9c2">Sanitare</span><h2>Baie nouă, fără scurgeri și fără surprize</h2><p>Obiecte sanitare, WC suspendat, țevi noi, desfundare și inspecție video a canalizării.</p></div></div>
+<div class="cta"><a class="btn pri" href="tel:+40210004322">Sunați: 021 000 4322</a><a class="btn" href="oferta.html">Vedeți toate prețurile</a></div>
+<div class="dots"><button type="button" data-go="0" aria-label="Încălzire" aria-current="true"></button><button type="button" data-go="1" aria-label="Climatizare" aria-current="false"></button><button type="button" data-go="2" aria-label="Sanitare" aria-current="false"></button><button type="button" class="pz" aria-pressed="false">Pauză</button></div>
+<div class="trust"><span><b>Autorizat ISCIR</b> pentru centrale</span><span><b>ANRE</b> pentru gaze</span><span><b>F-gaz</b> pentru freon</span><span><b>24 luni</b> garanție montaj</span></div>
 </div></section>
-<section class="premium-intro"><div class="in"><div class="premium-section-heading"><div><p class="premium-overline">PENTRU CASA TA</p><h2>Cu ce te putem ajuta?</h2></div><p>Nu trebuie să cunoști termenii tehnici. Alege ce vrei să rezolvi; fiecare serviciu explică lucrarea și ce trebuie să conțină oferta.</p></div>
-<div class="premium-service-grid">
-<article class="premium-service"><div class="premium-service-image heatphoto" role="img" aria-label="Interior contemporan cald, ilustrativ pentru instalații de încălzire"></div><div class="premium-service-copy"><span>01 / ÎNCĂLZIRE</span><h3>Căldura potrivită,<br>în fiecare cameră.</h3><p>Centrale termice, calorifere, încălzire în pardoseală, pompe de căldură, reparații și revizii.</p><a href="servicii.html#incalzire">Vezi serviciile de încălzire <b aria-hidden="true">↗</b></a></div></article>
-<article class="premium-service"><div class="premium-service-image coolphoto" role="img" aria-label="Living luminos, ilustrativ pentru climatizare"></div><div class="premium-service-copy"><span>02 / CLIMATIZARE</span><h3>Aer plăcut,<br>în orice anotimp.</h3><p>Montaj aer condiționat, multisplit, igienizare, întreținere, ventilație și diagnosticare.</p><a href="servicii.html#climatizare">Vezi serviciile de climatizare <b aria-hidden="true">↗</b></a></div></article>
-<article class="premium-service"><div class="premium-service-image waterphoto" role="img" aria-label="Baie modernă, ilustrativă pentru instalații sanitare"></div><div class="premium-service-copy"><span>03 / SANITARE</span><h3>O baie frumoasă.<br>Instalații sigure.</h3><p>Montaj obiecte sanitare, apă și canalizare, baterii, boilere, reparații și scurgeri.</p><a href="servicii.html#sanitare">Vezi serviciile sanitare <b aria-hidden="true">↗</b></a></div></article>
+<section class="sec g"><div class="in stack"><p class="eyebrow">Ce facem</p><h2>Alegeți ce aveți nevoie</h2><nav class="flist" aria-label="Familii de servicii"><a class="frow" href="servicii.html#incalzire"><img src="img/incalzire.webp" alt="Încăpere luminoasă încălzită, cu radiator" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=400&q=80'"><div><h3>Încălzire — 29 servicii</h3><p>Centrale, punere în funcțiune ISCIR, revizie și VTP, calorifere, boilere, pardoseală, pompe de căldură.</p><span class="hint">Vezi serviciile și prețurile</span></div><span class="go" aria-hidden="true">→</span></a><a class="frow" href="servicii.html#climatizare"><img src="img/climatizare.webp" alt="Living luminos cu aparat de aer condiționat pe perete" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=400&q=80'"><div><h3>Climatizare — 11 servicii</h3><p>Montaj aer condiționat, igienizare, freon, reparații, mutare și demontare.</p><span class="hint">Vezi serviciile și prețurile</span></div><span class="go" aria-hidden="true">→</span></a><a class="frow" href="servicii.html#sanitare"><img src="img/sanitare.webp" alt="Baie modernă cu duș și lavoar" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=400&q=80'"><div><h3>Sanitare — 10 servicii</h3><p>Obiecte sanitare, WC suspendat, țevi noi, desfundare, inspecție video, canalizare.</p><span class="hint">Vezi serviciile și prețurile</span></div><span class="go" aria-hidden="true">→</span></a></nav></div></section>
+<section class="sec g"><div class="in stack"><p class="eyebrow">Cum lucrăm</p><h2>De la telefon la căldură în casă</h2>
+<div class="steps">
+<div class="step"><h3>Sunați sau scrieți</h3><p>Ne spuneți ce aveți nevoie. Vă dăm prețul orientativ pe loc.</p></div>
+<div class="step"><h3>Venim la constatare</h3><p>Deplasare 100 lei în București. Măsurăm și verificăm.</p></div>
+<div class="step"><h3>Primiți devizul</h3><p>Preț fix, scris, înainte să începem. Nicio surpriză la final.</p></div>
+<div class="step"><h3>Lucrăm și garantăm</h3><p>Lucrare curată, probe de funcționare și certificat de garanție.</p></div>
 </div></div></section>
-<section class="premium-feature"><div class="in premium-feature-layout"><div class="premium-feature-image" role="img" aria-label="Interior luminos în tonuri bej și lemn, imagine de inspirație"></div><div class="premium-feature-copy"><p class="premium-overline">CLARITATE, NU JARGON</p><h2>Nu cumperi o lucrare.<br><i>Cumperi liniștea de acasă.</i></h2><p>Fiecare fișă explică ce problemă rezolvă, ce presupune montajul, când se recomandă intervenția și ce detalii merită cerute înainte de comandă.</p><div class="premium-checks"><span>✓ Descrierea completă a serviciului</span><span>✓ Produsele și manopera, separat</span><span>✓ Întrebările corecte înainte de deviz</span></div><a class="premium-btn dark" href="produse.html">Explorează echipamentele și materialele <span aria-hidden="true">→</span></a></div></div></section>
-<section class="premium-popular"><div class="in"><div class="premium-section-heading"><div><p class="premium-overline">DE UNDE ÎNCEPI?</p><h2>Lucrări căutate frecvent</h2></div><p>Alege direct o lucrare sau explorează catalogul. Nu există tarife ferme pentru firma fictivă; prețul real se confirmă în deviz.</p></div>
-<div class="premium-popular-grid">
-<a href="servicii.html#inlocuire-centrala-existenta"><span>ÎNCĂLZIRE</span><strong>Înlocuire centrală termică</strong><small>Vezi descrierea lucrării ↗</small></a>
-<a href="servicii.html#revizie-anuala-centrala"><span>ÎNCĂLZIRE</span><strong>Revizie și întreținere centrală</strong><small>Vezi descrierea lucrării ↗</small></a>
-<a href="servicii.html#montaj-aer-conditionat-9-000-12-000-btu"><span>CLIMATIZARE</span><strong>Montaj aer condiționat</strong><small>Vezi descrierea lucrării ↗</small></a>
-<a href="servicii.html#igienizare-aer-conditionat"><span>CLIMATIZARE</span><strong>Curățare și igienizare AC</strong><small>Vezi descrierea lucrării ↗</small></a>
-<a href="servicii.html#montaj-wc-suspendat-cu-cadru"><span>SANITARE</span><strong>Montaj WC suspendat</strong><small>Vezi descrierea lucrării ↗</small></a>
-<a href="servicii.html#desfundare-scurgere"><span>SANITARE</span><strong>Desfundare și reparații scurgeri</strong><small>Vezi descrierea lucrării ↗</small></a>
-</div><div class="premium-all"><a class="premium-btn dark" href="servicii.html">Descoperă catalogul complet de servicii <span aria-hidden="true">→</span></a></div></div></section>
-<section class="premium-process"><div class="in"><p class="premium-overline">SIMPLU, PAS CU PAS</p><h2>De la idee la o ofertă clară.</h2><div class="premium-steps"><div><span>01</span><h3>Alege ce ai nevoie</h3><p>Încălzire, climatizare sau sanitare, pentru apartamentul sau casa ta.</p></div><div><span>02</span><h3>Descrie locuința</h3><p>Spune ce echipament ai, ce vrei să schimbi și în ce zonă a Bucureștiului.</p></div><div><span>03</span><h3>Pregătește devizul</h3><p>Generează un rezumat cu lucrări, materiale și informațiile necesare unei cotații reale.</p></div></div><div class="premium-all"><a class="premium-btn white" href="oferta.html">Completează cererea de ofertă — model <span aria-hidden="true">↗</span></a></div></div></section>
-<section class="premium-after"><div class="in"><div class="premium-section-heading"><div><p class="premium-overline">PE TERMEN LUNG</p><h2>Confortul nu se oprește la montaj.</h2></div><p>După instalare urmează exploatarea corectă. Aici găsești informațiile necesare înainte de a contracta o firmă reală.</p></div><div class="premium-after-grid"><a href="mentenanta.html"><span>01</span><h3>Mentenanță</h3><p>Ce verificări și întreținere pot fi necesare.</p><b>Vezi ghidul ↗</b></a><a href="garantii.html"><span>02</span><h3>Garanții</h3><p>Diferența dintre garanția echipamentului și cea a lucrării.</p><b>Vezi condițiile ↗</b></a><a href="certificari.html"><span>03</span><h3>Certificări și autorizări</h3><p>ISCIR, ANRE și F-gaze: ce documente trebuie verificate.</p><b>Verifică cerințele ↗</b></a></div></div></section>
-<section class="premium-disclaimer"><div class="in"><strong>C4322B / CL4322B este un etalon demonstrativ.</strong> Numele firmei, datele de contact și oferta sunt exemple. Fotografiile ilustrează atmosfera, nu lucrări realizate. Nu declarăm autorizații, experiență, disponibilitate, termene, garanții sau prețuri reale. <a href="termeni.html">Detalii legale</a>.</div></section>
-</main>
+
+<section class="sec alt g"><div class="in stack"><p class="eyebrow">Prețuri de referință</p><h2>Cele mai cerute lucrări</h2>
+<div class="tbl"><table><thead><tr><th>Lucrare</th><th class="n">Preț CL4322B</th></tr></thead><tbody>
+<tr><td><a href="servicii.html#inlocuire-centrala-existenta">Înlocuire centrală existentă</a></td><td class="n">1.500 lei</td></tr><tr><td><a href="servicii.html#punere-in-functiune-si-autorizare-iscir">Punere în funcțiune și autorizare ISCIR</a></td><td class="n">365 lei</td></tr><tr><td><a href="servicii.html#verificare-tehnica-periodica-vtp">Verificare tehnică periodică (VTP)</a></td><td class="n">500 lei</td></tr><tr><td><a href="servicii.html#revizie-anuala-centrala">Revizie anuală centrală</a></td><td class="n">280 lei</td></tr><tr><td><a href="servicii.html#montaj-aer-conditionat-9-000-12-000-btu">Montaj aer condiționat 9.000–12.000 BTU</a></td><td class="n">575 lei</td></tr><tr><td><a href="servicii.html#igienizare-aer-conditionat">Igienizare aer condiționat</a></td><td class="n">220 lei</td></tr><tr><td><a href="servicii.html#montaj-wc-suspendat-cu-cadru">Montaj WC suspendat cu cadru</a></td><td class="n">575 lei</td></tr><tr><td><a href="servicii.html#desfundare-scurgere">Desfundare scurgere</a></td><td class="n">400 lei</td></tr>
+</tbody></table></div><p><a href="oferta.html">Oferta completă, cu toate cele 57 poziții →</a></p></div></section>
+
+<section class="sec g"><div class="in cols3">
+<div class="box"><h3>Garanție scrisă</h3><p>24 de luni pentru montaj, 12 luni pentru reparații, 24 de luni pentru piesele montate de noi.</p><a href="garantii.html">Ce acoperă</a></div>
+<div class="box"><h3>Fără griji tot anul</h3><p>Abonamente de mentenanță de la 370 lei pe an, cu revizie inclusă și prioritate la urgențe.</p><a href="mentenanta.html">Alegeți abonamentul</a></div>
+<div class="box"><h3>Întrebați asistentul</h3><p>Asistentul AI răspunde oricând despre servicii, prețuri și garanții. Programarea o confirmă un om.</p><a href="ai-act.html">Cum funcționează</a></div>
+</div></section><script>(function(){var h=document.querySelector('.hx');if(!h)return;var s=h.querySelectorAll('.sl'),t=h.querySelectorAll('.slt'),d=h.querySelectorAll('[data-go]'),pz=h.querySelector('.pz'),i=0,run=!window.matchMedia('(prefers-reduced-motion: reduce)').matches,tm;
+function go(n){i=(n+3)%3;s.forEach(function(e,j){e.classList.toggle('on',j===i)});t.forEach(function(e,j){e.hidden=j!==i});d.forEach(function(e,j){e.setAttribute('aria-current',j===i?'true':'false')})}
+function play(){clearInterval(tm);if(run)tm=setInterval(function(){go(i+1)},3000);pz.textContent=run?'Pauză':'Pornește';pz.setAttribute('aria-pressed',run?'false':'true')}
+d.forEach(function(b){b.onclick=function(){go(+b.getAttribute('data-go'));play()}});pz.onclick=function(){run=!run;play()};play();})();</script></main>
 <footer class="g"><div class="in"><div class="cols">
-<div><h3>CL4322B SRL</h3><p>Str. Etalonului nr. 22, Sector 3, București</p><p>Tel. 021 000 4322</p><p>email@etalon.com</p><p>Program și disponibilitate: demonstrative, neconfirmate.</p></div>
+<div><h3>CL4322B SRL</h3><p>Str. Etalonului nr. 22, Sector 3, București</p><p>Tel. 021 000 4322</p><p>email@etalon.com</p><p>Luni–vineri 8–18, sâmbătă 9–14. Urgențe non-stop.</p></div>
 <div><h3>Site</h3><ul><li><a href="despre.html">Despre</a></li><li><a href="servicii.html">Servicii</a></li><li><a href="produse.html">Produse</a></li><li><a href="mentenanta.html">Mentenanță</a></li><li><a href="garantii.html">Garanții</a></li><li><a href="certificari.html">Certificări</a></li><li><a href="oferta.html">Ofertă</a></li></ul></div>
 <div><h3>Legal</h3><ul><li><a href="termeni.html">Termeni și condiții</a></li><li><a href="cookies.html">Politica de cookies</a></li><li><a href="confidentialitate.html">Confidențialitate (GDPR)</a></li><li><a href="ai-act.html">Transparență AI (AI Act)</a></li></ul></div>
-<div><h3>Date firmă</h3><p>CUI RO00004322</p><p>Reg. Com. J40/0004/2014</p><p>CAEN 4322 — Lucrări de instalații sanitare, de încălzire și de aer condiționat</p><p>Cerințele de autorizare se verifică la prestatorul real (vezi <a href="certificari.html">Certificări</a>)</p></div>
-</div><div class="fine"><p><b>Site etalon demonstrativ.</b> CL4322B SRL, persoanele, adresa, telefonul, CUI-ul și numerele de autorizare sunt fictive. Prețurile firmei sunt exemplificative și sunt calculate din prețurile publice observate pe piața din București la 8 noiembrie 2026; intervalele „Piață București” provin din surse publice listate pe pagina <a href="oferta.html#surse">Ofertă</a>.</p><p>CL4322B v1.4 · 2026-11-08</p></div></div></footer>
+<div><h3>Date firmă</h3><p>CUI RO00004322</p><p>Reg. Com. J40/0004/2014</p><p>CAEN 4322 — Lucrări de instalații sanitare, de încălzire și de aer condiționat</p><p>Autorizat ISCIR, ANRE, F-gaz (vezi <a href="certificari.html">Certificări</a>)</p></div>
+</div><div class="fine"><p><b>Site etalon demonstrativ.</b> CL4322B SRL, persoanele, adresa, telefonul, CUI-ul și numerele de autorizare sunt fictive. Prețurile firmei sunt exemplificative și sunt calculate din prețurile publice observate pe piața din București la 8 noiembrie 2026; intervalele „Piață București” provin din surse publice listate pe pagina <a href="oferta.html#surse">Ofertă</a>.</p><p>CL4322B v1.6 · 2026-11-08</p></div></div></footer>
 <button id="ai-btn" aria-controls="ai-panel" aria-expanded="false">Asistent AI</button>
 <section id="ai-panel" hidden aria-label="Asistent AI"><header><b>Asistent CL4322B</b><span class="eyebrow">AI</span><button id="ai-x" aria-label="Închide">×</button></header>
 <div id="ai-log" aria-live="polite"></div><p class="ai-note">Vorbiți cu un sistem de inteligență artificială. Răspunsurile sunt orientative; programarea și prețul final le confirmă un om. <a href="ai-act.html">Detalii</a></p>
