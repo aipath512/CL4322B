@@ -15,7 +15,7 @@ const rows=KNOWLEDGE.split('\n');
 const hash=createHash('sha256').update(KNOWLEDGE).digest('hex').slice(0,16);
 const esc=s=>"'"+String(s).replaceAll("'","''")+"'";
 const batchSize=35;
-const statements=['DELETE FROM k;'];
+const statements=["DELETE FROM meta WHERE key='k_hash';",'DELETE FROM k;'];
 for(const line of rows){
  const m=line.match(/Întrebare: (.*?) Răspuns:/);
  statements.push('INSERT INTO k(q,body) VALUES('+esc(m?m[1]:'')+','+esc(line)+');');
