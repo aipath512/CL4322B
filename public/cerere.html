@@ -7,7 +7,7 @@
 <title>Cerere de ofertă — TCS INSTAL</title>
 <meta name="description" content="Alegeți serviciile, completați detaliile și trimiteți cererea de ofertă.">
 <meta name="robots" content="noindex, nofollow">
-<meta name="generator" content="TCS INSTAL v2.9 2026-11-08">
+<meta name="generator" content="TCS INSTAL v3.0 2026-11-08">
 <meta property="og:title" content="Cerere de ofertă — TCS INSTAL"><meta property="og:description" content="Alegeți serviciile, completați detaliile și trimiteți cererea de ofertă."><meta property="og:locale" content="ro_RO">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Ccircle cx='17' cy='17' r='15' fill='%23c2541f'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
@@ -45,19 +45,20 @@ p{margin:0}
 .demo{background:var(--demo-bg);color:var(--demo);font:500 .8rem var(--mono);text-align:center;padding-block:6px}
 header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
-.bar{display:flex;align-items:center;gap:16px;padding-block:12px;flex-wrap:wrap}
+.bar{display:flex;align-items:center;gap:14px;padding-block:12px;flex-wrap:wrap}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font:700 1.35rem var(--display)}
 .logo svg{flex:none}
-.menu{display:flex;flex-wrap:wrap;gap:4px 18px;margin-left:auto}
-.menu a{color:var(--ink);text-decoration:none;font-weight:500;font-size:.98rem;padding-block:4px;border-bottom:2px solid transparent}
+.menu{display:flex;flex-wrap:wrap;gap:4px 14px;margin-left:auto}
+.menu a{color:var(--ink);text-decoration:none;font-weight:500;font-size:.92rem;padding-block:4px;border-bottom:2px solid transparent}
 .menu a[aria-current="page"]{border-color:var(--accent)}
 .call{background:var(--accent);color:var(--on-accent);text-decoration:none;font-weight:600;padding:9px 16px;border-radius:999px;white-space:nowrap}
 #mt{display:none;background:none;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:6px 10px;font:inherit;margin-left:auto}
 #tt{background:none;border:1px solid var(--line);color:var(--ink);border-radius:999px;width:40px;height:40px;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex:none}
 #tt:hover{border-color:var(--accent);color:var(--accent)}
 :root[data-theme="dark"] #tt .i-moon,:root:not([data-theme="dark"]) #tt .i-sun{display:none}
-@media (max-width:900px){#tt{order:1;margin-left:auto}#mt{order:2;margin-left:0}.menu{order:3}}
-@media (max-width:900px){#mt{display:block}.menu{display:none;width:100%;flex-direction:column;margin-left:0;gap:2px}.menu.open{display:flex}.bar .call{display:none}}
+.bar .call{display:none}
+@media (max-width:1240px){#tt{order:1;margin-left:auto}#mt{order:2;margin-left:0}.menu{order:3}}
+@media (max-width:1240px){#mt{display:block}.menu{display:none;width:100%;flex-direction:column;margin-left:0;gap:2px}.menu.open{display:flex}.bar .call{display:none}}
 main{display:flex;flex-direction:column;padding-bottom:96px}
 .sec{padding-block:56px}
 .sec.alt{background:var(--surface);border-block:1px solid var(--line)}
@@ -245,7 +246,7 @@ details.prod .p-main{font-size:.86rem;font-weight:600}details.prod .p-sub{font-s
 .pgrid:not(:has(.big)){grid-template-columns:1fr}
 .chips{display:flex;flex-wrap:wrap;gap:6px}.chip{font:500 .72rem var(--mono);padding:3px 8px;border-radius:999px;background:var(--sunk);border:1px solid var(--line)}
 .credit{font-size:.76rem;color:var(--muted)}
-@media (max-width:640px){.pgrid{grid-template-columns:1fr}details.prod .ph{width:64px;height:64px}}details.svc .mono{width:88px;height:88px;border-radius:14px;display:flex;align-items:center;justify-content:center;text-align:center;padding:6px;font:700 .82rem/1.15 var(--sans,inherit);color:#fff;letter-spacing:.02em}
+@media (max-width:640px){.pgrid{grid-template-columns:1fr}details.prod .ph{width:64px;height:64px}}details.faq>summary{grid-template-columns:minmax(0,1fr) 28px}details.faq .fisa p{margin:12px 0 0}details.svc .mono{width:88px;height:88px;border-radius:14px;display:flex;align-items:center;justify-content:center;text-align:center;padding:6px;font:700 .82rem/1.15 var(--sans,inherit);color:#fff;letter-spacing:.02em}
 .mono.heat{background:linear-gradient(135deg,#c2410c,#f59e0b)}.mono.cool{background:linear-gradient(135deg,#0369a1,#38bdf8)}.mono.water{background:linear-gradient(135deg,#0f766e,#22d3ee)}
 @media (max-width:640px){details.svc .mono{width:64px;height:64px;font-size:.68rem}}</style>
 </head>
@@ -253,7 +254,7 @@ details.prod .p-main{font-size:.86rem;font-weight:600}details.prod .p-sub{font-s
 <div class="demo g">Site etalon demonstrativ · firmă, persoane și date de identificare fictive</div>
 <header class="top g"><div class="in bar"><a class="logo" href="index.html"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="16" fill="none" stroke="var(--ink)" stroke-width="2"/><path d="M17 5a12 12 0 0 1 10.4 6" stroke="var(--heat)" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M27.4 23A12 12 0 0 1 6.6 23" stroke="var(--cool)" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M6.6 11A12 12 0 0 1 12 6.2" stroke="var(--water)" stroke-width="4" fill="none" stroke-linecap="round"/><text x="17" y="21" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" font-weight="600" fill="var(--ink)">4322</text></svg><span>TCS INSTAL</span></a>
 <button id="mt" aria-expanded="false" aria-controls="menu">Meniu</button>
-<nav class="menu" id="menu" aria-label="Meniu principal"><a href="index.html">Acasă</a><a href="despre.html">Despre</a><a href="servicii.html">Servicii</a><a href="produse.html">Produse</a><a href="mentenanta.html">Mentenanță</a><a href="garantii.html">Garanții</a><a href="certificari.html">Certificări</a><a href="oferta.html">Ofertă</a><a href="cerere.html" aria-current="page">Cerere ofertă</a><a href="legal.html">Legal</a></nav><a class="call" href="tel:+40210004322">021 000 4322</a>
+<nav class="menu" id="menu" aria-label="Meniu principal"><a href="index.html">Acasă</a><a href="despre.html">Despre</a><a href="servicii.html">Servicii</a><a href="produse.html">Produse</a><a href="mentenanta.html">Mentenanță</a><a href="garantii.html">Garanții</a><a href="certificari.html">Certificări</a><a href="oferta.html">Ofertă</a><a href="cerere.html" aria-current="page">Cerere ofertă</a><a href="intrebari.html">Întrebări</a><a href="contact.html">Contact</a><a href="legal.html">Legal</a></nav><a class="call" href="tel:+40210004322">021 000 4322</a>
 <button id="tt" type="button" aria-label="Schimbă tema (întunecat / luminos)" title="Temă întunecată / luminoasă"><span class="i-sun" aria-hidden="true">☀</span><span class="i-moon" aria-hidden="true">☾</span></button></div></header>
 <main><section class="sec g"><div class="in stack"><p class="eyebrow">Cerere de ofertă</p><h1>Cererea dumneavoastră de ofertă</h1>
 <p class="lead">Serviciile alese din <a href="servicii.html">Servicii</a> și <a href="produse.html">Produse</a> apar aici. Completați detaliile și trimiteți-ne cererea pe email sau citiți-o la telefon.</p>
@@ -284,10 +285,10 @@ document.getElementById("cclear").onclick=function(){s([]);r()};
 document.getElementById("ccopy").onclick=function(){var t=T.textContent,b=this;navigator.clipboard.writeText(t).then(function(){b.textContent="Copiat ✓"},function(){var rg=document.createRange();rg.selectNodeContents(T);var sl=getSelection();sl.removeAllRanges();sl.addRange(rg);b.textContent="Selectat — copiați manual"})};r()})();</script></main>
 <footer class="g"><div class="in"><div class="cols">
 <div><h3>TCS INSTAL SRL</h3><p>Str. Etalonului nr. 22, Sector 3, București</p><p>Tel. 021 000 4322</p><p>email@etalon.com</p><p>Luni–vineri 8–18, sâmbătă 9–14. Urgențe non-stop.</p></div>
-<div><h3>Site</h3><ul><li><a href="despre.html">Despre</a></li><li><a href="servicii.html">Servicii</a></li><li><a href="produse.html">Produse</a></li><li><a href="mentenanta.html">Mentenanță</a></li><li><a href="garantii.html">Garanții</a></li><li><a href="certificari.html">Certificări</a></li><li><a href="oferta.html">Ofertă</a></li><li><a href="cerere.html">Cerere ofertă</a></li><li><a href="legal.html">Legal</a></li></ul></div>
+<div><h3>Site</h3><ul><li><a href="despre.html">Despre</a></li><li><a href="servicii.html">Servicii</a></li><li><a href="produse.html">Produse</a></li><li><a href="mentenanta.html">Mentenanță</a></li><li><a href="garantii.html">Garanții</a></li><li><a href="certificari.html">Certificări</a></li><li><a href="oferta.html">Ofertă</a></li><li><a href="cerere.html">Cerere ofertă</a></li><li><a href="intrebari.html">Întrebări</a></li><li><a href="contact.html">Contact</a></li><li><a href="legal.html">Legal</a></li></ul></div>
 <div><h3>Legal</h3><ul><li><a href="legal.html#date-firma">Date de identificare</a></li><li><a href="legal.html#termeni">Termeni și condiții</a></li><li><a href="legal.html#cookies">Politica de cookies</a></li><li><a href="legal.html#confidentialitate">Confidențialitate (GDPR)</a></li><li><a href="legal.html#ai-act">Transparență AI (AI Act)</a></li></ul></div>
 <div><h3>Date firmă</h3><p>CUI RO00004322</p><p>Reg. Com. J40/0004/2014</p><p>CAEN 4322 — Lucrări de instalații sanitare, de încălzire și de aer condiționat</p><p>Autorizat ISCIR, ANRE, F-gaz (vezi <a href="certificari.html">Certificări</a>)</p></div>
-</div><a class="aiact" href="legal.html#ai-act"><img src="img/eu-ai-act-ready_v1.0.webp" alt="Parafă EU AI Act Ready, 2 august 2026" width="72" height="72" loading="lazy"><span><b>EU AI Act Ready</b><br>Asistentul Eva respectă obligațiile de transparență din art. 50 al Regulamentului (UE) 2024/1689. Vedeți cum funcționează.</span></a><div class="fine"><p><b>Site etalon demonstrativ.</b> TCS INSTAL SRL, persoanele, adresa, telefonul, CUI-ul și numerele de autorizare sunt fictive. Prețurile firmei sunt exemplificative și sunt calculate din prețurile publice observate pe piața din București la 8 noiembrie 2026; intervalele „Piață București” provin din surse publice listate pe pagina <a href="oferta.html#surse">Ofertă</a>.</p><p>TCS INSTAL v2.9 · 2026-11-08</p></div></div></footer>
+</div><a class="aiact" href="legal.html#ai-act"><img src="img/eu-ai-act-ready_v1.0.webp" alt="Parafă EU AI Act Ready, 2 august 2026" width="72" height="72" loading="lazy"><span><b>EU AI Act Ready</b><br>Asistentul Eva respectă obligațiile de transparență din art. 50 al Regulamentului (UE) 2024/1689. Vedeți cum funcționează.</span></a><div class="fine"><p><b>Site etalon demonstrativ.</b> TCS INSTAL SRL, persoanele, adresa, telefonul, CUI-ul și numerele de autorizare sunt fictive. Prețurile firmei sunt exemplificative și sunt calculate din prețurile publice observate pe piața din București la 8 noiembrie 2026; intervalele „Piață București” provin din surse publice listate pe pagina <a href="oferta.html#surse">Ofertă</a>.</p><p>TCS INSTAL v3.0 · 2026-11-08</p></div></div></footer>
 <button id="ai-btn" aria-controls="ai-panel" aria-expanded="false" aria-label="Deschide asistentul AI Eva"><video src="img/eva-asistent_v1.0.mp4" poster="img/eva-asistent_v1.0.jpg" autoplay muted loop playsinline aria-hidden="true"></video><span class="lbl">Întrebați-o pe Eva</span></button>
 <section id="ai-panel" hidden aria-label="Asistent AI"><header><img class="mini" src="img/eva-asistent_v1.0.jpg" alt="" width="36" height="36"><b>Eva · asistent TCS INSTAL</b><span class="eyebrow">AI</span><button id="ai-x" aria-label="Închide">×</button></header>
 <div id="ai-log" aria-live="polite"></div><p class="ai-note">Vorbiți cu un sistem de inteligență artificială. Răspunsurile sunt orientative; programarea și prețul final le confirmă un om. <a href="legal.html#ai-act">Detalii</a></p>
