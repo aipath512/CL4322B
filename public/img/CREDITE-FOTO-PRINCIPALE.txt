@@ -1,0 +1,8 @@
+Imagini principale (carusel homepage + cele 3 grupe), Unsplash License (utilizare gratuită):
+hero-incalzire.webp   https://images.unsplash.com/photo-1650551182991-b07558247564
+row-incalzire.webp    https://images.unsplash.com/photo-1658758904121-ee49fc5e205c
+hero-climatizare.webp https://unsplash.com/photos/air-conditioner-on-wood-paneled-wall-JrFK6F44x4I (Babak Eshaghian)
+row-climatizare.webp  https://images.unsplash.com/photo-1745745593296-28fd43a6ebba
+hero-sanitare.webp    https://images.unsplash.com/photo-1638799869566-b17fa794c4de
+row-sanitare.webp     https://images.unsplash.com/photo-1744869524920-f0efc925b82f
+Le puteți înlocui cu fotografii proprii păstrând numele fișierelor.
