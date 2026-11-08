@@ -1,5 +1,5 @@
 <!doctype html><html lang="ro"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Clienți potențiali — Admin TCS INSTAL</title><meta name="robots" content="noindex, nofollow, noarchive"><meta name="generator" content="TCS INSTAL admin v1.0 2026-11-08">
+<title>Clienți potențiali — Admin TCS INSTAL</title><meta name="robots" content="noindex, nofollow, noarchive"><meta name="generator" content="TCS INSTAL admin v1.1 2026-11-08">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <style>
 :root{
@@ -202,13 +202,13 @@ footer .fine{margin-top:28px;color:var(--muted);font-size:.82rem;display:flex;fl
 td.up{color:var(--heat)}td.down{color:var(--water)}
 </style></head><body>
 <div class="adm-top g">Zonă admin · acces doar pentru proprietar · date reale de piață, firmă TCS INSTAL fictivă</div>
-<header class="top g"><div class="in bar"><a class="logo" href="/">TCS INSTAL · Admin</a><a class="call" href="/">Site public</a></div></header>
+<header class="top g"><div class="in bar"><a class="logo" href="/">TCS INSTAL · Admin</a><a class="call" href="/admin/logout">Ieșire</a></div></header>
 <main><section class="sec g"><div class="in stack"><p class="eyebrow">Admin · actualizat 8 noiembrie 2026</p><h1>Clienți potențiali</h1><p class="lead">Segmente de clienți B2C, B2B și B2B2B, cu mărimea pieței acolo unde există date publice. Fără date despre persoane.</p>
 <nav class="tabs" aria-label="Pagini admin"><a href="index.html">Sinteză</a><a href="concurenti.html">Concurenți</a><a href="parteneri.html">Parteneri potențiali</a><a href="clienti.html" aria-current=page>Clienți potențiali</a></nav><form class="f" id="flt" onsubmit="return false"><label for="km">Zonă (km de la sediu)<input id="km" type="number" min="1" max="2000" step="1" value="30"></label>
 <label for="tara">Țară<select id="tara"><option value="România" selected>România</option><option value="*">Toate țările</option></select></label>
 <span class="res" id="res"></span></form><div class="cards" id="out"></div>
 <p class="note">Distanțele sunt aproximative: sunt calculate în linie dreaptă de la sediu (Sector 3) până la centrul sectorului sau al localității fiecărei firme, nu până la adresa exactă. Firmele fără adresă publicată sunt plasate în centrul Bucureștiului.</p></div></section></main>
-<footer class="g"><div class="in"><p class="note">Admin TCS INSTAL v1.0 · 2026-11-08</p></div></footer>
+<footer class="g"><div class="in"><p class="note">Admin TCS INSTAL v1.1 · 2026-11-08</p></div></footer>
 <script src="data.js"></script><script>
 function hav(a,b){var R=6371,r=Math.PI/180,dL=(b.lat-a.lat)*r,dO=(b.lon-a.lon)*r,x=Math.sin(dL/2)**2+Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(dO/2)**2;return 2*R*Math.asin(Math.sqrt(x))}
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
