@@ -1,4 +1,4 @@
-// TCS INSTAL v2.8 — Eva Hybrid Search: IDF (activ) + FTS5/D1 în paralel (A/B), index reconstruit automat din _knowledge.js (căutare rapidă: Eva primește doar rândurile potrivite întrebării) — asistent AI: Cloudflare Pages Function pe /api/chat + Workers AI
+// TCS INSTAL v2.9 — Eva Hybrid Search: IDF + FTS5 BM25, RRF implicit când indexul D1 este valid; fallback IDF. Sursa de adevăr: _knowledge.js. Cloudflare Pages /api/chat + Workers AI.
 import { KNOWLEDGE } from "./_knowledge.js";
 const MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
 const MODEL_FALLBACK = "@cf/meta/llama-3.1-8b-instruct-fp8";
@@ -12,7 +12,8 @@ function limited(ip){const now=Date.now(),w=60000;const a=(hits.get(ip)||[]).fil
 const json=(o,s=200)=>new Response(JSON.stringify(o),{status:s,headers:{"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store"}});
 export async function onRequestGet({env}){
   let fts=null;if(env&&env.DB){try{await ensureIndex(env.DB);const a=await env.DB.prepare("SELECT (SELECT count(*) FROM k) n,(SELECT count(*) FROM ab_log) ab,(SELECT count(*) FROM ab_log WHERE same=1) same").first();fts={index:a.n,ab_intrebari:a.ab,ab_acelasi_prim_rezultat:a.same,hash:KH};}catch(e){fts={eroare:String(e).slice(0,120)};}}
-  return json({status:"ready",ai:!!(env&&env.AI),version:"v2.8",motor_activ:"idf",fts5:fts});}
+  const forcedIdf=String(env?.SEARCH_ENGINE||"").toLowerCase()==="idf";
+  return json({status:"ready",ai:!!(env&&env.AI),version:"v2.9",motor_preferat:forcedIdf?"idf":"hybrid",motor_activ:forcedIdf?"idf":(fts&&fts.index>0?"hybrid":"idf"),fallback:"idf",fts5:fts});}
 // Căutare în conținutul site-ului: folosită când Workers AI lipsește sau dă eroare
 const LINES=KNOWLEDGE.split("\n");
 const GENERAL=LINES.filter(l=>!l.startsWith("["));
@@ -54,7 +55,20 @@ async function ftsRank(db,q,n){
   const r=await db.prepare("SELECT body FROM k WHERE k MATCH ? ORDER BY bm25(k,3.0,1.0) LIMIT ?").bind(expr,n).all();
   return (r.results||[]).map(x=>x.body);
 }
-function hybrid(f,i,n){const out=[...f.slice(0,10)];for(const l of i){if(out.length>=n)break;if(!out.includes(l))out.push(l);}return out.slice(0,n);}
+// Reciprocal Rank Fusion: scores are based on position, never raw IDF/BM25 scales.
+// Deterministic tie-break: best rank first, then lexical order of the source row.
+function hybrid(fts,idf,n){
+  const scores=new Map(),k=60;
+  for(const rows of [fts||[],idf||[]]){
+    rows.forEach((line,idx)=>{
+      const prev=scores.get(line)||{score:0,best:Infinity};
+      prev.score+=1/(k+idx+1);
+      prev.best=Math.min(prev.best,idx+1);
+      scores.set(line,prev);
+    });
+  }
+  return [...scores].sort((a,b)=>b[1].score-a[1].score||a[1].best-b[1].best||a[0].localeCompare(b[0],'ro')).slice(0,n).map(x=>x[0]);
+}
 const FALLBACK="Nu am găsit asta în informațiile de pe site. Vă rugăm sunați la 021 000 4322 sau scrieți la email@etalon.com.";
 export async function onRequestPost({request, env, waitUntil}){
   
@@ -68,14 +82,19 @@ export async function onRequestPost({request, env, waitUntil}){
   try{
     const prev=hist.filter(m=>m.role==="user").slice(-1).map(m=>m.content).join(" ");
     const qq=msg+" "+prev,idfTop=rank(qq,14);let ftsTop=null;
-    if(env.DB){try{await ensureIndex(env.DB);ftsTop=await ftsRank(env.DB,qq,14);
-      const log=env.DB.prepare("INSERT INTO ab_log(ts,q,idf_top,fts_top,same) VALUES(?,?,?,?,?)").bind(new Date().toISOString(),msg.slice(0,300),(idfTop[0]||"").slice(0,160),(ftsTop[0]||"").slice(0,160),(idfTop[0]||"")===(ftsTop[0]||"")?1:0).run();
-      if(waitUntil)waitUntil(log);else await log;}catch(e){ftsTop=null;}}
-    // Public requests cannot enable an experimental retrieval engine by default.
-    // IDF stays active until an operator explicitly sets FTS_ENABLE=1.
-    const allowFts=String(env.FTS_ENABLE||"")==="1";
-    const engine=(allowFts&&body.engine==="fts"&&ftsTop)?"fts":(allowFts&&body.engine==="hybrid"&&ftsTop)?"hybrid":"idf";
-    const top=engine==="fts"?ftsTop:engine==="hybrid"?hybrid(ftsTop,idfTop,14):idfTop;const sys=SYSTEM+"\nTe adresezi clientului cu «dumneavoastră», niciodată cu «tu». Nu începi răspunsul cu cuvântul «Dumneavoastră».\nINFORMAȚII GENERALE:\n"+GENERAL.join("\n")+(top.length?`\n\nINFORMAȚII DE PE SITE CARE SE POTRIVESC ÎNTREBĂRII (cel mai potrivit primul). Răspunde pe baza lor; nu spune că nu ai informații dacă una dintre ele se potrivește:\n${top.join("\n")}`:"");
+    const forceIdf=String(env.SEARCH_ENGINE||"").toLowerCase()==="idf";
+    if(!forceIdf&&env.DB){try{
+      await ensureIndex(env.DB);
+      ftsTop=await ftsRank(env.DB,qq,14);
+      // A/B logging is optional: avoid D1 writes on every client message by default.
+      if(String(env.FTS_AB_LOG||"")==="1"){
+        const log=env.DB.prepare("INSERT INTO ab_log(ts,q,idf_top,fts_top,same) VALUES(?,?,?,?,?)").bind(new Date().toISOString(),msg.slice(0,300),(idfTop[0]||"").slice(0,160),(ftsTop[0]||"").slice(0,160),(idfTop[0]||"")===(ftsTop[0]||"")?1:0).run();
+        if(waitUntil)waitUntil(log);else await log;
+      }
+    }catch(e){ftsTop=null;}}
+    // Hybrid by default when FTS returns matches. Missing/stale D1 => IDF.
+    const engine=ftsTop&&ftsTop.length?"hybrid":"idf";
+    const top=engine==="hybrid"?hybrid(ftsTop,idfTop,14):idfTop;const sys=SYSTEM+"\nTe adresezi clientului cu «dumneavoastră», niciodată cu «tu». Nu începi răspunsul cu cuvântul «Dumneavoastră».\nINFORMAȚII GENERALE:\n"+GENERAL.join("\n")+(top.length?`\n\nINFORMAȚII DE PE SITE CARE SE POTRIVESC ÎNTREBĂRII (cel mai potrivit primul). Răspunde pe baza lor; nu spune că nu ai informații dacă una dintre ele se potrivește:\n${top.join("\n")}`:"");
     let r;const args={messages:[{role:"system",content:sys},...hist,{role:"user",content:msg}],max_tokens:400,temperature:0.1};
     try{r=await env.AI.run(MODEL,args);}catch(e1){r=await env.AI.run(MODEL_FALLBACK,args);}
     const reply=(r&&r.response?String(r.response):"").trim();
