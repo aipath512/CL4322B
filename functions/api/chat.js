@@ -1,4 +1,4 @@
-// TCS INSTAL v2.4 — asistent AI: Cloudflare Pages Function pe /api/chat + Workers AI
+// TCS INSTAL v2.5 — asistent AI: Cloudflare Pages Function pe /api/chat + Workers AI
 import { KNOWLEDGE } from "./_knowledge.js";
 const MODEL = "@cf/meta/llama-3.1-8b-instruct-fp8";
 const SYSTEM = `Te numești Eva și ești asistentul AI al firmei TCS INSTAL din București (instalații de încălzire, climatizare și sanitare).
@@ -11,7 +11,7 @@ ${KNOWLEDGE}`;
 const hits = new Map();
 function limited(ip){const now=Date.now(),w=60000;const a=(hits.get(ip)||[]).filter(t=>now-t<w);a.push(now);hits.set(ip,a);return a.length>8;}
 const json=(o,s=200)=>new Response(JSON.stringify(o),{status:s,headers:{"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store"}});
-export async function onRequestGet({env}){return json({status:"ready",ai:!!(env&&env.AI),version:"v2.4"});}
+export async function onRequestGet({env}){return json({status:"ready",ai:!!(env&&env.AI),version:"v2.5"});}
 // Căutare în conținutul site-ului: folosită când Workers AI lipsește sau dă eroare
 const LINES=KNOWLEDGE.split("\n");
 const norm=s=>s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
@@ -40,10 +40,10 @@ export async function onRequestPost({request, env}){
   const hist=(Array.isArray(body.history)?body.history:[]).slice(-6).filter(m=>m&&(m.role==="user"||m.role==="assistant")).map(m=>({role:m.role,content:String(m.content||"").slice(0,1200)}));
   if(!env.AI) return json({reply:search(msg)||FALLBACK,source:"site"});
   try{
-    const top=rank(msg,6);const sys=SYSTEM+(top.length?`\n\nSERVICIILE CELE MAI POTRIVITE PENTRU ÎNTREBAREA CLIENTULUI (recomandă-l pe primul dacă se potrivește):\n${top.join("\n")}`:"");
-    const r=await env.AI.run(MODEL,{messages:[{role:"system",content:sys},...hist,{role:"user",content:msg}],max_tokens:400,temperature:0.2});
+    const top=rank(msg,5);const sys=(top.length?`SERVICIILE TCS INSTAL CARE SE POTRIVESC ÎNTREBĂRII (cel mai potrivit primul). Răspunde pe baza lor; nu spune că nu ai informații dacă unul dintre ele se potrivește:\n${top.join("\n")}\n\n`:"")+SYSTEM+"\nTe adresezi clientului cu «dumneavoastră», niciodată cu «tu».";
+    const r=await env.AI.run(MODEL,{messages:[{role:"system",content:sys},...hist,{role:"user",content:msg}],max_tokens:400,temperature:0.1});
     const reply=(r&&r.response?String(r.response):"").trim();
-    if(!reply) return json({reply:search(msg)||FALLBACK,source:"site"});
+    if(!reply || (top.length && /nu (am|dețin|detin) (informa|date)|nu am g[ăa]sit/i.test(reply))) return json({reply:search(msg)||FALLBACK,source:"site"});
     return json({reply});
   }catch(e){return json({reply:search(msg)||FALLBACK,source:"site"});}
 }
