@@ -1,4 +1,4 @@
-// TCS INSTAL admin v1.1 (2026-11-08) — intrare demo în /admin pe baza emailului proprietarului
+// TCS INSTAL admin v1.2 (2026-11-08) — intrare demo în /admin pe baza emailului proprietarului
 // Fără cod de verificare (cerință demo): cine introduce emailul corect primește acces pe acest browser 30 de zile.
 const OWNER_EMAIL = "contact@5thelement.ai";
 const COOKIE = "tcs_admin";
@@ -24,7 +24,7 @@ export async function onRequest(context) {
     const f = await request.formData().catch(() => null);
     const email = String((f && f.get("email")) || "");
     if ((await token(email)) !== good) return form("Emailul nu are acces la administrare.");
-    return new Response(null, { status: 303, headers: { "Location": "/admin/", "Set-Cookie": `${COOKIE}=${good}; Path=/admin; Max-Age=2592000; HttpOnly; Secure; SameSite=Lax`, "Cache-Control": "no-store" } });
+    return new Response(null, { status: 303, headers: { "Location": "/admin/intro.html", "Set-Cookie": `${COOKIE}=${good}; Path=/admin; Max-Age=2592000; HttpOnly; Secure; SameSite=Lax`, "Cache-Control": "no-store" } });
   }
   if (url.pathname === "/admin/logout")
     return new Response(null, { status: 303, headers: { "Location": "/", "Set-Cookie": `${COOKIE}=; Path=/admin; Max-Age=0; HttpOnly; Secure; SameSite=Lax` } });
