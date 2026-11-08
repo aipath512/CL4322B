@@ -38,13 +38,14 @@ function search(q){
 let KH=null,SYNCED=false;
 async function khash(){const h=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(KNOWLEDGE));return [...new Uint8Array(h)].slice(0,8).map(x=>x.toString(16).padStart(2,"0")).join("");}
 async function ensureIndex(db){
-  if(SYNCED)return;KH=KH||await khash();
+  // Read-only on the request path: importing hundreds of FTS rows here would
+  // exceed the Free-plan D1 subrequest budget and risks repeated write charges.
+  // tools/build-fts5-seed.mjs creates the import SQL at deployment time.
+  if(SYNCED)return;
+  KH=KH||await khash();
   const r=await db.prepare("SELECT val FROM meta WHERE key='k_hash'").first();
-  if(r&&r.val===KH){SYNCED=true;return;}
-  const ins=db.prepare("INSERT INTO k(q,body) VALUES(?,?)"),st=[db.prepare("DELETE FROM k")];
-  for(const l of LINES){const m=l.match(/Întrebare: (.*?) Răspuns:/);st.push(ins.bind(m?m[1]:"",l));}
-  st.push(db.prepare("INSERT OR REPLACE INTO meta(key,val) VALUES('k_hash',?)").bind(KH));
-  await db.batch(st);SYNCED=true;
+  if(!r||r.val!==KH)throw new Error("FTS5 index missing or stale. Apply migration and generated seed.");
+  SYNCED=true;
 }
 const stem=w=>w.length<=6?w.slice(0,4):w.slice(0,5);
 async function ftsRank(db,q,n){
@@ -70,7 +71,10 @@ export async function onRequestPost({request, env, waitUntil}){
     if(env.DB){try{await ensureIndex(env.DB);ftsTop=await ftsRank(env.DB,qq,14);
       const log=env.DB.prepare("INSERT INTO ab_log(ts,q,idf_top,fts_top,same) VALUES(?,?,?,?,?)").bind(new Date().toISOString(),msg.slice(0,300),(idfTop[0]||"").slice(0,160),(ftsTop[0]||"").slice(0,160),(idfTop[0]||"")===(ftsTop[0]||"")?1:0).run();
       if(waitUntil)waitUntil(log);else await log;}catch(e){ftsTop=null;}}
-    const engine=(body.engine==="fts"&&ftsTop)?"fts":(body.engine==="hybrid"&&ftsTop)?"hybrid":"idf";
+    // Public requests cannot enable an experimental retrieval engine by default.
+    // IDF stays active until an operator explicitly sets FTS_ENABLE=1.
+    const allowFts=String(env.FTS_ENABLE||"")==="1";
+    const engine=(allowFts&&body.engine==="fts"&&ftsTop)?"fts":(allowFts&&body.engine==="hybrid"&&ftsTop)?"hybrid":"idf";
     const top=engine==="fts"?ftsTop:engine==="hybrid"?hybrid(ftsTop,idfTop,14):idfTop;const sys=SYSTEM+"\nTe adresezi clientului cu «dumneavoastră», niciodată cu «tu». Nu începi răspunsul cu cuvântul «Dumneavoastră».\nINFORMAȚII GENERALE:\n"+GENERAL.join("\n")+(top.length?`\n\nINFORMAȚII DE PE SITE CARE SE POTRIVESC ÎNTREBĂRII (cel mai potrivit primul). Răspunde pe baza lor; nu spune că nu ai informații dacă una dintre ele se potrivește:\n${top.join("\n")}`:"");
     let r;const args={messages:[{role:"system",content:sys},...hist,{role:"user",content:msg}],max_tokens:400,temperature:0.1};
     try{r=await env.AI.run(MODEL,args);}catch(e1){r=await env.AI.run(MODEL_FALLBACK,args);}
