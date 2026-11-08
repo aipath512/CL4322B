@@ -1,0 +1,229 @@
+{
+ "firme": {
+  "CPS — Conexiuni Professional Service": {
+   "firma": "CPS — Conexiuni Professional Service",
+   "url": "https://www.cps.com.ro/tarife",
+   "verificat": "2026-11-08T14:48:41Z",
+   "status": 200,
+   "ok": true,
+   "preturi": [
+    "Ce înseamnă intervenția prioritară de 500 lei și când se aplică?",
+    "Autorizație de funcționare la prima punere în funcțiune (ISCIR) , centrale de 24–35 kW — 365 lei",
+    "Verificare tehnică periodică (VTP) , la 2 ani – cu revizie: curățarea camerei de ardere, electrozi, reglaje, analiza gazelor arse (include reduceri la piese de schimb, manoperă și deplasare în cei doi",
+    "Verificare tehnică periodică (VTP), la 2 ani – fără revizie: doar analiza gazelor arse și emiterea autorizației (fără reduceri la piese de schimb, manoperă și deplasare în cei doi ani de valabilitate)",
+    "Revizie centrală termică , prin programare online — 365 lei + deplasare",
+    "Abonament de întreținere și service (Start / Plus / Premium) — 365 / 400 / 500 lei pe an",
+    "Taxă de deplasare – București — 100 lei",
+    "Taxă de deplasare – Ilfov ( localități și zone deservite ) — între 125 și 180 lei",
+    "Taxă de deplasare – Dâmbovița — între 125 și 180 lei",
+    "Taxă de deplasare – Giurgiu — între 125 și 250 lei",
+    "265 lei / 1 TL (o unitate de timp de lucru)",
+    "Constatare defect în București (deplasare + 1 TL) — 365 lei",
+    "Pachet instalare centrală termică – prima instalare (manoperă) — 1.250 lei",
+    "Pachet înlocuire centrală termică (manoperă) — 1.500 lei",
+    "Intervenție prioritară, în afara orelor de program, cu deplasare în maximum 24 de ore — 500 lei",
+    "Constatare 365 lei în București, cu deplasare inclusă · intervenție prioritară 500 lei",
+    "Abonamente de întreținere Start / Plus / Premium – 365 / 400 / 500 lei pe an. Includ revizia anuală a centralei și prioritate la programare; detalii pe pagina de abonamente, din linkul de pe rândul de",
+    "Taxa de deplasare – 100 lei în București, între 125 și 180 lei în Ilfov, între 125 și 180 lei în Dâmbovița, între 125 și 250 lei în Giurgiu, în funcție de localitate. Se achită o singură dată per inte",
+    "Timp de lucru service – 265 lei / 1 TL (o unitate de timp de lucru). Majoritatea diagnosticelor și reparațiilor curente se încadrează în una–două unități de timp.",
+    "Intervenție prioritară – 500 lei. Pentru intervenții în afara orelor de program, în weekend sau în zilele de sărbătoare legală, cu deplasare în maximum 24 de ore.",
+    "Timpul de lucru peste prima unitate. Dacă reparația depășește o unitate de timp de lucru (1 TL), fiecare unitate suplimentară se tarifează la 265 lei.",
+    "Abonamentele de întreținere și service costă 365 lei (Start), 400 lei (Plus) și 500 lei (Premium) pe an. Toate includ revizia anuală a centralei și prioritate la programare; diferențele dintre pachete",
+    "Revizia centralei termice programată online costă 365 lei, la care se adaugă taxa de deplasare: 100 lei în București sau între 125 și 180 lei în Ilfov, în funcție de localitate. Alegeți intervalul ora",
+    "Manopera pentru prima instalare a unei centrale termice costă 1.250 lei, iar manopera pentru înlocuirea unei centrale vechi cu una nouă costă 1.500 lei. Prețurile sunt pentru manoperă; ce include fiec"
+   ],
+   "promotii": [
+    "PROMOȚII"
+   ],
+   "hash_preturi": "4543738932c30693",
+   "hash_pagina": "ebd3aac13d7cee74",
+   "ultima_schimbare": "2026-11-08T14:48:41Z"
+  },
+  "Future Line Instal (Termoserv)": {
+   "firma": "Future Line Instal (Termoserv)",
+   "url": "https://www.termoserv.ro/contact/",
+   "verificat": "2026-11-08T14:48:41Z",
+   "status": 200,
+   "ok": true,
+   "preturi": [
+    "EUID: ROONRC.J40/23350/1992 — Capital social: 210 lei"
+   ],
+   "promotii": [],
+   "hash_preturi": "dce4f1050f914579",
+   "hash_pagina": "4de67b35d0dfa515",
+   "ultima_schimbare": "2026-11-08T14:48:41Z"
+  },
+  "PMC ServInstal (PMC Aer Condiționat)": {
+   "firma": "PMC ServInstal (PMC Aer Condiționat)",
+   "url": "https://pmcaerconditionat.ro/preturi-servicii/",
+   "verificat": "2026-11-08T14:48:41Z",
+   "status": 200,
+   "ok": true,
+   "preturi": [
+    "Prețuri Montaj Aer Condiționat de la 600 lei, Igienizare 200 lei",
+    "/ — 0 lei",
+    "0 lei Deplasare la montaj și revizie",
+    "9.000 BTU Pentru camere până la 25 m² — 600 lei",
+    "750 lei",
+    "12.000 BTU Pentru camere 25–35 m² — 600 lei",
+    "18.000 BTU Pentru spații 35–50 m² — 850 lei",
+    "24.000 BTU Pentru spații 50–70 m² — 948 lei",
+    "extra peste lungimea standard — / metru liniar 10 lei",
+    "set complet (perechi) — / set 80 lei",
+    "set complet pentru aparate grele — / set 100 lei",
+    "Cupru izolat 1/4″ + 3/8″ — / metru liniar 110 lei",
+    "Cupru izolat 1/4″ + 1/2″ — / metru liniar 130 lei",
+    "Cupru izolat 3/8″ + 5/8″ — / metru liniar 149 lei",
+    "Pentru unități exterioare la înălțime — extra 150 lei",
+    "Gips-carton, OSB, BCA — / gaură 70 lei",
+    "Cărămidă plină, beton armat — / gaură 150 lei",
+    "9.000 BTU Doar diferența până la cantitatea optimă — 300 lei",
+    "400 lei",
+    "12.000 BTU Recomandat la pierderi mici de freon — 300 lei",
+    "la cerere — — 500 lei",
+    "la cerere — — 600 lei",
+    "Constatare defect: este gratuită dacă facem reparația. Dacă vrei doar vizita tehnicianului, fără nicio lucrare, costă 150 lei.",
+    "9.000 BTU Igienizare standard — 200 lei",
+    "12.000 BTU Igienizare standard — 200 lei",
+    "18.000 BTU Igienizare extinsă — 250 lei",
+    "24.000 BTU Igienizare extinsă — 295 lei",
+    "Demontare + transport + remontare — 750 lei",
+    "Demontare + transport + remontare ext. — 400 lei",
+    "Demontare + transport + remontare int. — 400 lei",
+    "Cu recuperare freon și sigilare conducte — între 150 lei – 300 lei",
+    "Capacitate freon < 500g (R134a/R1234yf) — 250 lei",
+    "Capacitate freon 500–700g — 300 lei",
+    "Capacitate freon > 700g — 350 lei",
+    "Sector 1 Aviatorilor, Băneasa, Dorobanți, Pipera, Primăverii — 600 lei",
+    "200 lei",
+    "Sector 2 Colentina, Pantelimon, Tei, Obor, Iancului — 600 lei",
+    "Sector 3 Titan, Dristor, Vitan, Centrul Vechi, Unirii — 600 lei",
+    "Sector 4 Berceni, Timpuri Noi, Tineretului, Văcărești — 600 lei",
+    "Sector 5 Rahova, Ferentari, Cotroceni, 13 Septembrie — 600 lei"
+   ],
+   "promotii": [
+    "Constatare defect: este gratuită dacă facem reparația. Dacă vrei doar vizita tehnicianului, fără nicio lucrare, costă 150 lei.",
+    "Răspuns rapid · Consultanță gratuită · 5 ani garanție la montaj"
+   ],
+   "hash_preturi": "66c3e22d2a75bc2f",
+   "hash_pagina": "8ed001a2faa816ff",
+   "ultima_schimbare": "2026-11-08T14:48:41Z"
+  },
+  "Home Clima": {
+   "firma": "Home Clima",
+   "url": "https://home-clima.ro/montaj-aer-conditionat-bucuresti/",
+   "verificat": "2026-11-08T14:48:41Z",
+   "status": 200,
+   "ok": true,
+   "preturi": [
+    "Montaj aer conditionat Bucuresti de la 500 ron , oferim garantie",
+    "Pachet revizie ( verificare , curățare, igienizare și completare cu freon 200gr ) = de la 300 lei",
+    "400 Lei (pentru aparatele cu kit inclus in cutia aparatului) -> click aici pentru mai multe detalii",
+    "700 Lei (pentru aparatele cu kit inclus in cutia aparatului) -> click aici pentru mai multe detalii",
+    "750 Lei (pentru aparatele ce nu contin kit de instalare) -> click aici pentru mai multe detalii",
+    "1100 Lei (pentru aparatele ce nu contin kit de instalare) -> click aici pentru mai multe detalii"
+   ],
+   "promotii": [],
+   "hash_preturi": "aed352cf0a251969",
+   "hash_pagina": "2ddcacb62ecbf3eb",
+   "ultima_schimbare": "2026-11-08T14:48:41Z"
+  },
+  "Instal AeroCris SRL": {
+   "firma": "Instal AeroCris SRL",
+   "url": "https://instal-aerocris.ro/instalare-aer-conditionat/",
+   "verificat": "2026-11-08T14:48:41Z",
+   "status": 200,
+   "ok": true,
+   "preturi": [
+    "Instalare Aer Condiționat - Instal AeroCris — Montaj de la 600 LEI",
+    "Comenzi — 0,00 lei",
+    "≤12.000 BTU — 600 LEI",
+    "≤12.000 BTU — 850 LEI",
+    "18.000 BTU — 850 LEI",
+    "24.000 BTU — 950 LEI",
+    "Pentru lungimea standard (3 metri liniari), costurile sunt: 600 lei (până în 12.000 BTU inclusiv, fără kit de instalare); 850 lei (până în 18.000 BTU, kit de instalare inclus); 950 lei (24.000 BTU +, "
+   ],
+   "promotii": [],
+   "hash_preturi": "41d6e70fcf58af66",
+   "hash_pagina": "15ab45c98e8a8b84",
+   "ultima_schimbare": "2026-11-08T14:48:41Z"
+  },
+  "ACME Instal": {
+   "firma": "ACME Instal",
+   "url": "https://acmeinstal.ro/",
+   "verificat": "2026-11-08T14:48:41Z",
+   "status": 200,
+   "ok": true,
+   "preturi": [],
+   "promotii": [],
+   "hash_preturi": "e3b0c44298fc1c14",
+   "hash_pagina": "5e425cc38f947afc",
+   "ultima_schimbare": "2026-11-08T14:48:41Z"
+  },
+  "Climatico": {
+   "firma": "Climatico",
+   "url": "https://www.climatico.ro/informatii-de-contact",
+   "verificat": "2026-11-08T14:48:41Z",
+   "ok": false,
+   "eroare": "Site-ul refuză citirea automată (403). Se verifică manual.",
+   "preturi": [],
+   "promotii": [],
+   "hash_preturi": null,
+   "ultima_schimbare": null
+  },
+  "David Engineering": {
+   "firma": "David Engineering",
+   "url": "https://david-engineering.ro/instalatii-sanitare/instalator-autorizat-non-stop/",
+   "verificat": "2026-11-08T14:48:41Z",
+   "status": 200,
+   "ok": true,
+   "preturi": [],
+   "promotii": [],
+   "hash_preturi": "e3b0c44298fc1c14",
+   "hash_pagina": "97bda4ba72f61a97",
+   "ultima_schimbare": "2026-11-08T14:48:41Z"
+  },
+  "Prodimar": {
+   "firma": "Prodimar",
+   "url": "https://www.prodimar.ro/instalatii-de-climatizare-oferte-preturi-a21",
+   "verificat": "2026-11-08T14:48:41Z",
+   "status": 200,
+   "ok": true,
+   "preturi": [],
+   "promotii": [],
+   "hash_preturi": "e3b0c44298fc1c14",
+   "hash_pagina": "44289be0b2640f38",
+   "ultima_schimbare": "2026-11-08T14:48:41Z"
+  },
+  "Clima General Install": {
+   "firma": "Clima General Install",
+   "url": "https://www.climageneralinstall.ro/despre-noi/",
+   "verificat": "2026-11-08T14:48:41Z",
+   "status": 200,
+   "ok": true,
+   "preturi": [],
+   "promotii": [],
+   "hash_preturi": "e3b0c44298fc1c14",
+   "hash_pagina": "12b26c63b133834b",
+   "ultima_schimbare": "2026-11-08T14:48:41Z"
+  }
+ },
+ "evenimente": [
+  {
+   "data": "2026-11-08T14:48:41Z",
+   "firma": "Climatico",
+   "tip": "Pagina nu răspunde",
+   "aparute": [
+    "Site-ul refuză citirea automată (403). Se verifică manual."
+   ],
+   "disparute": []
+  }
+ ],
+ "rulari": [
+  {
+   "data": "2026-11-08T14:48:41Z",
+   "ok": 9,
+   "total": 10
+  }
+ ]
+}

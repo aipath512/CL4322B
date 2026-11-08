@@ -1,0 +1,30 @@
+# TCS INSTAL — monitorizare zilnică a concurenților (prețuri publicate, promoții, pagini indisponibile)
+# Rulează automat în fiecare zi la 04:17 (ora României, iarna) și poate fi pornit manual din tab-ul Actions.
+name: Monitorizare concurenți
+on:
+  schedule:
+    - cron: "17 2 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: monitorizare
+  cancel-in-progress: false
+jobs:
+  monitorizare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Citește paginile concurenților
+        run: python3 tools/monitorizare.py
+      - name: Salvează rezultatul (publică automat în Cloudflare Pages)
+        run: |
+          git config user.name "tcs-monitorizare"
+          git config user.email "actions@users.noreply.github.com"
+          git add public/admin/monitorizare.json data/monitorizare-stare.json
+          git diff --cached --quiet || git commit -m "Monitorizare concurenți $(date -u +%Y-%m-%d)"
+          git push
