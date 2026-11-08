@@ -1,5 +1,5 @@
-// CL4322B v1.1 — Worker: site static (public/) + asistent AI pe /api/chat (Workers AI)
-import { KNOWLEDGE } from "./knowledge.js";
+// CL4322B v1.2 — asistent AI: Cloudflare Pages Function pe /api/chat + Workers AI
+import { KNOWLEDGE } from "./_knowledge.js";
 const MODEL = "@cf/meta/llama-3.1-8b-instruct-fp8";
 const SYSTEM = `Ești asistentul AI al firmei CL4322B din București (instalații de încălzire, climatizare și sanitare).
 Răspunzi în limba română, politicos (dumneavoastră), scurt: maximum 5 propoziții.
@@ -11,8 +11,8 @@ ${KNOWLEDGE}`;
 const hits = new Map();
 function limited(ip){const now=Date.now(),w=60000;const a=(hits.get(ip)||[]).filter(t=>now-t<w);a.push(now);hits.set(ip,a);return a.length>8;}
 const json=(o,s=200)=>new Response(JSON.stringify(o),{status:s,headers:{"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store"}});
-async function onRequestGet(){return json({status:"ready"});}
-async function onRequestPost({request, env}){
+export async function onRequestGet(){return json({status:"ready"});}
+export async function onRequestPost({request, env}){
   if(!env.AI) return json({error:"Asistentul nu este configurat (lipsește legătura AI)."},503);
   const ip=request.headers.get("CF-Connecting-IP")||"x";
   if(limited(ip)) return json({error:"Prea multe mesaje. Încercați peste un minut."},429);
@@ -27,15 +27,3 @@ async function onRequestPost({request, env}){
     return json({reply});
   }catch(e){return json({error:"Asistentul nu poate răspunde acum."},502);}
 }
-
-export default {
-  async fetch(request, env) {
-    const url = new URL(request.url);
-    if (url.pathname === "/api/chat") {
-      if (request.method === "GET") return onRequestGet();
-      if (request.method === "POST") return onRequestPost({ request, env });
-      return json({ error: "Metodă nepermisă." }, 405);
-    }
-    return env.ASSETS.fetch(request);
-  }
-};
