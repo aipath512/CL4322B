@@ -1,6 +1,8 @@
 {
+  // CL4322B v1.1 (2026-11-08) — Worker cu fișiere statice din public/ și asistent AI
   "name": "cl4322b",
-  "pages_build_output_dir": ".",
+  "main": "src/worker.js",
   "compatibility_date": "2026-11-01",
+  "assets": { "directory": "./public", "binding": "ASSETS", "not_found_handling": "404-page" },
   "ai": { "binding": "AI" }
 }
