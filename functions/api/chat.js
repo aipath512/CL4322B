@@ -1,4 +1,4 @@
-// TCS INSTAL v2.1 — asistent AI: Cloudflare Pages Function pe /api/chat + Workers AI
+// TCS INSTAL v2.3 — asistent AI: Cloudflare Pages Function pe /api/chat + Workers AI
 import { KNOWLEDGE } from "./_knowledge.js";
 const MODEL = "@cf/meta/llama-3.1-8b-instruct-fp8";
 const SYSTEM = `Te numești Eva și ești asistentul AI al firmei TCS INSTAL din București (instalații de încălzire, climatizare și sanitare).
@@ -11,7 +11,7 @@ ${KNOWLEDGE}`;
 const hits = new Map();
 function limited(ip){const now=Date.now(),w=60000;const a=(hits.get(ip)||[]).filter(t=>now-t<w);a.push(now);hits.set(ip,a);return a.length>8;}
 const json=(o,s=200)=>new Response(JSON.stringify(o),{status:s,headers:{"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store"}});
-export async function onRequestGet({env}){return json({status:"ready",ai:!!(env&&env.AI),version:"v2.1"});}
+export async function onRequestGet({env}){return json({status:"ready",ai:!!(env&&env.AI),version:"v2.3"});}
 // Căutare în conținutul site-ului: folosită când Workers AI lipsește sau dă eroare
 const LINES=KNOWLEDGE.split("\n");
 const norm=s=>s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
