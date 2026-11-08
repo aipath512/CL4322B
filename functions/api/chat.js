@@ -1,4 +1,4 @@
-// TCS INSTAL v2.6 — asistent AI: Cloudflare Pages Function pe /api/chat + Workers AI
+// TCS INSTAL v2.7 (căutare rapidă: Eva primește doar rândurile potrivite întrebării) — asistent AI: Cloudflare Pages Function pe /api/chat + Workers AI
 import { KNOWLEDGE } from "./_knowledge.js";
 const MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
 const MODEL_FALLBACK = "@cf/meta/llama-3.1-8b-instruct-fp8";
@@ -6,23 +6,23 @@ const SYSTEM = `Te numești Eva și ești asistentul AI al firmei TCS INSTAL din
 Răspunzi în limba română, politicos (dumneavoastră), scurt: maximum 5 propoziții.
 Folosești DOAR informațiile de mai jos. Dacă informația lipsește, spui că nu o ai și recomanzi telefonul 021 000 4322.
 Nu faci programări, nu confirmi prețuri finale, nu inventezi servicii, prețuri, garanții sau autorizații. Citezi doar ce scrie explicit mai jos, fără să combini sau să extinzi informațiile.
-Spui, dacă ești întrebat, că firma și datele ei sunt fictive (site etalon demonstrativ).
-INFORMAȚII:
-${KNOWLEDGE}`;
+Spui, dacă ești întrebat, că firma și datele ei sunt fictive (site etalon demonstrativ).`;
 const hits = new Map();
 function limited(ip){const now=Date.now(),w=60000;const a=(hits.get(ip)||[]).filter(t=>now-t<w);a.push(now);hits.set(ip,a);return a.length>8;}
 const json=(o,s=200)=>new Response(JSON.stringify(o),{status:s,headers:{"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store"}});
-export async function onRequestGet({env}){return json({status:"ready",ai:!!(env&&env.AI),version:"v2.6"});}
+export async function onRequestGet({env}){return json({status:"ready",ai:!!(env&&env.AI),version:"v2.7"});}
 // Căutare în conținutul site-ului: folosită când Workers AI lipsește sau dă eroare
 const LINES=KNOWLEDGE.split("\n");
+const GENERAL=LINES.filter(l=>!l.startsWith("["));
 const clean=l=>l.replace(/ Cuvinte cheie:.*$/,"").replace(/ Include:  Când: /," ");
 const norm=s=>s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+const NL=LINES.map(l=>l.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,""));
 const STOP=new Set("cat costa ce este sunt pentru care cum unde la de si sau un o in cu pe din mai ce-i va vă imi ati aveti oferiti face faceti".split(" "));
 function rank(q,n){
   const w=norm(q).split(/[^a-z0-9]+/).filter(t=>t.length>2&&!STOP.has(t));if(!w.length)return [];
-  const N=LINES.length,df=t=>{let d=0;for(const l of LINES){if(norm(l).includes(t.slice(0,6)))d++}return d};
+  const N=LINES.length,df=t=>{let d=0;for(const l of NL){if(l.includes(t.slice(0,6)))d++}return d};
   const idf={};w.forEach(t=>idf[t]=Math.log((N+1)/(df(t)+0.5)));
-  return LINES.map(l=>{const nl=norm(l);let s=0;for(const t of w){if(nl.includes(t))s+=2*idf[t];else if(t.length>5&&nl.includes(t.slice(0,5)))s+=idf[t]}return [s,l]}).filter(x=>x[0]>0).sort((a,b)=>b[0]-a[0]).slice(0,n).map(x=>x[1]);
+  return LINES.map((l,i)=>{const nl=NL[i];let s=0;for(const t of w){if(nl.includes(t))s+=2*idf[t];else if(t.length>5&&nl.includes(t.slice(0,5)))s+=idf[t]}return [s,l]}).filter(x=>x[0]>0).sort((a,b)=>b[0]-a[0]).slice(0,n).map(x=>x[1]);
 }
 function search(q){
   const w=norm(q).split(/[^a-z0-9]+/).filter(t=>t.length>2&&!STOP.has(t));
@@ -42,7 +42,8 @@ export async function onRequestPost({request, env}){
   const hist=(Array.isArray(body.history)?body.history:[]).slice(-6).filter(m=>m&&(m.role==="user"||m.role==="assistant")).map(m=>({role:m.role,content:String(m.content||"").slice(0,1200)}));
   if(!env.AI) return json({reply:search(msg)||FALLBACK,source:"site"});
   try{
-    const top=rank(msg,5);const sys=(top.length?`SERVICIILE TCS INSTAL CARE SE POTRIVESC ÎNTREBĂRII (cel mai potrivit primul). Răspunde pe baza lor; nu spune că nu ai informații dacă unul dintre ele se potrivește:\n${top.join("\n")}\n\n`:"")+SYSTEM+"\nTe adresezi clientului cu «dumneavoastră», niciodată cu «tu».";
+    const prev=hist.filter(m=>m.role==="user").slice(-1).map(m=>m.content).join(" ");
+    const top=rank(msg+" "+prev,14);const sys=SYSTEM+"\nTe adresezi clientului cu «dumneavoastră», niciodată cu «tu».\nINFORMAȚII GENERALE:\n"+GENERAL.join("\n")+(top.length?`\n\nINFORMAȚII DE PE SITE CARE SE POTRIVESC ÎNTREBĂRII (cel mai potrivit primul). Răspunde pe baza lor; nu spune că nu ai informații dacă una dintre ele se potrivește:\n${top.join("\n")}`:"");
     let r;const args={messages:[{role:"system",content:sys},...hist,{role:"user",content:msg}],max_tokens:400,temperature:0.1};
     try{r=await env.AI.run(MODEL,args);}catch(e1){r=await env.AI.run(MODEL_FALLBACK,args);}
     const reply=(r&&r.response?String(r.response):"").trim();
