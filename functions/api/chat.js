@@ -1,6 +1,7 @@
-// TCS INSTAL v2.5 — asistent AI: Cloudflare Pages Function pe /api/chat + Workers AI
+// TCS INSTAL v2.6 — asistent AI: Cloudflare Pages Function pe /api/chat + Workers AI
 import { KNOWLEDGE } from "./_knowledge.js";
-const MODEL = "@cf/meta/llama-3.1-8b-instruct-fp8";
+const MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
+const MODEL_FALLBACK = "@cf/meta/llama-3.1-8b-instruct-fp8";
 const SYSTEM = `Te numești Eva și ești asistentul AI al firmei TCS INSTAL din București (instalații de încălzire, climatizare și sanitare).
 Răspunzi în limba română, politicos (dumneavoastră), scurt: maximum 5 propoziții.
 Folosești DOAR informațiile de mai jos. Dacă informația lipsește, spui că nu o ai și recomanzi telefonul 021 000 4322.
@@ -11,9 +12,10 @@ ${KNOWLEDGE}`;
 const hits = new Map();
 function limited(ip){const now=Date.now(),w=60000;const a=(hits.get(ip)||[]).filter(t=>now-t<w);a.push(now);hits.set(ip,a);return a.length>8;}
 const json=(o,s=200)=>new Response(JSON.stringify(o),{status:s,headers:{"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store"}});
-export async function onRequestGet({env}){return json({status:"ready",ai:!!(env&&env.AI),version:"v2.5"});}
+export async function onRequestGet({env}){return json({status:"ready",ai:!!(env&&env.AI),version:"v2.6"});}
 // Căutare în conținutul site-ului: folosită când Workers AI lipsește sau dă eroare
 const LINES=KNOWLEDGE.split("\n");
+const clean=l=>l.replace(/ Cuvinte cheie:.*$/,"").replace(/ Include:  Când: /," ");
 const norm=s=>s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
 const STOP=new Set("cat costa ce este sunt pentru care cum unde la de si sau un o in cu pe din mai ce-i va vă imi ati aveti oferiti face faceti".split(" "));
 function rank(q,n){
@@ -27,7 +29,7 @@ function search(q){
   if(!w.length) return null;
   const sc=LINES.map(l=>{const n=norm(l);let s=0;for(const t of w){if(n.includes(t))s+=t.length>4?2:1;else if(t.length>5&&n.includes(t.slice(0,5)))s+=1;}return [s,l];}).filter(x=>x[0]>0).sort((a,b)=>b[0]-a[0]).slice(0,3);
   if(!sc.length) return null;
-  return "Din informațiile de pe site:\n"+sc.map(x=>"• "+x[1].replace(/^\[[^\]]+\]\s*/,"")).join("\n")+"\n\nPentru programare sau preț final: 021 000 4322, email@etalon.com.";
+  return "Din informațiile de pe site:\n"+sc.map(x=>"• "+clean(x[1]).replace(/^\[[^\]]+\]\s*/,"")).join("\n")+"\n\nPentru programare sau preț final: 021 000 4322, email@etalon.com.";
 }
 const FALLBACK="Nu am găsit asta în informațiile de pe site. Vă rugăm sunați la 021 000 4322 sau scrieți la email@etalon.com.";
 export async function onRequestPost({request, env}){
@@ -41,7 +43,8 @@ export async function onRequestPost({request, env}){
   if(!env.AI) return json({reply:search(msg)||FALLBACK,source:"site"});
   try{
     const top=rank(msg,5);const sys=(top.length?`SERVICIILE TCS INSTAL CARE SE POTRIVESC ÎNTREBĂRII (cel mai potrivit primul). Răspunde pe baza lor; nu spune că nu ai informații dacă unul dintre ele se potrivește:\n${top.join("\n")}\n\n`:"")+SYSTEM+"\nTe adresezi clientului cu «dumneavoastră», niciodată cu «tu».";
-    const r=await env.AI.run(MODEL,{messages:[{role:"system",content:sys},...hist,{role:"user",content:msg}],max_tokens:400,temperature:0.1});
+    let r;const args={messages:[{role:"system",content:sys},...hist,{role:"user",content:msg}],max_tokens:400,temperature:0.1};
+    try{r=await env.AI.run(MODEL,args);}catch(e1){r=await env.AI.run(MODEL_FALLBACK,args);}
     const reply=(r&&r.response?String(r.response):"").trim();
     if(!reply || (top.length && /nu (am|dețin|detin) (informa|date)|nu am g[ăa]sit/i.test(reply))) return json({reply:search(msg)||FALLBACK,source:"site"});
     return json({reply});
