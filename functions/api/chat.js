@@ -1,4 +1,4 @@
-// TCS INSTAL v2.7.2 (căutare rapidă: Eva primește doar rândurile potrivite întrebării) — asistent AI: Cloudflare Pages Function pe /api/chat + Workers AI
+// TCS INSTAL v2.8 — Eva Hybrid Search: IDF (activ) + FTS5/D1 în paralel (A/B), index reconstruit automat din _knowledge.js (căutare rapidă: Eva primește doar rândurile potrivite întrebării) — asistent AI: Cloudflare Pages Function pe /api/chat + Workers AI
 import { KNOWLEDGE } from "./_knowledge.js";
 const MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
 const MODEL_FALLBACK = "@cf/meta/llama-3.1-8b-instruct-fp8";
@@ -10,7 +10,9 @@ Spui, dacă ești întrebat, că firma și datele ei sunt fictive (site etalon d
 const hits = new Map();
 function limited(ip){const now=Date.now(),w=60000;const a=(hits.get(ip)||[]).filter(t=>now-t<w);a.push(now);hits.set(ip,a);return a.length>8;}
 const json=(o,s=200)=>new Response(JSON.stringify(o),{status:s,headers:{"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store"}});
-export async function onRequestGet({env}){return json({status:"ready",ai:!!(env&&env.AI),version:"v2.7.2"});}
+export async function onRequestGet({env}){
+  let fts=null;if(env&&env.DB){try{await ensureIndex(env.DB);const a=await env.DB.prepare("SELECT (SELECT count(*) FROM k) n,(SELECT count(*) FROM ab_log) ab,(SELECT count(*) FROM ab_log WHERE same=1) same").first();fts={index:a.n,ab_intrebari:a.ab,ab_acelasi_prim_rezultat:a.same,hash:KH};}catch(e){fts={eroare:String(e).slice(0,120)};}}
+  return json({status:"ready",ai:!!(env&&env.AI),version:"v2.8",motor_activ:"idf",fts5:fts});}
 // Căutare în conținutul site-ului: folosită când Workers AI lipsește sau dă eroare
 const LINES=KNOWLEDGE.split("\n");
 const GENERAL=LINES.filter(l=>!l.startsWith("["));
@@ -18,7 +20,7 @@ const clean=l=>l.replace(/ Cuvinte cheie:.*$/,"").replace(/ Include:  Când: /,"
 const norm=s=>s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
 const NL=LINES.map(l=>l.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,""));
 const QP=NL.map(l=>{const i=l.indexOf("intrebare:"),j=l.indexOf("raspuns:");return i>-1&&j>i?l.slice(i,j):""});
-const STOP=new Set("cat costa ce este sunt pentru care cum unde la de si sau un o in cu pe din mai ce-i va vă imi ati aveti oferiti face faceti".split(" "));
+const STOP=new Set("pot vreau cat costa ce este sunt pentru care cum unde la de si sau un o in cu pe din mai ce-i va vă imi ati aveti oferiti face faceti".split(" "));
 function rank(q,n){
   const w=norm(q).split(/[^a-z0-9]+/).filter(t=>t.length>2&&!STOP.has(t));if(!w.length)return [];
   const N=LINES.length,df=t=>{let d=0;for(const l of NL){if(l.includes(t.slice(0,6)))d++}return d};
@@ -32,8 +34,28 @@ function search(q){
   if(!sc.length) return null;
   return "Din informațiile de pe site:\n"+sc.map(x=>"• "+clean(x[1]).replace(/^\[[^\]]+\]\s*/,"")).join("\n")+"\n\nPentru programare sau preț final: 021 000 4322, email@etalon.com.";
 }
+// ---- FTS5 / D1 (în paralel). Sursa de adevăr rămâne _knowledge.js; indexul se reconstruiește când se schimbă.
+let KH=null,SYNCED=false;
+async function khash(){const h=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(KNOWLEDGE));return [...new Uint8Array(h)].slice(0,8).map(x=>x.toString(16).padStart(2,"0")).join("");}
+async function ensureIndex(db){
+  if(SYNCED)return;KH=KH||await khash();
+  const r=await db.prepare("SELECT val FROM meta WHERE key='k_hash'").first();
+  if(r&&r.val===KH){SYNCED=true;return;}
+  const ins=db.prepare("INSERT INTO k(q,body) VALUES(?,?)"),st=[db.prepare("DELETE FROM k")];
+  for(const l of LINES){const m=l.match(/Întrebare: (.*?) Răspuns:/);st.push(ins.bind(m?m[1]:"",l));}
+  st.push(db.prepare("INSERT OR REPLACE INTO meta(key,val) VALUES('k_hash',?)").bind(KH));
+  await db.batch(st);SYNCED=true;
+}
+const stem=w=>w.length<=6?w.slice(0,4):w.slice(0,5);
+async function ftsRank(db,q,n){
+  const w=norm(q).split(/[^a-z0-9]+/).filter(t=>t.length>2&&!STOP.has(t));if(!w.length)return [];
+  const expr=w.map(t=>t.length>=5?`"${stem(t)}"*`:`"${t}"*`).join(" OR ");
+  const r=await db.prepare("SELECT body FROM k WHERE k MATCH ? ORDER BY bm25(k,3.0,1.0) LIMIT ?").bind(expr,n).all();
+  return (r.results||[]).map(x=>x.body);
+}
+function hybrid(f,i,n){const out=[...f.slice(0,10)];for(const l of i){if(out.length>=n)break;if(!out.includes(l))out.push(l);}return out.slice(0,n);}
 const FALLBACK="Nu am găsit asta în informațiile de pe site. Vă rugăm sunați la 021 000 4322 sau scrieți la email@etalon.com.";
-export async function onRequestPost({request, env}){
+export async function onRequestPost({request, env, waitUntil}){
   
   const ip=request.headers.get("CF-Connecting-IP")||"x";
   if(limited(ip)) return json({error:"Prea multe mesaje. Încercați peste un minut."},429);
@@ -44,11 +66,16 @@ export async function onRequestPost({request, env}){
   if(!env.AI) return json({reply:search(msg)||FALLBACK,source:"site"});
   try{
     const prev=hist.filter(m=>m.role==="user").slice(-1).map(m=>m.content).join(" ");
-    const top=rank(msg+" "+prev,14);const sys=SYSTEM+"\nTe adresezi clientului cu «dumneavoastră», niciodată cu «tu». Nu începi răspunsul cu cuvântul «Dumneavoastră».\nINFORMAȚII GENERALE:\n"+GENERAL.join("\n")+(top.length?`\n\nINFORMAȚII DE PE SITE CARE SE POTRIVESC ÎNTREBĂRII (cel mai potrivit primul). Răspunde pe baza lor; nu spune că nu ai informații dacă una dintre ele se potrivește:\n${top.join("\n")}`:"");
+    const qq=msg+" "+prev,idfTop=rank(qq,14);let ftsTop=null;
+    if(env.DB){try{await ensureIndex(env.DB);ftsTop=await ftsRank(env.DB,qq,14);
+      const log=env.DB.prepare("INSERT INTO ab_log(ts,q,idf_top,fts_top,same) VALUES(?,?,?,?,?)").bind(new Date().toISOString(),msg.slice(0,300),(idfTop[0]||"").slice(0,160),(ftsTop[0]||"").slice(0,160),(idfTop[0]||"")===(ftsTop[0]||"")?1:0).run();
+      if(waitUntil)waitUntil(log);else await log;}catch(e){ftsTop=null;}}
+    const engine=(body.engine==="fts"&&ftsTop)?"fts":(body.engine==="hybrid"&&ftsTop)?"hybrid":"idf";
+    const top=engine==="fts"?ftsTop:engine==="hybrid"?hybrid(ftsTop,idfTop,14):idfTop;const sys=SYSTEM+"\nTe adresezi clientului cu «dumneavoastră», niciodată cu «tu». Nu începi răspunsul cu cuvântul «Dumneavoastră».\nINFORMAȚII GENERALE:\n"+GENERAL.join("\n")+(top.length?`\n\nINFORMAȚII DE PE SITE CARE SE POTRIVESC ÎNTREBĂRII (cel mai potrivit primul). Răspunde pe baza lor; nu spune că nu ai informații dacă una dintre ele se potrivește:\n${top.join("\n")}`:"");
     let r;const args={messages:[{role:"system",content:sys},...hist,{role:"user",content:msg}],max_tokens:400,temperature:0.1};
     try{r=await env.AI.run(MODEL,args);}catch(e1){r=await env.AI.run(MODEL_FALLBACK,args);}
     const reply=(r&&r.response?String(r.response):"").trim();
     if(!reply || (top.length && /nu (am|dețin|detin) (informa|date)|nu am g[ăa]sit/i.test(reply))) return json({reply:search(msg)||FALLBACK,source:"site"});
-    return json({reply});
+    return json({reply,engine});
   }catch(e){return json({reply:search(msg)||FALLBACK,source:"site"});}
 }

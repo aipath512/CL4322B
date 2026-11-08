@@ -1,7 +1,16 @@
 {
-  // CL4322B v1.2 (2026-11-08) — Cloudflare Pages: pagini din public/, asistent din functions/
+  // CL4322B v1.3 (2026-11-08) — Cloudflare Pages: pagini din public/, asistent din functions/; D1 = index FTS5 al Evei (reconstruit din _knowledge.js)
   "name": "cl4322b",
   "pages_build_output_dir": "./public",
   "compatibility_date": "2026-11-01",
-  "ai": { "binding": "AI" }
+  "ai": {
+    "binding": "AI"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "tcs-instal-cunostinte",
+      "database_id": "f5f423c0-e403-4d49-bfef-1c65dfccd354"
+    }
+  ]
 }
