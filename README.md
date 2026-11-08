@@ -1,4 +1,4 @@
-# CL4322B — site etalon CAEN 4322 (v1.2, 2026-11-08)
+# TCS INSTAL (repo CL4322B) — site etalon CAEN 4322 (v1.2, 2026-11-08)
 
 Site demonstrativ al unei firme **fictive** de instalații (încălzire, climatizare, sanitare) din București. Toate datele firmei și persoanele sunt fictive. Paginile au `noindex` și `robots.txt` blochează indexarea.
 
