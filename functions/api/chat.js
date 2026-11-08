@@ -1,4 +1,4 @@
-// TCS INSTAL v2.3 — asistent AI: Cloudflare Pages Function pe /api/chat + Workers AI
+// TCS INSTAL v2.4 — asistent AI: Cloudflare Pages Function pe /api/chat + Workers AI
 import { KNOWLEDGE } from "./_knowledge.js";
 const MODEL = "@cf/meta/llama-3.1-8b-instruct-fp8";
 const SYSTEM = `Te numești Eva și ești asistentul AI al firmei TCS INSTAL din București (instalații de încălzire, climatizare și sanitare).
@@ -11,11 +11,17 @@ ${KNOWLEDGE}`;
 const hits = new Map();
 function limited(ip){const now=Date.now(),w=60000;const a=(hits.get(ip)||[]).filter(t=>now-t<w);a.push(now);hits.set(ip,a);return a.length>8;}
 const json=(o,s=200)=>new Response(JSON.stringify(o),{status:s,headers:{"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store"}});
-export async function onRequestGet({env}){return json({status:"ready",ai:!!(env&&env.AI),version:"v2.3"});}
+export async function onRequestGet({env}){return json({status:"ready",ai:!!(env&&env.AI),version:"v2.4"});}
 // Căutare în conținutul site-ului: folosită când Workers AI lipsește sau dă eroare
 const LINES=KNOWLEDGE.split("\n");
 const norm=s=>s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
 const STOP=new Set("cat costa ce este sunt pentru care cum unde la de si sau un o in cu pe din mai ce-i va vă imi ati aveti oferiti face faceti".split(" "));
+function rank(q,n){
+  const w=norm(q).split(/[^a-z0-9]+/).filter(t=>t.length>2&&!STOP.has(t));if(!w.length)return [];
+  const N=LINES.length,df=t=>{let d=0;for(const l of LINES){if(norm(l).includes(t.slice(0,6)))d++}return d};
+  const idf={};w.forEach(t=>idf[t]=Math.log((N+1)/(df(t)+0.5)));
+  return LINES.map(l=>{const nl=norm(l);let s=0;for(const t of w){if(nl.includes(t))s+=2*idf[t];else if(t.length>5&&nl.includes(t.slice(0,5)))s+=idf[t]}return [s,l]}).filter(x=>x[0]>0).sort((a,b)=>b[0]-a[0]).slice(0,n).map(x=>x[1]);
+}
 function search(q){
   const w=norm(q).split(/[^a-z0-9]+/).filter(t=>t.length>2&&!STOP.has(t));
   if(!w.length) return null;
@@ -34,7 +40,8 @@ export async function onRequestPost({request, env}){
   const hist=(Array.isArray(body.history)?body.history:[]).slice(-6).filter(m=>m&&(m.role==="user"||m.role==="assistant")).map(m=>({role:m.role,content:String(m.content||"").slice(0,1200)}));
   if(!env.AI) return json({reply:search(msg)||FALLBACK,source:"site"});
   try{
-    const r=await env.AI.run(MODEL,{messages:[{role:"system",content:SYSTEM},...hist,{role:"user",content:msg}],max_tokens:400,temperature:0.2});
+    const top=rank(msg,6);const sys=SYSTEM+(top.length?`\n\nSERVICIILE CELE MAI POTRIVITE PENTRU ÎNTREBAREA CLIENTULUI (recomandă-l pe primul dacă se potrivește):\n${top.join("\n")}`:"");
+    const r=await env.AI.run(MODEL,{messages:[{role:"system",content:sys},...hist,{role:"user",content:msg}],max_tokens:400,temperature:0.2});
     const reply=(r&&r.response?String(r.response):"").trim();
     if(!reply) return json({reply:search(msg)||FALLBACK,source:"site"});
     return json({reply});
