@@ -1,4 +1,4 @@
-// TCS INSTAL v2.8 — Eva Hybrid Search: IDF (activ) + FTS5/D1 în paralel (A/B), index reconstruit automat din _knowledge.js (căutare rapidă: Eva primește doar rândurile potrivite întrebării) — asistent AI: Cloudflare Pages Function pe /api/chat + Workers AI
+// TCS INSTAL v2.9 — Eva Hybrid Search: cu FTS_ENABLE=1 motorul implicit este hibrid (FTS5/D1 + IDF); fără el sau fără index valid, IDF (căutare rapidă: Eva primește doar rândurile potrivite întrebării) — asistent AI: Cloudflare Pages Function pe /api/chat + Workers AI
 import { KNOWLEDGE } from "./_knowledge.js";
 const MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
 const MODEL_FALLBACK = "@cf/meta/llama-3.1-8b-instruct-fp8";
@@ -12,7 +12,7 @@ function limited(ip){const now=Date.now(),w=60000;const a=(hits.get(ip)||[]).fil
 const json=(o,s=200)=>new Response(JSON.stringify(o),{status:s,headers:{"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store"}});
 export async function onRequestGet({env}){
   let fts=null;if(env&&env.DB){try{await ensureIndex(env.DB);const a=await env.DB.prepare("SELECT (SELECT count(*) FROM k) n,(SELECT count(*) FROM ab_log) ab,(SELECT count(*) FROM ab_log WHERE same=1) same").first();fts={index:a.n,ab_intrebari:a.ab,ab_acelasi_prim_rezultat:a.same,hash:KH};}catch(e){fts={eroare:String(e).slice(0,120)};}}
-  return json({status:"ready",ai:!!(env&&env.AI),version:"v2.8",motor_activ:"idf",fts5:fts});}
+  return json({status:"ready",ai:!!(env&&env.AI),version:"v2.9",motor_activ:(String(env&&env.FTS_ENABLE||"")==="1"&&fts&&!fts.eroare)?"hybrid":"idf",fts5:fts});}
 // Căutare în conținutul site-ului: folosită când Workers AI lipsește sau dă eroare
 const LINES=KNOWLEDGE.split("\n");
 const GENERAL=LINES.filter(l=>!l.startsWith("["));
@@ -71,10 +71,11 @@ export async function onRequestPost({request, env, waitUntil}){
     if(env.DB){try{await ensureIndex(env.DB);ftsTop=await ftsRank(env.DB,qq,14);
       const log=env.DB.prepare("INSERT INTO ab_log(ts,q,idf_top,fts_top,same) VALUES(?,?,?,?,?)").bind(new Date().toISOString(),msg.slice(0,300),(idfTop[0]||"").slice(0,160),(ftsTop[0]||"").slice(0,160),(idfTop[0]||"")===(ftsTop[0]||"")?1:0).run();
       if(waitUntil)waitUntil(log);else await log;}catch(e){ftsTop=null;}}
-    // Public requests cannot enable an experimental retrieval engine by default.
+    // Public requests cannot enable FTS without the operator switch FTS_ENABLE.
     // IDF stays active until an operator explicitly sets FTS_ENABLE=1.
     const allowFts=String(env.FTS_ENABLE||"")==="1";
-    const engine=(allowFts&&body.engine==="fts"&&ftsTop)?"fts":(allowFts&&body.engine==="hybrid"&&ftsTop)?"hybrid":"idf";
+    // With FTS_ENABLE=1 the default becomes hybrid (FTS5 top 10 + IDF fill); IDF is used whenever the index is unavailable.
+    const engine=!(allowFts&&ftsTop)?"idf":body.engine==="idf"?"idf":body.engine==="fts"?"fts":"hybrid";
     const top=engine==="fts"?ftsTop:engine==="hybrid"?hybrid(ftsTop,idfTop,14):idfTop;const sys=SYSTEM+"\nTe adresezi clientului cu «dumneavoastră», niciodată cu «tu». Nu începi răspunsul cu cuvântul «Dumneavoastră».\nINFORMAȚII GENERALE:\n"+GENERAL.join("\n")+(top.length?`\n\nINFORMAȚII DE PE SITE CARE SE POTRIVESC ÎNTREBĂRII (cel mai potrivit primul). Răspunde pe baza lor; nu spune că nu ai informații dacă una dintre ele se potrivește:\n${top.join("\n")}`:"");
     let r;const args={messages:[{role:"system",content:sys},...hist,{role:"user",content:msg}],max_tokens:400,temperature:0.1};
     try{r=await env.AI.run(MODEL,args);}catch(e1){r=await env.AI.run(MODEL_FALLBACK,args);}

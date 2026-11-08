@@ -28,7 +28,7 @@ Prețul firmei = mijlocul intervalului observat pe piața din București, rotunj
 3. Generați fișierele de import: `node tools/build-fts5-seed.mjs`. Rezultă `dist/eva-fts5/chunk-NNN.sql` și `manifest.json`. **Reindexarea șterge doar conținutul indexului dedicat `k`**, nu informațiile din `_knowledge.js`.
 4. Aplicați fișierele SQL în **ordinea numerică**, cu `npx wrangler d1 execute tcs-instal-cunostinte --remote --file=dist/eva-fts5/chunk-001.sql` și apoi pentru toate celelalte. Prima etapă invalidează hash-ul; ultima îl reactivează după importul complet. **Nu întrerupeți deliberat importul**; altfel FTS va fi indisponibil și IDF continuă să funcționeze.
 5. Verificați `GET /api/chat`: `fts5.index` trebuie să coincidă cu `manifest.rows` și `fts5.hash` cu `manifest.hash`. Faceți test A/B pe întrebări reale; nu modificați `FTS_ENABLE` încă.
-6. Abia după verificarea calității, puteți seta `FTS_ENABLE=1` în Pages și testa cereri explicite cu `engine: "fts"` / `"hybrid"`. Înlăturați variabila pentru rollback imediat. **Nu setați automat motorul principal pe FTS**.
+6. Comutatorul `FTS_ENABLE` este versionat în `wrangler.jsonc` (`vars`). **Stare 8 nov 2026: `"1"` — decizie owner: motorul implicit este hibrid** (FTS5 ordonează primele 10 rânduri, IDF completează și preia singur dacă indexul lipsește sau e învechit). Rollback: `"0"` + commit. Cereri de test: `engine: "idf"` / `"fts"`.
 
 ### Măsurare și limite
 - `ab_log.same` măsoară numai egalitatea **primului rând** IDF vs FTS, nu calitatea răspunsului sau satisfacția clientului.
