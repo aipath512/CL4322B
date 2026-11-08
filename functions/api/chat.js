@@ -1,4 +1,4 @@
-// TCS INSTAL v2.7 (căutare rapidă: Eva primește doar rândurile potrivite întrebării) — asistent AI: Cloudflare Pages Function pe /api/chat + Workers AI
+// TCS INSTAL v2.7.1 (căutare rapidă: Eva primește doar rândurile potrivite întrebării) — asistent AI: Cloudflare Pages Function pe /api/chat + Workers AI
 import { KNOWLEDGE } from "./_knowledge.js";
 const MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
 const MODEL_FALLBACK = "@cf/meta/llama-3.1-8b-instruct-fp8";
@@ -10,7 +10,7 @@ Spui, dacă ești întrebat, că firma și datele ei sunt fictive (site etalon d
 const hits = new Map();
 function limited(ip){const now=Date.now(),w=60000;const a=(hits.get(ip)||[]).filter(t=>now-t<w);a.push(now);hits.set(ip,a);return a.length>8;}
 const json=(o,s=200)=>new Response(JSON.stringify(o),{status:s,headers:{"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store"}});
-export async function onRequestGet({env}){return json({status:"ready",ai:!!(env&&env.AI),version:"v2.7"});}
+export async function onRequestGet({env}){return json({status:"ready",ai:!!(env&&env.AI),version:"v2.7.1"});}
 // Căutare în conținutul site-ului: folosită când Workers AI lipsește sau dă eroare
 const LINES=KNOWLEDGE.split("\n");
 const GENERAL=LINES.filter(l=>!l.startsWith("["));
@@ -22,7 +22,7 @@ function rank(q,n){
   const w=norm(q).split(/[^a-z0-9]+/).filter(t=>t.length>2&&!STOP.has(t));if(!w.length)return [];
   const N=LINES.length,df=t=>{let d=0;for(const l of NL){if(l.includes(t.slice(0,6)))d++}return d};
   const idf={};w.forEach(t=>idf[t]=Math.log((N+1)/(df(t)+0.5)));
-  return LINES.map((l,i)=>{const nl=NL[i];let s=0;for(const t of w){if(nl.includes(t))s+=2*idf[t];else if(t.length>5&&nl.includes(t.slice(0,5)))s+=idf[t]}return [s,l]}).filter(x=>x[0]>0).sort((a,b)=>b[0]-a[0]).slice(0,n).map(x=>x[1]);
+  return LINES.map((l,i)=>{const nl=NL[i];let s=0;for(const t of w){if(nl.includes(t))s+=2*idf[t];else if(t.length>5&&nl.includes(t.slice(0,5)))s+=idf[t];else if(t.length>=5&&nl.includes(t.slice(0,4)))s+=0.6*idf[t]}return [s,l]}).filter(x=>x[0]>0).sort((a,b)=>b[0]-a[0]).slice(0,n).map(x=>x[1]);
 }
 function search(q){
   const w=norm(q).split(/[^a-z0-9]+/).filter(t=>t.length>2&&!STOP.has(t));
@@ -43,7 +43,7 @@ export async function onRequestPost({request, env}){
   if(!env.AI) return json({reply:search(msg)||FALLBACK,source:"site"});
   try{
     const prev=hist.filter(m=>m.role==="user").slice(-1).map(m=>m.content).join(" ");
-    const top=rank(msg+" "+prev,14);const sys=SYSTEM+"\nTe adresezi clientului cu «dumneavoastră», niciodată cu «tu».\nINFORMAȚII GENERALE:\n"+GENERAL.join("\n")+(top.length?`\n\nINFORMAȚII DE PE SITE CARE SE POTRIVESC ÎNTREBĂRII (cel mai potrivit primul). Răspunde pe baza lor; nu spune că nu ai informații dacă una dintre ele se potrivește:\n${top.join("\n")}`:"");
+    const top=rank(msg+" "+prev,14);const sys=SYSTEM+"\nTe adresezi clientului cu «dumneavoastră», niciodată cu «tu». Nu începi răspunsul cu cuvântul «Dumneavoastră».\nINFORMAȚII GENERALE:\n"+GENERAL.join("\n")+(top.length?`\n\nINFORMAȚII DE PE SITE CARE SE POTRIVESC ÎNTREBĂRII (cel mai potrivit primul). Răspunde pe baza lor; nu spune că nu ai informații dacă una dintre ele se potrivește:\n${top.join("\n")}`:"");
     let r;const args={messages:[{role:"system",content:sys},...hist,{role:"user",content:msg}],max_tokens:400,temperature:0.1};
     try{r=await env.AI.run(MODEL,args);}catch(e1){r=await env.AI.run(MODEL_FALLBACK,args);}
     const reply=(r&&r.response?String(r.response):"").trim();
