@@ -1,5 +1,7 @@
 // TCS INSTAL v2.9 — Eva Hybrid Search: IDF + FTS5 BM25, RRF implicit când indexul D1 este valid; fallback IDF. Sursa de adevăr: _knowledge.js. Cloudflare Pages /api/chat + Workers AI.
-import { KNOWLEDGE } from "./_knowledge.js";
+import { KNOWLEDGE as BASE_KNOWLEDGE } from "./_knowledge.js";
+import { FAQ_SYNC_LINES } from "./_faq_sync.js";
+const KNOWLEDGE = BASE_KNOWLEDGE + (FAQ_SYNC_LINES.length ? "\n" + FAQ_SYNC_LINES.join("\n") : "");
 const MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
 const MODEL_FALLBACK = "@cf/meta/llama-3.1-8b-instruct-fp8";
 const SYSTEM = `Te numești Eva și ești asistentul AI al firmei TCS INSTAL din București (instalații de încălzire, climatizare și sanitare).
