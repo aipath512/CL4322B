@@ -1,11 +1,11 @@
 {
- "generat": "2026-11-08T14:48:41Z",
+ "generat": "2026-11-09T09:47:53Z",
  "frecventa": "zilnic, automat (GitHub Actions)",
  "firme": [
   {
    "firma": "CPS — Conexiuni Professional Service",
    "url": "https://www.cps.com.ro/tarife",
-   "verificat": "2026-11-08T14:48:41Z",
+   "verificat": "2026-11-09T09:47:53Z",
    "status": 200,
    "ok": true,
    "preturi": [
@@ -44,7 +44,7 @@
   {
    "firma": "Future Line Instal (Termoserv)",
    "url": "https://www.termoserv.ro/contact/",
-   "verificat": "2026-11-08T14:48:41Z",
+   "verificat": "2026-11-09T09:47:53Z",
    "status": 200,
    "ok": true,
    "preturi": [
@@ -58,9 +58,9 @@
   {
    "firma": "PMC ServInstal (PMC Aer Condiționat)",
    "url": "https://pmcaerconditionat.ro/preturi-servicii/",
-   "verificat": "2026-11-08T14:48:41Z",
-   "status": 200,
-   "ok": true,
+   "verificat": "2026-11-09T09:47:53Z",
+   "ok": false,
+   "eroare": "Site-ul refuză citirea automată (403). Se verifică manual.",
    "preturi": [
     "Prețuri Montaj Aer Condiționat de la 600 lei, Igienizare 200 lei",
     "/ — 0 lei",
@@ -108,13 +108,12 @@
     "Răspuns rapid · Consultanță gratuită · 5 ani garanție la montaj"
    ],
    "hash_preturi": "66c3e22d2a75bc2f",
-   "hash_pagina": "8ed001a2faa816ff",
    "ultima_schimbare": "2026-11-08T14:48:41Z"
   },
   {
    "firma": "Home Clima",
    "url": "https://home-clima.ro/montaj-aer-conditionat-bucuresti/",
-   "verificat": "2026-11-08T14:48:41Z",
+   "verificat": "2026-11-09T09:47:53Z",
    "status": 200,
    "ok": true,
    "preturi": [
@@ -133,7 +132,7 @@
   {
    "firma": "Instal AeroCris SRL",
    "url": "https://instal-aerocris.ro/instalare-aer-conditionat/",
-   "verificat": "2026-11-08T14:48:41Z",
+   "verificat": "2026-11-09T09:47:53Z",
    "status": 200,
    "ok": true,
    "preturi": [
@@ -153,7 +152,7 @@
   {
    "firma": "ACME Instal",
    "url": "https://acmeinstal.ro/",
-   "verificat": "2026-11-08T14:48:41Z",
+   "verificat": "2026-11-09T09:47:53Z",
    "status": 200,
    "ok": true,
    "preturi": [],
@@ -165,7 +164,7 @@
   {
    "firma": "Climatico",
    "url": "https://www.climatico.ro/informatii-de-contact",
-   "verificat": "2026-11-08T14:48:41Z",
+   "verificat": "2026-11-09T09:47:53Z",
    "ok": false,
    "eroare": "Site-ul refuză citirea automată (403). Se verifică manual.",
    "preturi": [],
@@ -176,7 +175,7 @@
   {
    "firma": "David Engineering",
    "url": "https://david-engineering.ro/instalatii-sanitare/instalator-autorizat-non-stop/",
-   "verificat": "2026-11-08T14:48:41Z",
+   "verificat": "2026-11-09T09:47:53Z",
    "status": 200,
    "ok": true,
    "preturi": [],
@@ -188,7 +187,7 @@
   {
    "firma": "Prodimar",
    "url": "https://www.prodimar.ro/instalatii-de-climatizare-oferte-preturi-a21",
-   "verificat": "2026-11-08T14:48:41Z",
+   "verificat": "2026-11-09T09:47:53Z",
    "status": 200,
    "ok": true,
    "preturi": [],
@@ -200,7 +199,7 @@
   {
    "firma": "Clima General Install",
    "url": "https://www.climageneralinstall.ro/despre-noi/",
-   "verificat": "2026-11-08T14:48:41Z",
+   "verificat": "2026-11-09T09:47:53Z",
    "status": 200,
    "ok": true,
    "preturi": [],
@@ -211,6 +210,15 @@
   }
  ],
  "evenimente": [
+  {
+   "data": "2026-11-09T09:47:53Z",
+   "firma": "PMC ServInstal (PMC Aer Condiționat)",
+   "tip": "Pagina nu răspunde",
+   "aparute": [
+    "Site-ul refuză citirea automată (403). Se verifică manual."
+   ],
+   "disparute": []
+  },
   {
    "data": "2026-11-08T14:48:41Z",
    "firma": "Climatico",
@@ -225,6 +233,11 @@
   {
    "data": "2026-11-08T14:48:41Z",
    "ok": 9,
+   "total": 10
+  },
+  {
+   "data": "2026-11-09T09:47:53Z",
+   "ok": 8,
    "total": 10
   }
  ]
