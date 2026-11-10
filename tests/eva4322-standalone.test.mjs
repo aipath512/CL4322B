@@ -111,3 +111,16 @@ test('widget includes bounded conversational history but does not persist transc
  assert.ok(widget.includes('history:transcript.slice(-9,-1)'));
  assert.ok(!widget.includes('localStorage.setItem(storageKey, JSON.stringify(transcript'));
 });
+
+test('theme toggle starts light, supports dark, and persists tenant-specific choice',async()=>{
+ const {readFileSync}=await import('node:fs');
+ const widget=readFileSync(new URL('../public/eva-4322-widget.js',import.meta.url),'utf8');
+ for(const key of ['const themeKey','eva4322:theme:','savedTheme = \'light\'','applyTheme(savedTheme)','themeButton.addEventListener','localStorage.setItem(themeKey, next)','panel.dataset.theme','aria-pressed'])assert.ok(widget.includes(key),key);
+ assert.ok(widget.includes("panel.dataset.theme = dark ? 'dark' : 'light'"));
+});
+test('light and dark palettes, original patterned background and legible chat controls are provided',async()=>{
+ const {readFileSync}=await import('node:fs');
+ const widget=readFileSync(new URL('../public/eva-4322-widget.js',import.meta.url),'utf8');
+ for(const key of ['--eva-bg:#efeae2','--eva-bg:#0b141a','--eva-user:#d9fdd3','--eva-user:#005c4b','--eva-bot:#fff','--eva-bot:#202c33','patternSvg','encodeURIComponent(patternSvg)','background-size:230px','lead-form','--eva-input'])assert.ok(widget.includes(key),key);
+ assert.ok(!widget.includes('https://web.whatsapp.com'));
+});
