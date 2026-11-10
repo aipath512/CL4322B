@@ -27,6 +27,21 @@
     '.hint{font-size:11px;color:#5b6470;padding:0 11px 10px}.resize-hint{font-size:11px;color:#5b6470}',
     'button:focus-visible,textarea:focus-visible{outline:3px solid #ffb84d;outline-offset:2px}',
     '@media(max-width:600px){.panel:not(.fullscreen){right:8px;bottom:70px;width:calc(100vw - 16px)!important;height:min(75dvh,640px)!important;min-width:0;max-width:none;resize:none}.launch{right:12px;bottom:12px}}',
+    '.panel{--eva-bg:#efeae2;--eva-text:#172739;--eva-head:#075e54;--eva-user:#d9fdd3;--eva-bot:#fff;--eva-muted:#56616c;--eva-border:#cad1d8;--eva-input:#fff;--eva-tools:#fff;--eva-button:#075e54;--eva-pattern-opacity:.48;background:var(--eva-bg);color:var(--eva-text);border-color:var(--eva-border)}',
+    '.panel[data-theme="dark"]{--eva-bg:#0b141a;--eva-text:#e9edef;--eva-head:#202c33;--eva-user:#005c4b;--eva-bot:#202c33;--eva-muted:#aab7c4;--eva-border:#344249;--eva-input:#2a3942;--eva-tools:#202c33;--eva-button:#005c4b;--eva-pattern-opacity:.22;color-scheme:dark}',
+    '.head{background:var(--eva-head);color:#fff}',
+    '.messages{position:relative;isolation:isolate;background-color:var(--eva-bg);background-image:var(--eva-pattern-url);background-size:230px 230px;background-repeat:repeat}',
+    '.messages::before{content:"";position:absolute;inset:0;pointer-events:none;background:var(--eva-bg);opacity:calc(1 - var(--eva-pattern-opacity));z-index:-1}',
+    '.bubble{background:var(--eva-bot);color:var(--eva-text)}.user .bubble{background:var(--eva-user);color:var(--eva-text)}',
+    '.msg-tools button,.suggestions button{background:var(--eva-tools);color:var(--eva-text);border-color:var(--eva-border)}',
+    '.form{background:var(--eva-bg);border-color:var(--eva-border)}.form textarea{background:var(--eva-input);color:var(--eva-text);border-color:var(--eva-border)}.form textarea::placeholder{color:var(--eva-muted)}',
+    '.form button{background:var(--eva-button);color:#fff}.hint{background:var(--eva-bg);color:var(--eva-muted)}',
+    '.panel .secondary{background:var(--eva-tools)!important;color:var(--eva-text)!important;border-color:var(--eva-border)!important}',
+    '.panel .lead-form{background:var(--eva-bg)!important;border-color:var(--eva-border)!important}.panel .lead-form input:not([type="checkbox"]){background:var(--eva-input)!important;color:var(--eva-text)!important;border-color:var(--eva-border)!important}',
+    '.panel .lead-form button[type="submit"]{background:var(--eva-button)!important;color:#fff!important}',
+    '.panel .lead-form button[type="button"]{background:var(--eva-tools)!important;color:var(--eva-text)!important;border-color:var(--eva-border)!important}',
+    '.panel .actions button[aria-pressed="true"]{background:#ffffff26;border-color:#fff}',
+    '.panel .msg-tools button:focus-visible,.panel .suggestions button:focus-visible{outline:3px solid #ffb84d;outline-offset:2px}',
     '@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}'
   ].join('');
   root.appendChild(style);
@@ -51,6 +66,33 @@
     b.type = 'button'; b.title = label; b.setAttribute('aria-label', label); b.textContent = glyph;
     actions.appendChild(b); return b;
   }
+  // Original, generic line-art background; no reuse of WhatsApp assets or user screenshot.
+  const patternSvg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 230" width="230" height="230" fill="none" stroke="#89958b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">'+
+   '<g opacity=".37"><circle cx="30" cy="33" r="18"/><circle cx="30" cy="33" r="7"/><path d="M68 17h27v22H68zM77 9v8M86 39v9M120 23l12 15 13-15-13-15zM168 24l4 9 10 3-10 4-4 9-4-9-10-4 10-3z"/>'+
+   '<path d="M15 100c12-19 25-19 37 0-8 17-30 23-37 0zM30 80v12M71 86h37m-27-11v22m17-22v22M139 84l14-13 14 13v21h-28zM145 104V92h16v12"/>'+
+   '<path d="M191 70c-12 13-12 22 0 30 13-8 13-17 0-30zM27 154h38v22H27zM38 176v13M54 176v13M82 155l12-12 12 12-12 12zM128 151c7-11 19-11 26 0s-4 25-13 34c-10-9-20-23-13-34z"/>'+
+   '<circle cx="193" cy="162" r="17"/><path d="M193 150v24m-12-12h24M13 218l13-13 13 13m-13-13v-14M81 211h30M96 195v30M152 208c11-14 23-14 34 0-11 14-23 14-34 0z"/></g></svg>';
+  panel.style.setProperty('--eva-pattern-url', 'url("data:image/svg+xml,' + encodeURIComponent(patternSvg) + '")');
+  const themeKey = 'eva4322:theme:' + tenant + ':' + location.hostname;
+  const themeButton = action('Activează tema întunecată', '☾');
+  themeButton.setAttribute('aria-pressed', 'false');
+  const applyTheme = mode => {
+    const dark = mode === 'dark';
+    panel.dataset.theme = dark ? 'dark' : 'light';
+    themeButton.textContent = dark ? '☀' : '☾';
+    themeButton.setAttribute('aria-pressed', String(dark));
+    themeButton.setAttribute('aria-label', dark ? 'Activează tema luminoasă' : 'Activează tema întunecată');
+    themeButton.title = themeButton.getAttribute('aria-label');
+  };
+  let savedTheme = 'light';
+  try { savedTheme = localStorage.getItem(themeKey) === 'dark' ? 'dark' : 'light'; } catch {}
+  applyTheme(savedTheme);
+  themeButton.addEventListener('click', () => {
+    const next = panel.dataset.theme === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    try { localStorage.setItem(themeKey, next); } catch {}
+  });
+
   const copyAll = action('Copiază conversația', '⧉');
   const expand = action('Ecran complet', '⛶');
   const close = action('Minimizează', '×');
@@ -200,6 +242,7 @@
   panel.insertBefore(offerButton,form);
   let requestedService='';
   const leadForm=document.createElement('form');
+  leadForm.className='lead-form';
   leadForm.style.cssText='display:none;padding:12px;overflow:auto;max-height:65%;border-top:1px solid #ddd;flex-direction:column;gap:9px;background:#f5f8fc';
   function makeField(label,type='text',required=true){
     const wrapper=document.createElement('label');wrapper.style.cssText='display:flex;flex-direction:column;gap:4px;font-size:12px';

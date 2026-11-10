@@ -78,3 +78,11 @@ Se aplică mai întâi `migrations/0003_eva_promotion_thankyou.sql` pe **EVA_DB 
 Vizitatorul deschide din widget **Solicită ofertă**, completează serviciul, localitatea și contactul și acceptă contactarea. Serverul validează datele, salvează solicitarea în `eva_leads` și returnează referința și instantaneul promoției aplicabile. **Doar la status 201 confirmat** widgetul afișează Thank You și codul reducerii, explicit sub rezerva confirmării comerciale. Promoția nu este un cupon de plată și nu scade automat un preț.
 
 Limitări de producție: endpointul public de lead necesită WAF/rate limiting, protecții anti-spam, reguli GDPR (notificare și retenție), notificarea operatorului/CRM și teste end-to-end Cloudflare. Momentan nu există interfață de vizualizare a leadurilor sau integrare CRM. **Nu activați public** înainte de aceste controale și de verificarea migrației. Nu sunt implementate automat taxe, plafoane de buget sau coduri unice per client.
+
+## V0.7 — WhatsApp-inspired Light/Dark appearance
+
+The EVA-4322 chat widget now has a sun/moon theme toggle in the top-right header. **Light is the default**; Dark is optional. The user's choice is stored locally per tenant and website in `eva4322:theme:<tenant>:<hostname>`. Theme changes never modify conversation history, user-selected window size, or the backend KB.
+
+A custom, locally generated decorative line-art SVG pattern is used behind chat bubbles; no external image, screenshot, branding asset or tracking request is loaded. Light uses a light neutral canvas and pale green visitor bubbles. Dark uses charcoal canvas, dark green visitor bubbles and dark-gray assistant bubbles. Message copy, follow-up chips, offer form, mobile layout, fullscreen and desktop resizing inherit the selected palette.
+
+No Cloudflare production deployment or physical-device visual acceptance has been confirmed by the GitHub test suite.
