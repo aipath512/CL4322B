@@ -68,3 +68,13 @@ The admin UI and API must run on the **same HTTPS host**. The UI keeps the beare
 - This MVP supports manual Q&A draft/edit/publish/unpublish; CSV/PDF imports and role-based multiuser admin are not yet available.
 - Do not insert private customer data, passwords, invented prices or unsupported company claims.
 - GitHub merge alone does not confirm Cloudflare deployment, database creation or tests on physical devices.
+
+## V0.6 — Promoție parametrizabilă în Thank You
+
+Administratorul poate seta o promoție per firmă în `/eva-4322-admin.html`: cod, titlu, procent 1–100 sau sumă fixă în RON/EUR (număr întreg), serviciu eligibil (opțional), dată început/sfârșit, condiții și activare/dezactivare.
+
+Se aplică mai întâi `migrations/0003_eva_promotion_thankyou.sql` pe **EVA_DB dedicată**. Niciun tabel al TCS INSTAL nu este modificat. Valorile sunt stocate și evaluate server-side, după serviciu și data UTC.
+
+Vizitatorul deschide din widget **Solicită ofertă**, completează serviciul, localitatea și contactul și acceptă contactarea. Serverul validează datele, salvează solicitarea în `eva_leads` și returnează referința și instantaneul promoției aplicabile. **Doar la status 201 confirmat** widgetul afișează Thank You și codul reducerii, explicit sub rezerva confirmării comerciale. Promoția nu este un cupon de plată și nu scade automat un preț.
+
+Limitări de producție: endpointul public de lead necesită WAF/rate limiting, protecții anti-spam, reguli GDPR (notificare și retenție), notificarea operatorului/CRM și teste end-to-end Cloudflare. Momentan nu există interfață de vizualizare a leadurilor sau integrare CRM. **Nu activați public** înainte de aceste controale și de verificarea migrației. Nu sunt implementate automat taxe, plafoane de buget sau coduri unice per client.

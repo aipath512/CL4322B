@@ -191,4 +191,68 @@
     }
   }
   form.addEventListener('submit', e => {e.preventDefault();submitMessage(input.value);});
+
+  // Lead form is opened only by an explicit visitor action; no automatic personal-data capture.
+  const offerButton = document.createElement('button');
+  offerButton.type='button'; offerButton.textContent='Solicită ofertă';
+  offerButton.className='secondary';
+  offerButton.style.cssText='margin:0 12px 8px;align-self:flex-start;padding:8px 12px;border:1px solid #154a73;border-radius:8px;background:white;color:#154a73';
+  panel.insertBefore(offerButton,form);
+  let requestedService='';
+  const leadForm=document.createElement('form');
+  leadForm.style.cssText='display:none;padding:12px;overflow:auto;max-height:65%;border-top:1px solid #ddd;flex-direction:column;gap:9px;background:#f5f8fc';
+  function makeField(label,type='text',required=true){
+    const wrapper=document.createElement('label');wrapper.style.cssText='display:flex;flex-direction:column;gap:4px;font-size:12px';
+    wrapper.textContent=label;
+    const el=document.createElement('input');el.type=type;el.required=required;el.style.cssText='padding:8px;border:1px solid #aab8c7;border-radius:7px;font:14px system-ui';
+    wrapper.append(el);leadForm.append(wrapper);return el;
+  }
+  const serviceField=makeField('Serviciu solicitat');
+  const localityField=makeField('Localitate');
+  const contactField=makeField('Contact (telefon sau email)');
+  const consentBox=document.createElement('label');
+  consentBox.style.cssText='display:flex;gap:8px;align-items:center;font-size:12px';
+  const consent=document.createElement('input');consent.type='checkbox';consent.required=true;
+  const consentText=document.createElement('span');
+  consentText.textContent='Sunt de acord ca firma să mă contacteze pentru solicitarea transmisă.';
+  consentBox.append(consent,consentText);leadForm.append(consentBox);
+  const leadSubmit=document.createElement('button');leadSubmit.type='submit';leadSubmit.textContent='Trimite cererea';
+  leadSubmit.style.cssText='background:#154a73;color:white;border:0;border-radius:8px;padding:11px;cursor:pointer';
+  const leadCancel=document.createElement('button');leadCancel.type='button';leadCancel.textContent='Înapoi la conversație';
+  leadCancel.style.cssText='background:white;color:#154a73;border:1px solid #154a73;border-radius:8px;padding:9px;cursor:pointer';
+  leadForm.append(leadSubmit,leadCancel);panel.insertBefore(leadForm,form);
+  const offerOpen=()=>{
+    requestedService=requestedService||'Solicitare ofertă instalații';
+    serviceField.value=requestedService;
+    leadForm.style.display='flex';offerButton.style.display='none';form.style.display='none';
+    serviceField.focus();
+  };
+  const offerClose=()=>{leadForm.style.display='none';offerButton.style.display='';form.style.display='flex';};
+  offerButton.addEventListener('click',offerOpen);
+  leadCancel.addEventListener('click',offerClose);
+  const promoLabel=p=>p.discount_kind==='percent'
+    ?p.discount_value+'% reducere'
+    :p.discount_value+' '+p.currency+' reducere';
+  leadForm.addEventListener('submit',async e=>{
+    e.preventDefault();if(!consent.checked)return;
+    leadSubmit.disabled=true;
+    try{
+      const leadEndpoint=new URL('/api/eva-4322-lead?tenant='+encodeURIComponent(tenant),script.src).href;
+      const res=await fetch(leadEndpoint,{method:'POST',headers:{'content-type':'application/json'},
+        body:JSON.stringify({service:serviceField.value,locality:localityField.value,
+          contact:contactField.value,consent:consent.checked})});
+      const data=await res.json();if(!res.ok||!data.ok)throw Error(data.error||'Cererea nu a fost salvată.');
+      offerClose();requestedService='';consent.checked=false;contactField.value='';localityField.value='';
+      addMessage('Vă mulțumim! Cererea de ofertă a fost înregistrată.\nReferință: '+data.reference+
+        '\nServiciu: '+data.service+'\nLocalitate: '+data.locality+
+        (data.promotion?'\n\n🎁 '+data.promotion.title+': '+promoLabel(data.promotion)+
+         '\nCod: '+data.promotion.code+'\nValabil până la: '+data.promotion.valid_until+
+         (data.promotion.terms?'\nCondiții: '+data.promotion.terms:'')+
+         '\nReducerea va fi confirmată de firmă în oferta finală.':'')+
+        '\n\nPuteți continua conversația cu EVA.','assistant');
+      questionList([]);
+    }catch(err){addMessage('Cererea nu a fost înregistrată: '+err.message,'assistant');}
+    finally{leadSubmit.disabled=false;}
+  });
+
 })();

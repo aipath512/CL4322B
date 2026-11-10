@@ -44,6 +44,21 @@ small,.muted{color:#536576}#status{min-height:1.5em;font-weight:600}
 <section class="card" id="records-card" hidden><div class="row"><h2>3. Verifică și aprobă</h2><button class="secondary" type="button" id="refresh">Actualizează</button></div>
 <p class="muted">Apăsați „Publică” doar după verificarea proprietarului. Un răspuns modificat revine automat în Draft.</p>
 <div id="records"></div></section>
+<section class="card" id="promo-card"><h2>4. Reducere promoțională — Thank You</h2>
+<p class="muted">Personalizabilă pe firmă. Reducerea este afișată numai după confirmarea înregistrării unei cereri, în perioada definită.</p>
+<form id="promo-form"><fieldset>
+<div class="grid"><label>Cod promoțional<input id="promo-code" required maxlength="30" pattern="[A-Za-z0-9_-]{3,30}" placeholder="EVA10"></label>
+<label>Titlu ofertă<input id="promo-title" required maxlength="100" placeholder="Reducere de bun venit"></label></div>
+<div class="grid"><label>Tip reducere<select id="promo-kind"><option value="percent">Procent (%)</option><option value="fixed">Sumă fixă</option></select></label>
+<label>Valoare<input id="promo-value" type="number" required min="1" max="100" step="1" value="10"></label></div>
+<div class="grid"><label>Monedă<select id="promo-currency"><option value="RON">RON</option><option value="EUR">EUR</option></select></label>
+<label>Serviciu eligibil (gol = toate)<input id="promo-service" maxlength="120" placeholder="Montaj centrală"></label></div>
+<div class="grid"><label>Valabil de la<input id="promo-from" type="date" required></label>
+<label>Valabil până la<input id="promo-until" type="date" required></label></div>
+<label>Condiții promoție<textarea id="promo-terms" maxlength="500" placeholder="Se aplică după confirmarea ofertei, fără cumul cu alte promoții."></textarea></label>
+<label><span><input id="promo-enabled" type="checkbox" style="width:auto"> Activare promoție</span></label>
+<div class="actions"><button type="submit">Salvează promoția</button><button type="button" id="promo-reload" class="secondary">Reîncarcă</button></div>
+</fieldset></form><p id="promo-status" role="status" aria-live="polite"></p></section>
 </main>
 <script>
 (()=>{'use strict';
@@ -102,6 +117,42 @@ by('kb-form').addEventListener('submit',async e=>{
   await api('POST',{action:'save',id:by('qa-id').value.trim(),question:by('qa-question').value.trim(),answer:by('qa-answer').value.trim(),followup:by('qa-followup').value.trim()});
   by('kb-form').reset();await load();message('Draft salvat. Nu este încă public.');
  }catch(err){message(err.message,true)}finally{busy=false}
+});
+
+const promoFields={code:'promo-code',title:'promo-title',discount_kind:'promo-kind',discount_value:'promo-value',currency:'promo-currency',eligible_service:'promo-service',valid_from:'promo-from',valid_until:'promo-until',terms:'promo-terms',enabled:'promo-enabled'};
+async function promoApi(method,data){
+ const {tenant,token}=credentials();
+ if(!tenant||!token)throw Error('Introduceți codul firmei și cheia administratorului.');
+ const res=await fetch('/api/eva-4322-promotion-admin?tenant='+encodeURIComponent(tenant),{
+  method,headers:{Authorization:'Bearer '+token,...(data?{'Content-Type':'application/json'}:{})},
+  ...(data?{body:JSON.stringify(data)}:{})
+ });
+ const result=await res.json();if(!res.ok)throw Error(result.error||'Eroare API');return result;
+}
+function promoStatus(msg){by('promo-status').textContent=msg;}
+async function loadPromo(){
+ try{
+  const result=await promoApi('GET'),p=result.promotion;
+  if(!p){promoStatus('Nu există promoție configurată.');return;}
+  for(const [k,id] of Object.entries(promoFields)){
+   if(k==='enabled')by(id).checked=Number(p[k])===1;
+   else by(id).value=p[k]??'';
+  }
+  promoStatus('Promoția a fost încărcată.');
+ }catch(e){promoStatus(e.message)}
+}
+by('promo-reload').addEventListener('click',loadPromo);
+by('promo-kind').addEventListener('change',()=>{
+ by('promo-value').max=by('promo-kind').value==='percent'?'100':'1000000';
+});
+by('promo-form').addEventListener('submit',async e=>{
+ e.preventDefault();
+ const p={};
+ for(const [k,id] of Object.entries(promoFields)){
+  p[k]=k==='enabled'?by(id).checked:k==='discount_value'?Number(by(id).value):by(id).value;
+ }
+ try{await promoApi('POST',p);promoStatus('Promoție salvată. Este activă doar dacă este bifată și în perioada de valabilitate.');}
+ catch(e){promoStatus(e.message)}
 });
 })();
 </script></body></html>
