@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="ro" data-theme="dark">
+<html lang="ro" data-theme="light">
 <head>
 <meta charset="utf-8">
-<script>(function(){var t="dark";try{t=localStorage.getItem("tcs-theme")||"dark"}catch(e){}document.documentElement.setAttribute("data-theme",t)})();</script>
+<script>(function(){var t="light";try{t=localStorage.getItem("tcs-theme")||"light"}catch(e){}document.documentElement.setAttribute("data-theme",t)})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ofertă și prețuri — TCS INSTAL</title>
 <meta name="description" content="Tabelul complet cu prețurile TCS INSTAL și intervalul de pe piața din București.">
@@ -248,7 +248,43 @@ details.prod .p-main{font-size:.86rem;font-weight:600}details.prod .p-sub{font-s
 .credit{font-size:.76rem;color:var(--muted)}
 @media (max-width:640px){.pgrid{grid-template-columns:1fr}details.prod .ph{width:64px;height:64px}}details.faq>summary{grid-template-columns:minmax(0,1fr) 28px}details.faq .fisa p{margin:12px 0 0}details.svc .mono{width:88px;height:88px;border-radius:14px;display:flex;align-items:center;justify-content:center;text-align:center;padding:6px;font:700 .82rem/1.15 var(--sans,inherit);color:#fff;letter-spacing:.02em}
 .mono.heat{background:linear-gradient(135deg,#c2410c,#f59e0b)}.mono.cool{background:linear-gradient(135deg,#0369a1,#38bdf8)}.mono.water{background:linear-gradient(135deg,#0f766e,#22d3ee)}
-@media (max-width:640px){details.svc .mono{width:64px;height:64px;font-size:.68rem}}</style>
+@media (max-width:640px){details.svc .mono{width:64px;height:64px;font-size:.68rem}}
+/* Oferta V1 mobile: all 4 price fields visible, no sideways table navigation. */
+@media(max-width:760px){
+ .tbl{border:0;background:transparent;border-radius:0;overflow:visible}
+ .tbl table{display:block;width:100%;min-width:0;border-collapse:separate}
+ .tbl thead{display:none}
+ .tbl tbody{display:grid;gap:13px}
+ .tbl tbody tr:not(.grp){display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:12px;row-gap:8px;
+   padding:16px 17px;border:1px solid var(--line);border-radius:16px;background:var(--surface);
+   box-shadow:0 6px 20px rgba(0,0,0,.045);min-width:0}
+ .tbl tbody tr:not(.grp) td{display:block;min-width:0;border:0;padding:0;font-size:.94rem;line-height:1.35;white-space:normal;overflow-wrap:anywhere}
+ .tbl tbody tr:not(.grp) td:first-child{grid-column:1/-1;font-weight:700;font-size:1.04rem;line-height:1.4}
+ .tbl tbody tr:not(.grp) td:first-child a{color:var(--ink);text-decoration:none}
+ .tbl tbody tr:not(.grp) td:first-child a:focus-visible,
+ .tbl tbody tr:not(.grp) td:first-child a:hover{text-decoration:underline}
+ .tbl tbody tr:not(.grp) td:nth-child(2){grid-column:1/-1;color:var(--muted);font-size:.85rem}
+ .tbl tbody tr:not(.grp) td:nth-child(3){grid-column:1;text-align:left;font-weight:750;font-size:1.2rem;color:var(--accent)}
+ .tbl tbody tr:not(.grp) td:nth-child(3)::before{content:"Preț TCS INSTAL";display:block;font-size:.71rem;
+   font-weight:650;letter-spacing:.035em;color:var(--muted);margin-bottom:4px}
+ .tbl tbody tr:not(.grp) td:nth-child(4){grid-column:2;text-align:right;font-weight:600;color:var(--ink);font-size:1rem}
+ .tbl tbody tr:not(.grp) td:nth-child(4)::before{content:"Piață București";display:block;font-size:.71rem;
+   font-weight:650;letter-spacing:.035em;color:var(--muted);margin-bottom:4px}
+ .tbl tbody tr.grp{display:block;background:transparent;margin:22px 0 0;border:0}
+ .tbl tbody tr.grp:first-child{margin-top:6px}
+ .tbl tbody tr.grp td{display:block;padding:0 0 10px;border-bottom:2px solid var(--accent);
+   background:transparent;color:var(--ink);font:700 clamp(1.2rem,5vw,1.6rem)/1.3 var(--display)}
+ .bar{gap:8px;flex-wrap:nowrap;padding-block:9px}
+ .bar .logo{font-size:1.05rem;gap:7px;min-width:0}
+ #tt{margin-left:auto;flex:none}#mt{flex:none}
+ .sec{padding-block:32px}
+ .sec h1{font-size:clamp(2rem,8vw,3.2rem);line-height:1.1}
+ #ai-btn{width:56px;height:56px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));
+   border-width:2px;box-shadow:0 5px 15px rgba(0,0,0,.17)}
+ #ai-btn .lbl{display:none}
+ main{padding-bottom:110px}
+}
+</style>
 </head>
 <body>
 <div class="demo g">Site etalon demonstrativ · firmă, persoane și date de identificare fictive</div>
@@ -268,7 +304,7 @@ details.prod .p-main{font-size:.86rem;font-weight:600}details.prod .p-sub{font-s
 <div><h3>Legal</h3><ul><li><a href="legal.html#date-firma">Date de identificare</a></li><li><a href="legal.html#termeni">Termeni și condiții</a></li><li><a href="legal.html#cookies">Politica de cookies</a></li><li><a href="legal.html#confidentialitate">Confidențialitate (GDPR)</a></li><li><a href="legal.html#ai-act">Transparență AI (AI Act)</a></li></ul></div>
 <div><h3>Date firmă</h3><p>CUI RO00004322</p><p>Reg. Com. J40/0004/2014</p><p>CAEN 4322 — Lucrări de instalații sanitare, de încălzire și de aer condiționat</p><p>Autorizat ISCIR, ANRE, F-gaz (vezi <a href="certificari.html">Certificări</a>)</p></div>
 </div><a class="aiact" href="legal.html#ai-act"><img src="img/eu-ai-act-ready_v1.0.webp" alt="Parafă EU AI Act Ready, 2 august 2026" width="72" height="72" loading="lazy"><span><b>EU AI Act Ready</b><br>Asistentul Eva respectă obligațiile de transparență din art. 50 al Regulamentului (UE) 2024/1689. Vedeți cum funcționează.</span></a><div class="fine"><p><b>Site etalon demonstrativ.</b> TCS INSTAL SRL, persoanele, adresa, telefonul, CUI-ul și numerele de autorizare sunt fictive. Prețurile firmei sunt exemplificative și sunt calculate din prețurile publice observate pe piața din București la 8 noiembrie 2026; intervalele „Piață București” provin din surse publice listate pe pagina <a href="oferta.html#surse">Ofertă</a>.</p><p>TCS INSTAL v3.2 · 2026-11-08</p></div></div></footer>
-<button id="ai-btn" aria-controls="ai-panel" aria-expanded="false" aria-label="Deschide asistentul AI Eva"><video src="img/eva-asistent_v1.0.mp4" poster="img/eva-asistent_v1.0.jpg" autoplay muted loop playsinline aria-hidden="true"></video><span class="lbl">Întrebați-o pe Eva</span></button>
+<button id="ai-btn" aria-controls="ai-panel" aria-expanded="false" aria-label="Deschide asistentul AI Eva"><video src="img/eva-asistent_v2.0.mp4" poster="img/eva-asistent_v1.0.jpg" autoplay muted loop playsinline aria-hidden="true"></video><span class="lbl">Întrebați-o pe Eva</span></button>
 <section id="ai-panel" hidden aria-label="Asistent AI"><header><img class="mini" src="img/eva-asistent_v1.0.jpg" alt="" width="36" height="36"><b>Eva · asistent TCS INSTAL</b><span class="eyebrow">AI</span><button id="ai-x" aria-label="Închide">×</button></header>
 <div id="ai-log" aria-live="polite"></div><p class="ai-note">Vorbiți cu un sistem de inteligență artificială. Răspunsurile sunt orientative; programarea și prețul final le confirmă un om. <a href="legal.html#ai-act">Detalii</a></p>
 <form id="ai-form"><textarea id="ai-in" rows="1" maxlength="1200" placeholder="Întrebați despre servicii, prețuri, garanții…" aria-label="Mesaj"></textarea><button type="submit">Trimite</button></form></section>
