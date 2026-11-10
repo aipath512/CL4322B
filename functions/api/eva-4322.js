@@ -50,7 +50,16 @@ export async function onRequest({request,env}){
      contextUsed:true
    },200,cors);
  }
- const qa=(Array.isArray(tenant.qa)?tenant.qa:[]).filter(r=>r&&r.question&&r.answer).map(r=>[r.id||'custom',r.question,r.answer,r.followup||'']);
+ // Published tenant-specific records reside in separate EVA_DB, never in demo FTS D1.
+ // Only published records reach public visitors; drafts remain admin-only.
+ let liveQA=[];
+ if(env.EVA_DB){
+  try{
+   const result=await env.EVA_DB.prepare("SELECT qa_id AS id,question,answer,followup FROM eva_company_kb WHERE tenant_id=? AND status='published' LIMIT 500").bind(id).all();
+   liveQA=(result.results||[]).map(r=>[r.id,r.question,r.answer,r.followup||'']);
+  }catch{return respond({reply:'Serviciul EVA este temporar indisponibil.',source:'kb-unavailable',followups:[]},503,cors);}
+ }
+ const qa=[...liveQA,...(Array.isArray(tenant.qa)?tenant.qa:[]).filter(r=>r&&r.question&&r.answer).map(r=>[r.id||'custom',r.question,r.answer,r.followup||''])];
  const candidates=C4322_FAQ_CANDIDATES.map(f=>[f.id,f.question,f.answer,'']);
  const all=[...qa,...rows,...candidates],qt=terms(message),docs=all.map(r=>terms(r[1]+' '+r[2])),df=new Map();
  for(const d of docs)for(const t of d)df.set(t,(df.get(t)||0)+1);
