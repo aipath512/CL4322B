@@ -27,7 +27,7 @@ export async function onRequest({request,env}){
  let text;try{text=await request.text();if(text.length>4096)throw Error()}catch{return respond({error:'Payload too large'},413,cors)}
  let message;try{message=String(JSON.parse(text).message||'').trim()}catch{return respond({error:'Invalid JSON'},400,cors)}
  if(!message||message.length>1000)return respond({error:'Invalid message'},400,cors);
- if(/miros (de )?gaz|scurgere de gaz|scapari de gaz/.test(norm(message)))
+ if(/miros (de )?gaz|miroase (a |de )?gaz|scurgere de gaz|scapari de gaz|gaz in casa/.test(norm(message)))
    return respond({reply:'Daca suspectati o scurgere de gaz, parasiti zona afectata. Nu actionati intrerupatoare electrice. Contactati operatorul de urgenta al retelei de gaze sau 112 in caz de pericol imediat.',intent:'siguranta',followup:'',source:'safety-rule'},200,cors);
  const qa=(Array.isArray(tenant.qa)?tenant.qa:[]).filter(r=>r&&r.question&&r.answer).map(r=>[r.id||'custom',r.question,r.answer,r.followup||'']);
  const candidates=C4322_FAQ_CANDIDATES.map(f=>[f.id,f.question,f.answer,'']);
