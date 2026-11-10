@@ -40,7 +40,7 @@ export async function onRequest({request,env}){
  const prevUser=[...history].reverse().find(m=>m.role==='user')?.content||'';
  const shortAnswer=terms(message).length<=3;
  const contextQuestion=shortAnswer&&prevUser&&prevAssistant?prevUser:'';
- const contextual=shortAnswer&&contextQuestion&&/\\b(doua|2) bai\\b/.test(norm(message))&&/centrala|apartament|24 kw/.test(norm(contextQuestion));
+ const contextual=shortAnswer&&contextQuestion&&/\b(doua|2) bai\b/.test(norm(message))&&/centrala|apartament|24 kw/.test(norm(contextQuestion));
  if(contextual){
    return respond({
      reply:'Pentru două băi, trebuie evaluat debitul de apă caldă solicitat simultan. O centrală combi de 24 kW nu garantează confort la două dușuri în același timp. Comparați debitul ACM declarat al modelelor și, dacă este necesar, un sistem cu acumulare.',
