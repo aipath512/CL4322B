@@ -66,3 +66,48 @@ test('widget supports resize, fullscreen, copying, selectable followups, mobile'
  const widget=readFileSync(new URL('../public/eva-4322-widget.js',import.meta.url),'utf8');
  for(const feature of ['resize:both','fullscreen','ResizeObserver','localStorage','navigator.clipboard','copyAll','copyButton','submitMessage(question)','max-width:600px','aria-expanded'])assert.ok(widget.includes(feature),feature);
 });
+
+test('contextual answer to two bathrooms uses previous apartment question',async()=>{
+ const request=new Request('https://eva.example/api/eva-4322?tenant=t1',{
+   method:'POST',headers:{Origin:'https://first.example','content-type':'application/json'},
+   body:JSON.stringify({message:'Două băi',history:[
+     {role:'user',content:'Ce centrală aleg pentru apartamentul meu?'},
+     {role:'assistant',content:'Alegerea depinde de pierderile de căldură. Câte băi aveți?'}
+   ]})
+ });
+ const response=await onRequest({request,env}),data=await response.json();
+ assert.equal(response.status,200);
+ assert.equal(data.contextUsed,true);
+ assert.equal(data.funnelStage,'MOFU');
+ assert.ok(data.reply.includes('două băi'));
+ assert.equal(data.followups[0].question,'Folosiți simultan cele două dușuri?');
+});
+test('no contextual inference from unrelated or missing history',async()=>{
+ const request=new Request('https://eva.example/api/eva-4322?tenant=t1',{
+   method:'POST',headers:{Origin:'https://first.example','content-type':'application/json'},
+   body:JSON.stringify({message:'Două băi',history:[
+     {role:'user',content:'Ce robinet aleg la chiuvetă?'},
+     {role:'assistant',content:'Verificați diametrul și compatibilitatea.'}
+   ]})
+ });
+ const data=await (await onRequest({request,env})).json();
+ assert.notEqual(data.source,'contextual-4322-two-bathrooms');
+});
+test('current gas emergency overrides any prior conversation',async()=>{
+ const request=new Request('https://eva.example/api/eva-4322?tenant=t1',{
+   method:'POST',headers:{Origin:'https://first.example','content-type':'application/json'},
+   body:JSON.stringify({message:'Miroase a gaz',history:[
+     {role:'user',content:'Ce centrală aleg pentru apartament?'},
+     {role:'assistant',content:'Care este suprafața?'}
+   ]})
+ });
+ const data=await (await onRequest({request,env})).json();
+ assert.equal(data.intent,'siguranta');
+ assert.deepEqual(data.followups,[]);
+});
+test('widget includes bounded conversational history but does not persist transcript',async()=>{
+ const {readFileSync}=await import('node:fs');
+ const widget=readFileSync(new URL('../public/eva-4322-widget.js',import.meta.url),'utf8');
+ assert.ok(widget.includes('history:transcript.slice(-9,-1)'));
+ assert.ok(!widget.includes('localStorage.setItem(storageKey, JSON.stringify(transcript'));
+});

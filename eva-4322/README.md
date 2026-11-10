@@ -40,3 +40,9 @@ The universal widget now opens at 380 x 540 pixels on desktop. Users may:
 The API includes up to three follow-up questions, funnelStage (TOFU/MOFU/BOFU) and safe empty followups for unrecognized questions or gas emergencies.
 
 These are deliberately lightweight deterministic follow-ups, **not yet a sophisticated AI conversational funnel using prior chat history**. The server currently processes each question independently. Voice is not available. 475 of the 485 candidate Q&A remain demonstration content requiring technical/commercial review. No Cloudflare publication is proven by GitHub tests alone.
+
+
+## EVA V0.4 — conversational context (pilot)
+The widget sends the last 8 prior messages from in-memory chat state (no server-side storage) with each new question. The shared endpoint accepts bounded context and recognizes a first contextual path: a visitor who asks which apartment boiler to choose and subsequently answers "Două băi" receives hot-water-flow guidance and two relevant next-step options.
+
+**Scope:** this is a tested, deterministic contextual path, not general LLM multi-turn reasoning. It does not add voice or verified company pricing. The server trusts neither previous assistant text nor tenant-provided values as evidence for commercial commitments. Emergency phrases always take priority.
