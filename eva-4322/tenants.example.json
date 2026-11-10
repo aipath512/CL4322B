@@ -1,0 +1,17 @@
+{
+  "firma01": {
+    "origins": [
+      "https://client.example"
+    ],
+    "name": "Asistent AI 4322",
+    "phone": "",
+    "qa": [
+      {
+        "id": "FIRMA01-1",
+        "question": "Lucrați sâmbăta?",
+        "answer": "Programul se completează după confirmarea firmei.",
+        "followup": "Doriți să contactați firma?"
+      }
+    ]
+  }
+}
