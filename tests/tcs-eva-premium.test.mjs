@@ -20,7 +20,7 @@ test('full screen, restore and pointer resizing have touch gestures and persiste
 test('individual answer and whole conversation can be copied or shared explicitly to WhatsApp',()=>{
  for(const token of ['id="ai-copy-all"','id="ai-share-all"','Copiază răspunsul EVA','Distribuie răspunsul EVA','navigator.clipboard.writeText','document.execCommand("copy")','window.open','https://wa.me/?text=','encodeURIComponent(value)','textAll()'])
   assert.ok(page.includes(token),token);
- assert.ok(page.includes('w.setText(j.reply)'));
+ assert.ok(page.includes('w.setText(j.reply||"Nu este disponibil un răspuns pentru această întrebare.")'));
  assert.ok(!page.includes('w.textContent=j.reply'));
 });
 
