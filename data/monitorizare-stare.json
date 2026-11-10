@@ -3,7 +3,7 @@
   "CPS — Conexiuni Professional Service": {
    "firma": "CPS — Conexiuni Professional Service",
    "url": "https://www.cps.com.ro/tarife",
-   "verificat": "2026-11-09T09:47:53Z",
+   "verificat": "2026-11-10T09:50:12Z",
    "status": 200,
    "ok": true,
    "preturi": [
@@ -42,7 +42,7 @@
   "Future Line Instal (Termoserv)": {
    "firma": "Future Line Instal (Termoserv)",
    "url": "https://www.termoserv.ro/contact/",
-   "verificat": "2026-11-09T09:47:53Z",
+   "verificat": "2026-11-10T09:50:12Z",
    "status": 200,
    "ok": true,
    "preturi": [
@@ -56,11 +56,10 @@
   "PMC ServInstal (PMC Aer Condiționat)": {
    "firma": "PMC ServInstal (PMC Aer Condiționat)",
    "url": "https://pmcaerconditionat.ro/preturi-servicii/",
-   "verificat": "2026-11-09T09:47:53Z",
-   "ok": false,
-   "eroare": "Site-ul refuză citirea automată (403). Se verifică manual.",
+   "verificat": "2026-11-10T09:50:12Z",
+   "status": 200,
+   "ok": true,
    "preturi": [
-    "Prețuri Montaj Aer Condiționat de la 600 lei, Igienizare 200 lei",
     "/ — 0 lei",
     "0 lei Deplasare la montaj și revizie",
     "9.000 BTU Pentru camere până la 25 m² — 600 lei",
@@ -99,19 +98,21 @@
     "Sector 2 Colentina, Pantelimon, Tei, Obor, Iancului — 600 lei",
     "Sector 3 Titan, Dristor, Vitan, Centrul Vechi, Unirii — 600 lei",
     "Sector 4 Berceni, Timpuri Noi, Tineretului, Văcărești — 600 lei",
-    "Sector 5 Rahova, Ferentari, Cotroceni, 13 Septembrie — 600 lei"
+    "Sector 5 Rahova, Ferentari, Cotroceni, 13 Septembrie — 600 lei",
+    "Sector 6 Militari, Drumul Taberei, Crângași, Giulești — 600 lei"
    ],
    "promotii": [
     "Constatare defect: este gratuită dacă facem reparația. Dacă vrei doar vizita tehnicianului, fără nicio lucrare, costă 150 lei.",
     "Răspuns rapid · Consultanță gratuită · 5 ani garanție la montaj"
    ],
-   "hash_preturi": "66c3e22d2a75bc2f",
-   "ultima_schimbare": "2026-11-08T14:48:41Z"
+   "hash_preturi": "6a01884f3441a94a",
+   "hash_pagina": "9b4690dbbd0100ad",
+   "ultima_schimbare": "2026-11-10T09:50:12Z"
   },
   "Home Clima": {
    "firma": "Home Clima",
    "url": "https://home-clima.ro/montaj-aer-conditionat-bucuresti/",
-   "verificat": "2026-11-09T09:47:53Z",
+   "verificat": "2026-11-10T09:50:12Z",
    "status": 200,
    "ok": true,
    "preturi": [
@@ -130,7 +131,7 @@
   "Instal AeroCris SRL": {
    "firma": "Instal AeroCris SRL",
    "url": "https://instal-aerocris.ro/instalare-aer-conditionat/",
-   "verificat": "2026-11-09T09:47:53Z",
+   "verificat": "2026-11-10T09:50:12Z",
    "status": 200,
    "ok": true,
    "preturi": [
@@ -150,7 +151,7 @@
   "ACME Instal": {
    "firma": "ACME Instal",
    "url": "https://acmeinstal.ro/",
-   "verificat": "2026-11-09T09:47:53Z",
+   "verificat": "2026-11-10T09:50:12Z",
    "status": 200,
    "ok": true,
    "preturi": [],
@@ -162,7 +163,7 @@
   "Climatico": {
    "firma": "Climatico",
    "url": "https://www.climatico.ro/informatii-de-contact",
-   "verificat": "2026-11-09T09:47:53Z",
+   "verificat": "2026-11-10T09:50:12Z",
    "ok": false,
    "eroare": "Site-ul refuză citirea automată (403). Se verifică manual.",
    "preturi": [],
@@ -173,7 +174,7 @@
   "David Engineering": {
    "firma": "David Engineering",
    "url": "https://david-engineering.ro/instalatii-sanitare/instalator-autorizat-non-stop/",
-   "verificat": "2026-11-09T09:47:53Z",
+   "verificat": "2026-11-10T09:50:12Z",
    "status": 200,
    "ok": true,
    "preturi": [],
@@ -185,7 +186,7 @@
   "Prodimar": {
    "firma": "Prodimar",
    "url": "https://www.prodimar.ro/instalatii-de-climatizare-oferte-preturi-a21",
-   "verificat": "2026-11-09T09:47:53Z",
+   "verificat": "2026-11-10T09:50:12Z",
    "status": 200,
    "ok": true,
    "preturi": [],
@@ -197,7 +198,7 @@
   "Clima General Install": {
    "firma": "Clima General Install",
    "url": "https://www.climageneralinstall.ro/despre-noi/",
-   "verificat": "2026-11-09T09:47:53Z",
+   "verificat": "2026-11-10T09:50:12Z",
    "status": 200,
    "ok": true,
    "preturi": [],
@@ -225,6 +226,13 @@
     "Site-ul refuză citirea automată (403). Se verifică manual."
    ],
    "disparute": []
+  },
+  {
+   "data": "2026-11-10T09:50:12Z",
+   "firma": "PMC ServInstal (PMC Aer Condiționat)",
+   "tip": "Pagina a revenit online",
+   "aparute": [],
+   "disparute": []
   }
  ],
  "rulari": [
@@ -236,6 +244,11 @@
   {
    "data": "2026-11-09T09:47:53Z",
    "ok": 8,
+   "total": 10
+  },
+  {
+   "data": "2026-11-10T09:50:12Z",
+   "ok": 9,
    "total": 10
   }
  ]
