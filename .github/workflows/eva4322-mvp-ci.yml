@@ -1,0 +1,21 @@
+name: EVA 4322 standalone smoke tests
+on:
+  pull_request:
+    paths:
+      - 'functions/api/eva-4322.js'
+      - 'functions/api/_eva4322_candidates.js'
+      - 'tests/eva4322-standalone.test.mjs'
+      - '.github/workflows/eva4322-mvp-ci.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run EVA 4322 standalone tests
+        run: node --experimental-default-type=module --test tests/eva4322-standalone.test.mjs
