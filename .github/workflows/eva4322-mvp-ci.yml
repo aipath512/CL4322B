@@ -6,6 +6,12 @@ on:
       - 'functions/api/_eva4322_candidates.js'
       - 'tests/eva4322-standalone.test.mjs'
       - 'tests/eva4322-admin.test.mjs'
+      - 'tests/eva4322-promo.test.mjs'
+      - 'functions/api/_eva4322_promo.js'
+      - 'functions/api/eva-4322-promotion-admin.js'
+      - 'functions/api/eva-4322-lead.js'
+      - 'migrations/0003_eva_promotion_thankyou.sql'
+      - 'public/eva-4322-widget.js'
       - 'functions/api/eva-4322-admin.js'
       - 'public/eva-4322-admin.html'
       - 'migrations/0002_eva_company_kb.sql'
@@ -26,4 +32,4 @@ jobs:
       - name: Verify EVA Cloudflare configuration without remote changes
         run: node tools/eva4322-preflight.mjs check
       - name: Run EVA 4322 standalone tests
-        run: node --experimental-default-type=module --test tests/eva4322-standalone.test.mjs tests/eva4322-admin.test.mjs
+        run: node --experimental-default-type=module --test tests/eva4322-standalone.test.mjs tests/eva4322-admin.test.mjs tests/eva4322-promo.test.mjs
