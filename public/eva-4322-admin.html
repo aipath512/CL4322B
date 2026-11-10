@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ro"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow"><title>EVA 4322 — Cunoștințele firmei</title>
+<style>
+:root{color-scheme:light;font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#172739;background:#f5f7fa}
+*{box-sizing:border-box}body{margin:0}header{background:#154a73;color:#fff;padding:16px max(16px,calc((100vw - 900px)/2))}
+main{max-width:900px;margin:0 auto;padding:18px 16px 70px}
+h1{font-size:1.3rem;margin:0}h2{font-size:1.05rem;margin:0 0 12px}p{line-height:1.5}
+.card{background:white;border:1px solid #dce3eb;border-radius:14px;padding:17px;margin-bottom:16px;box-shadow:0 4px 16px #1727390a}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+label{display:grid;gap:6px;font-weight:650;font-size:.9rem}
+input,textarea,select{font:inherit;width:100%;min-width:0;border:1px solid #a6b3c2;border-radius:8px;padding:11px;background:white;color:#172739}
+textarea{min-height:100px;resize:vertical}
+button{font:inherit;padding:10px 14px;border:1px solid #154a73;border-radius:9px;background:#154a73;color:white;cursor:pointer;min-height:43px}
+button.secondary{background:white;color:#154a73}button:disabled{opacity:.5}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+fieldset{border:0;padding:0;margin:0;display:grid;gap:13px}
+small,.muted{color:#536576}#status{min-height:1.5em;font-weight:600}
+.item{padding:14px 0;border-bottom:1px solid #dde5ec}.item:last-child{border:0}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.pill{display:inline-block;border:1px solid #ccd6e0;border-radius:40px;padding:3px 9px;font-size:.77rem;background:#eef3f8}
+.warning{background:#fff5dd;border:1px solid #e5bf6b;padding:12px;border-radius:9px;margin-bottom:15px}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid #e49b2a;outline-offset:2px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}.card{padding:14px}main{padding:12px 12px 80px}button{flex:1}}
+</style></head>
+<body><header><h1>EVA-4322 · Cunoștințele firmei</h1><div style="opacity:.85">Administrare privată · mobil, tabletă, laptop</div></header>
+<main>
+<div class="warning">Modificările sunt salvate ca <strong>Draft</strong>. Proprietarul confirmă informațiile înainte să fie publicate. Nu introduceți aici date personale ale clienților sau parole.</div>
+<section class="card"><h2>1. Acces securizat</h2>
+<div class="grid"><label>Cod firmă (tenant ID)<input id="tenant" autocomplete="off" placeholder="firma01"></label>
+<label>Cheie administrator (nu se salvează)<input id="token" type="password" autocomplete="off" placeholder="Cheia emisă de AiVenture"></label></div>
+<div class="actions"><button id="connect" type="button">Conectare și încărcare</button><button id="forget" type="button" class="secondary">Închide sesiunea</button></div>
+<p id="status" role="status" aria-live="polite"></p></section>
+<section class="card" id="editor" hidden><h2>2. Adaugă sau modifică o cunoștință</h2>
+<form id="kb-form"><fieldset>
+<div class="grid"><label>ID unic<input id="qa-id" required pattern="[A-Za-z0-9_-]{3,64}" maxlength="64" placeholder="FIRMA-001"></label>
+<label>Follow-up recomandat<input id="qa-followup" maxlength="250" placeholder="Doriți să cereți o ofertă?"></label></div>
+<label>Întrebarea clientului<textarea id="qa-question" required minlength="5" maxlength="350" placeholder="Lucrați și sâmbăta?"></textarea></label>
+<label>Răspunsul confirmat de firmă<textarea id="qa-answer" required minlength="3" maxlength="2500" placeholder="Programul nostru este..."></textarea></label>
+<div class="actions"><button type="submit">Salvează Draft</button><button type="reset" class="secondary">Cunoștință nouă</button></div>
+</fieldset></form>
+</section>
+<section class="card" id="records-card" hidden><div class="row"><h2>3. Verifică și aprobă</h2><button class="secondary" type="button" id="refresh">Actualizează</button></div>
+<p class="muted">Apăsați „Publică” doar după verificarea proprietarului. Un răspuns modificat revine automat în Draft.</p>
+<div id="records"></div></section>
+</main>
+<script>
+(()=>{'use strict';
+const by=id=>document.getElementById(id);
+const status=by('status');let active=false,busy=false;
+function message(value,error=false){status.textContent=value;status.style.color=error?'#a22b28':'#155b40'}
+function credentials(){return {tenant:by('tenant').value.trim(),token:by('token').value.trim()};}
+function setActive(on){active=on;by('editor').hidden=!on;by('records-card').hidden=!on;}
+async function api(method,body){
+ const {tenant,token}=credentials();
+ if(!tenant||!token)throw Error('Introduceți codul firmei și cheia.');
+ const res=await fetch('/api/eva-4322-admin?tenant='+encodeURIComponent(tenant),{
+  method,headers:{'Authorization':'Bearer '+token,...(body?{'Content-Type':'application/json'}:{})},
+  ...(body?{body:JSON.stringify(body)}:{})
+ });
+ const data=await res.json();if(!res.ok)throw Error(data.error||('HTTP '+res.status));return data;
+}
+function addButton(parent,name,callback,cls='secondary'){
+ const b=document.createElement('button');b.type='button';b.className=cls;b.textContent=name;
+ b.addEventListener('click',callback);parent.append(b);
+}
+function draw(list){
+ const host=by('records');host.replaceChildren();
+ if(!list.length){const p=document.createElement('p');p.textContent='Nu există încă întrebări în KB-ul firmei.';host.append(p);return;}
+ for(const item of list){
+  const d=document.createElement('div');d.className='item';
+  const top=document.createElement('div');top.className='row';
+  const label=document.createElement('strong');label.textContent=item.question;
+  const pill=document.createElement('span');pill.className='pill';pill.textContent=item.status==='published'?'Publicat':'Draft';
+  top.append(label,pill);
+  const a=document.createElement('p');a.textContent=item.answer;
+  const meta=document.createElement('small');meta.textContent='ID: '+item.id+(item.followup?' · Follow-up: '+item.followup:'');
+  const buttons=document.createElement('div');buttons.className='actions';
+  addButton(buttons,'Editează',()=>{
+   by('qa-id').value=item.id;by('qa-question').value=item.question;
+   by('qa-answer').value=item.answer;by('qa-followup').value=item.followup||'';
+   by('editor').scrollIntoView({behavior:'smooth'});
+  });
+  addButton(buttons,item.status==='published'?'Retrage':'Publică',async()=>{
+   if(busy)return;
+   if(item.status!=='published'&&!window.confirm('Proprietarul firmei a verificat și aprobat acest răspuns pentru publicare?'))return;
+   busy=true;
+   try{await api('POST',{action:item.status==='published'?'unpublish':'publish',id:item.id});await load();message('Starea a fost actualizată.');}
+   catch(e){message(e.message,true)}finally{busy=false}
+  },item.status==='published'?'secondary':'');
+  d.append(top,a,meta,buttons);host.append(d);
+ }
+}
+async function load(){const data=await api('GET');setActive(true);draw(data.records||[]);message('Conectat. '+(data.records||[]).length+' înregistrări.');}
+by('connect').addEventListener('click',()=>load().catch(e=>{setActive(false);message(e.message,true)}));
+by('refresh').addEventListener('click',()=>load().catch(e=>message(e.message,true)));
+by('forget').addEventListener('click',()=>{by('token').value='';setActive(false);by('records').replaceChildren();message('Sesiune închisă.');});
+by('kb-form').addEventListener('submit',async e=>{
+ e.preventDefault();if(!active||busy)return;busy=true;
+ try{
+  await api('POST',{action:'save',id:by('qa-id').value.trim(),question:by('qa-question').value.trim(),answer:by('qa-answer').value.trim(),followup:by('qa-followup').value.trim()});
+  by('kb-form').reset();await load();message('Draft salvat. Nu este încă public.');
+ }catch(err){message(err.message,true)}finally{busy=false}
+});
+})();
+</script></body></html>
