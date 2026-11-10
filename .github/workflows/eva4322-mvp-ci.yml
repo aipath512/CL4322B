@@ -14,6 +14,7 @@ on:
       - 'public/eva-4322-widget.js'
       - 'public/index.html'
       - 'tests/tcs-mobile-ux.test.mjs'
+      - 'tests/tcs-eva-premium.test.mjs'
       - 'functions/api/eva-4322-admin.js'
       - 'public/eva-4322-admin.html'
       - 'migrations/0002_eva_company_kb.sql'
@@ -34,4 +35,4 @@ jobs:
       - name: Verify EVA Cloudflare configuration without remote changes
         run: node tools/eva4322-preflight.mjs check
       - name: Run EVA 4322 standalone tests
-        run: node --experimental-default-type=module --test tests/eva4322-standalone.test.mjs tests/eva4322-admin.test.mjs tests/eva4322-promo.test.mjs tests/tcs-mobile-ux.test.mjs
+        run: node --experimental-default-type=module --test tests/eva4322-standalone.test.mjs tests/eva4322-admin.test.mjs tests/eva4322-promo.test.mjs tests/tcs-mobile-ux.test.mjs tests/tcs-eva-premium.test.mjs

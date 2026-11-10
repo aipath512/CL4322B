@@ -274,6 +274,41 @@ details.prod .p-main{font-size:.86rem;font-weight:600}details.prod .p-sub{font-s
   #ai-panel{right:8px;width:calc(100vw - 16px);bottom:calc(78px + env(safe-area-inset-bottom,0px));
     height:min(65dvh,540px)}
 }
+
+/* EVA premium chat surface: own theme, independent from site theme. */
+#ai-panel{--chat-bg:#0b141a;--chat-surface:#202c33;--chat-head:#202c33;--chat-ink:#f5f7fa;--chat-user:#005c4b;--chat-assistant:#202c33;--chat-button:#005c4b;--chat-border:#42515a;--chat-pattern-opacity:.17;
+ background:var(--chat-bg);color:var(--chat-ink);border-color:var(--chat-border);min-width:min(280px,calc(100vw - 16px));min-height:250px}
+#ai-panel[data-eva-theme="light"]{--chat-bg:#efeae2;--chat-surface:#fff;--chat-head:#075e54;--chat-ink:#172739;--chat-user:#d9fdd3;--chat-assistant:#fff;--chat-button:#075e54;--chat-border:#b9c5cc;--chat-pattern-opacity:.28}
+#ai-panel header{background:var(--chat-head);color:#fff;gap:7px;padding:9px 11px}
+#ai-panel header b{font-size:.92rem;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#ai-panel header button{color:#fff;font-size:1rem;border:1px solid #ffffff40;border-radius:7px;min-width:30px;height:32px;padding:3px 6px}
+#ai-panel header button:focus-visible,#ai-panel button:focus-visible{outline:3px solid #f5be61;outline-offset:2px}
+#ai-panel .eyebrow{color:#dae7ee}
+#ai-log{background-color:var(--chat-bg);background-image:var(--eva-pattern);background-size:230px 230px;position:relative;isolation:isolate}
+#ai-log::before{content:"";position:absolute;inset:0;pointer-events:none;background:var(--chat-bg);opacity:calc(1 - var(--chat-pattern-opacity));z-index:-1}
+#ai-panel .m{color:var(--chat-ink);background:var(--chat-assistant);border-radius:13px;max-width:90%;padding:10px 12px;position:relative;overflow-wrap:anywhere}
+#ai-panel .m.u{background:var(--chat-user);color:var(--chat-ink)}
+#ai-panel .m.a{background:var(--chat-assistant);color:var(--chat-ink)}
+#ai-panel .sug button{background:var(--chat-surface);color:var(--chat-ink);border-color:var(--chat-border)}
+#ai-panel .ai-note{background:var(--chat-bg);color:var(--chat-ink);font-size:.7rem}
+#ai-panel .ai-note a{color:var(--chat-ink);text-decoration:underline}
+#ai-panel #ai-form{background:var(--chat-bg);border-color:var(--chat-border)}
+#ai-panel #ai-in{background:var(--chat-surface);color:var(--chat-ink);border-color:var(--chat-border)}
+#ai-panel #ai-in::placeholder{color:var(--chat-ink);opacity:.7}
+#ai-panel #ai-form button{background:var(--chat-button);color:#fff}
+#ai-panel .message-actions{display:flex;gap:6px;justify-content:flex-end;margin-top:6px}
+#ai-panel .message-actions button{background:transparent;color:var(--chat-ink);border:1px solid var(--chat-border);border-radius:7px;padding:4px 8px;font-size:.72rem;min-height:30px}
+#ai-panel .m.u .message-actions{display:none}
+#ai-panel .resize-grip{position:absolute;left:0;top:0;width:29px;height:29px;touch-action:none;cursor:nwse-resize;z-index:3;color:#fff;display:grid;place-items:center;background:var(--chat-head);border:0 0 1px 1px solid var(--chat-border);border-radius:0 0 8px 0;font-size:15px;user-select:none}
+#ai-panel.fullscreen{inset:0!important;right:0!important;bottom:0!important;width:100vw!important;height:100dvh!important;max-height:none!important;max-width:none!important;min-width:0;min-height:0;border:0;border-radius:0}
+#ai-panel.fullscreen .resize-grip{display:none}
+@media(max-width:640px){
+ #ai-panel:not(.fullscreen){max-width:calc(100vw - 16px);max-height:calc(100dvh - 92px);min-width:min(280px,calc(100vw - 16px));min-height:250px}
+ #ai-panel header{padding:8px 9px 8px 29px}
+ #ai-panel header .mini{width:28px;height:28px}
+ #ai-panel header .eyebrow{display:none}
+ #ai-panel header button{min-width:30px}
+}
 </style>
 </head>
 <body>
@@ -319,7 +354,7 @@ d.forEach(function(b){b.onclick=function(){go(+b.getAttribute('data-go'));play()
 <div><h3>Date firmă</h3><p>CUI RO00004322</p><p>Reg. Com. J40/0004/2014</p><p>CAEN 4322 — Lucrări de instalații sanitare, de încălzire și de aer condiționat</p><p>Autorizat ISCIR, ANRE, F-gaz (vezi <a href="certificari.html">Certificări</a>)</p></div>
 </div><a class="aiact" href="legal.html#ai-act"><img src="img/eu-ai-act-ready_v1.0.webp" alt="Parafă EU AI Act Ready, 2 august 2026" width="72" height="72" loading="lazy"><span><b>EU AI Act Ready</b><br>Asistentul Eva respectă obligațiile de transparență din art. 50 al Regulamentului (UE) 2024/1689. Vedeți cum funcționează.</span></a><div class="fine"><p><b>Site etalon demonstrativ.</b> TCS INSTAL SRL, persoanele, adresa, telefonul, CUI-ul și numerele de autorizare sunt fictive. Prețurile firmei sunt exemplificative și sunt calculate din prețurile publice observate pe piața din București la 8 noiembrie 2026; intervalele „Piață București” provin din surse publice listate pe pagina <a href="oferta.html#surse">Ofertă</a>.</p><p>TCS INSTAL v3.2 · 2026-11-08</p></div></div></footer>
 <button id="ai-btn" aria-controls="ai-panel" aria-expanded="false" aria-label="Deschide asistentul AI Eva"><video src="img/eva-asistent_v1.0.mp4" poster="img/eva-asistent_v1.0.jpg" autoplay muted loop playsinline aria-hidden="true"></video><span class="lbl">Întrebați-o pe Eva</span></button>
-<section id="ai-panel" hidden aria-label="Asistent AI"><header><img class="mini" src="img/eva-asistent_v1.0.jpg" alt="" width="36" height="36"><b>Eva · asistent TCS INSTAL</b><span class="eyebrow">AI</span><button id="ai-x" aria-label="Închide">×</button></header>
+<section id="ai-panel" hidden data-eva-theme="dark" aria-label="Asistent AI"><button type="button" id="ai-resize" class="resize-grip" aria-label="Redimensionează fereastra, trage de colțul stânga sus" title="Trage pentru redimensionare">⤡</button><header><img class="mini" src="img/eva-asistent_v1.0.jpg" alt="" width="36" height="36"><b>Eva · TCS INSTAL</b><button type="button" id="ai-theme" aria-label="Tema luminoasă" aria-pressed="true" title="Light/Dark">☀</button><button type="button" id="ai-copy-all" aria-label="Copiază toată conversația" title="Copiază tot">⧉</button><button type="button" id="ai-share-all" aria-label="Trimite conversația pe WhatsApp" title="WhatsApp">↗</button><button type="button" id="ai-fullscreen" aria-label="Ecran complet" title="Ecran complet">⛶</button><button id="ai-x" aria-label="Minimizează">×</button></header>
 <div id="ai-log" aria-live="polite"></div><p class="ai-note">Vorbiți cu un sistem de inteligență artificială. Răspunsurile sunt orientative; programarea și prețul final le confirmă un om. <a href="legal.html#ai-act">Detalii</a></p>
 <form id="ai-form"><textarea id="ai-in" rows="1" maxlength="1200" placeholder="Întrebați despre servicii, prețuri, garanții…" aria-label="Mesaj"></textarea><button type="submit">Trimite</button></form></section>
 <script>
@@ -327,7 +362,102 @@ d.forEach(function(b){b.onclick=function(){go(+b.getAttribute('data-go'));play()
  var mt=document.getElementById("mt"),menu=document.getElementById("menu");
  if(mt)mt.addEventListener("click",function(){var o=menu.classList.toggle("open");mt.setAttribute("aria-expanded",o)});
  var b=document.getElementById("ai-btn"),p=document.getElementById("ai-panel"),x=document.getElementById("ai-x"),log=document.getElementById("ai-log"),f=document.getElementById("ai-form"),i=document.getElementById("ai-in"),h=[],busy=false;
- function add(t,c){var d=document.createElement("div");d.className="m "+c;d.textContent=t;log.appendChild(d);log.scrollTop=log.scrollHeight;return d}
+
+ var themeBtn=document.getElementById("ai-theme"),fullBtn=document.getElementById("ai-fullscreen"),
+  copyAll=document.getElementById("ai-copy-all"),shareAll=document.getElementById("ai-share-all"),
+  grip=document.getElementById("ai-resize"),messages=[];
+ var keyBase="tcs-eva:v08:"+location.hostname,themeKey=keyBase+":theme",sizeKey=keyBase+":size";
+ var clamp=function(value,minimum,maximum){return Math.min(maximum,Math.max(minimum,value))};
+ var minWidth=function(){return Math.min(280,window.innerWidth-16)};
+ var maxWidth=function(){return Math.max(minWidth(),window.innerWidth-16)};
+ var maxHeight=function(){return Math.max(250,window.innerHeight-92)};
+ function theme(mode){
+  var dark=mode!=="light";
+  p.dataset.evaTheme=dark?"dark":"light";
+  themeBtn.textContent=dark?"☀":"☾";
+  themeBtn.setAttribute("aria-label",dark?"Activează tema luminoasă":"Activează tema întunecată");
+  themeBtn.setAttribute("aria-pressed",String(dark));
+ }
+ try{theme(localStorage.getItem(themeKey)==="light"?"light":"dark")}catch(e){theme("dark")}
+ themeBtn.onclick=function(){var next=p.dataset.evaTheme==="dark"?"light":"dark";theme(next);try{localStorage.setItem(themeKey,next)}catch(e){}};
+ var bg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 230" width="230" height="230" fill="none" stroke="#82958b" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><g opacity=".45"><circle cx="30" cy="33" r="18"/><circle cx="30" cy="33" r="7"/><path d="M68 17h27v22H68zM120 23l12 15 13-15-13-15zM168 24l4 9 10 3-10 4-4 9-4-9-10-4 10-3zM15 100c12-19 25-19 37 0-8 17-30 23-37 0zM71 86h37m-27-11v22M139 84l14-13 14 13v21h-28zM27 154h38v22H27zM82 155l12-12 12 12-12 12zM128 151c7-11 19-11 26 0s-4 25-13 34c-10-9-20-23-13-34z"/><circle cx="193" cy="162" r="17"/><path d="M193 150v24m-12-12h24M81 211h30M96 195v30M152 208c11-14 23-14 34 0-11 14-23 14-34 0z"/></g></svg>';
+ p.style.setProperty("--eva-pattern",'url("data:image/svg+xml,'+encodeURIComponent(bg)+'")');
+ function notify(button,ok){
+  var old=button.textContent;button.textContent=ok?"✓":"!";
+  setTimeout(function(){button.textContent=old},1400);
+ }
+ function copyText(t){
+  if(navigator.clipboard&&navigator.clipboard.writeText)return navigator.clipboard.writeText(t);
+  return new Promise(function(resolve,reject){
+   var el=document.createElement("textarea");el.value=t;el.setAttribute("readonly","");
+   el.style.cssText="position:fixed;left:-9999px;top:0";document.body.append(el);el.select();
+   try{if(!document.execCommand("copy"))throw Error("Nu se poate copia");resolve()}catch(e){reject(e)}
+   finally{el.remove()}
+  });
+ }
+ function sendWhatsApp(t){
+  // Explicit user gesture only. WhatsApp opens a draft; never silently sends it.
+  var value=String(t||"").slice(0,6000);
+  if(!value)return;
+  if(navigator.share){
+   navigator.share({text:value}).catch(function(){});
+  }else{
+   window.open("https://wa.me/?text="+encodeURIComponent(value),"_blank","noopener,noreferrer");
+  }
+ }
+ function textAll(){return messages.map(function(m){return(m.role==="u"?"Vizitator":"EVA")+": "+m.text}).join("\n\n")}
+ copyAll.onclick=function(){copyText(textAll()).then(function(){notify(copyAll,true)},function(){notify(copyAll,false)})};
+ shareAll.onclick=function(){sendWhatsApp(textAll())};
+ function add(t,c){
+  var d=document.createElement("div");d.className="m "+c;
+  var span=document.createElement("div");span.className="message-text";span.textContent=t;d.append(span);
+  var row=document.createElement("div");row.className="message-actions";
+  if(c==="a"){
+   var cp=document.createElement("button");cp.type="button";cp.textContent="Copiază";
+   cp.setAttribute("aria-label","Copiază răspunsul EVA");
+   cp.onclick=function(){copyText(span.textContent).then(function(){notify(cp,true)},function(){notify(cp,false)})};
+   var wa=document.createElement("button");wa.type="button";wa.textContent="WhatsApp";
+   wa.setAttribute("aria-label","Distribuie răspunsul EVA");
+   wa.onclick=function(){sendWhatsApp(span.textContent)};
+   row.append(cp,wa);d.append(row);
+  }
+  log.appendChild(d);log.scrollTop=log.scrollHeight;
+  var record={role:c,text:String(t||"")};messages.push(record);
+  return {element:d,setText:function(value){span.textContent=value;record.text=value}};
+ }
+ function setFullscreen(yes){
+  p.classList.toggle("fullscreen",yes);
+  fullBtn.textContent=yes?"▣":"⛶";
+  fullBtn.setAttribute("aria-label",yes?"Restabilește dimensiunea":"Ecran complet");
+  grip.hidden=yes;
+ }
+ fullBtn.onclick=function(){setFullscreen(!p.classList.contains("fullscreen"))};
+ function setDimensions(w,h){
+  p.style.width=clamp(w,minWidth(),maxWidth())+"px";
+  p.style.height=clamp(h,250,maxHeight())+"px";
+ }
+ try{var stored=JSON.parse(localStorage.getItem(sizeKey)||"null");
+  if(stored&&Number.isFinite(stored.w)&&Number.isFinite(stored.h))setDimensions(stored.w,stored.h)
+ }catch(e){}
+ function saveSize(){try{localStorage.setItem(sizeKey,JSON.stringify({w:Math.round(p.getBoundingClientRect().width),h:Math.round(p.getBoundingClientRect().height)}))}catch(e){}}
+ var pointer=null;
+ grip.addEventListener("pointerdown",function(e){
+  if(p.classList.contains("fullscreen"))setFullscreen(false);
+  pointer={id:e.pointerId,x:e.clientX,y:e.clientY,w:p.getBoundingClientRect().width,h:p.getBoundingClientRect().height};
+  try{grip.setPointerCapture(e.pointerId)}catch(err){}
+  e.preventDefault();
+ });
+ grip.addEventListener("pointermove",function(e){
+  if(!pointer||pointer.id!==e.pointerId)return;
+  // Panel is bottom-right anchored: pulling top-left changes size in both axes.
+  setDimensions(pointer.w+pointer.x-e.clientX,pointer.h+pointer.y-e.clientY);
+  e.preventDefault();
+ });
+ function finishDrag(){if(pointer){saveSize();pointer=null}}
+ grip.addEventListener("pointerup",finishDrag);
+ grip.addEventListener("pointercancel",finishDrag);
+ window.addEventListener("resize",function(){if(!p.classList.contains("fullscreen")){var r=p.getBoundingClientRect();setDimensions(r.width,r.height)}});
+
  function open(o){p.hidden=!o;b.setAttribute("aria-expanded",o);if(o){if(!log.children.length){add("Bună ziua! Sunt Eva, asistentul AI al TCS INSTAL. Vă pot spune ce servicii avem, cât costă orientativ și ce garanții oferim.","a");var s=document.createElement("div");s.className="sug";["Cât costă montajul unei centrale?","Ce include revizia anuală?","Cât costă montajul unui aer condiționat?","Ce garanție oferiți?"].forEach(function(q){var k=document.createElement("button");k.type="button";k.textContent=q;k.onclick=function(){send(q)};s.appendChild(k)});log.appendChild(s)}i.focus()}}
  b.onclick=function(){open(p.hidden)};x.onclick=function(){open(false);b.focus()};
  document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!p.hidden){open(false);b.focus()}});
@@ -336,8 +466,8 @@ d.forEach(function(b){b.onclick=function(){go(+b.getAttribute('data-go'));play()
  function send(q){q=(q||"").trim();if(!q||busy)return;busy=true;i.value="";add(q,"u");var w=add("Scriu răspunsul…","a");
   fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({message:q,history:h.slice(-6)})})
   .then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error(j.error||"eroare");return j})})
-  .then(function(j){w.textContent=j.reply;h.push({role:"user",content:q},{role:"assistant",content:j.reply})})
-  .catch(function(){w.textContent="Asistentul nu poate răspunde acum. Ne puteți suna la 021 000 4322 sau scrie la email@etalon.com."})
+  .then(function(j){w.setText(j.reply);h.push({role:"user",content:q},{role:"assistant",content:j.reply})})
+  .catch(function(){w.setText("Asistentul nu poate răspunde acum. Ne puteți suna la 021 000 4322 sau scrie la email@etalon.com.")})
   .finally(function(){busy=false})}
 })();
 </script>
