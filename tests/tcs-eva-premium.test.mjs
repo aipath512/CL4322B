@@ -18,8 +18,18 @@ test('full screen, restore and pointer resizing have touch gestures and persiste
   assert.ok(page.includes(token),token);
 });
 test('individual answer and whole conversation can be copied or shared explicitly to WhatsApp',()=>{
- for(const token of ['id="ai-copy-all"','id="ai-share-all"','Copiază răspunsul EVA','Distribuie răspunsul EVA','navigator.clipboard.writeText','document.execCommand("copy")','navigator.share','https://wa.me/?text=','encodeURIComponent(value)','textAll()'])
+ for(const token of ['id="ai-copy-all"','id="ai-share-all"','Copiază răspunsul EVA','Distribuie răspunsul EVA','navigator.clipboard.writeText','document.execCommand("copy")','window.open','https://wa.me/?text=','encodeURIComponent(value)','textAll()'])
   assert.ok(page.includes(token),token);
  assert.ok(page.includes('w.setText(j.reply)'));
  assert.ok(!page.includes('w.textContent=j.reply'));
+});
+
+test('pilot V1.0 has readable input and disclaimer and targets WhatsApp directly',()=>{
+ for(const token of ['--chat-subtle:#dae2e6','--chat-subtle:#334650','#ai-panel #ai-in::placeholder{color:var(--chat-subtle);opacity:1}','font-size:16px','--chat-link:#adf5e0','--chat-link:#075e54','var url="https://wa.me/?text="+encodeURIComponent(value)','if(!opened){window.location.href=url;}'])
+  assert.ok(page.includes(token),token);
+ assert.ok(!page.includes('navigator.share({text:value}'));
+});
+test('pilot V1.0 Escape exits fullscreen first and closing restores normal size',()=>{
+ assert.ok(page.includes('if(!o&&p.classList.contains("fullscreen"))setFullscreen(false)'));
+ assert.ok(page.includes('if(p.classList.contains("fullscreen"))setFullscreen(false);else{open(false);b.focus()}'));
 });
