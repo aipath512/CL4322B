@@ -46,3 +46,25 @@ These are deliberately lightweight deterministic follow-ups, **not yet a sophist
 The widget sends the last 8 prior messages from in-memory chat state (no server-side storage) with each new question. The shared endpoint accepts bounded context and recognizes a first contextual path: a visitor who asks which apartment boiler to choose and subsequently answers "Două băi" receives hot-water-flow guidance and two relevant next-step options.
 
 **Scope:** this is a tested, deterministic contextual path, not general LLM multi-turn reasoning. It does not add voice or verified company pricing. The server trusts neither previous assistant text nor tenant-provided values as evidence for commercial commitments. Emergency phrases always take priority.
+
+## V0.5 — Mobile/tablet/laptop company KB editor
+
+A private admin screen is available at `/eva-4322-admin.html`. The owner and AiVenture representative can add and edit company-specific questions and answers during an in-person meeting. Every save creates a **draft** (including edits to previously published content). Press **Publică** after explicit owner confirmation; **Retrage** withdraws an answer. The public assistant retrieves **only published** company KB records.
+
+### Production configuration (not automatically provisioned)
+
+Create a **separate Cloudflare D1 database** for EVA company knowledge; do NOT use the existing TCS INSTAL demo `DB`. Bind this new database to the Pages project as `EVA_DB`, and apply `migrations/0002_eva_company_kb.sql` to it. Set these server-side environment variables:
+
+- `EVA_4322_TENANTS`: JSON mapping tenant IDs to authorized website HTTPS origins.
+- `EVA_4322_ADMIN_SHA256`: JSON mapping tenant IDs to SHA-256 hashes of independently generated random admin tokens of 24+ characters, e.g. `{"firma01":"<64 hex digits>"}`. Only the hash is configured server-side. Share actual secret with authorized administrator out of band.
+
+The admin UI and API must run on the **same HTTPS host**. The UI keeps the bearer token in page memory (input field) only, without localStorage, cookies or query-string tokens. Rotate secrets if exposed. Add Cloudflare Access (or equivalent), WAF and distributed rate limiting before production use.
+
+### Scope and safety
+
+- Admin functions return 503 until `EVA_DB` and admin token configuration are present.
+- Company records remain isolated by tenant ID; public visitors see only published records.
+- Company updates do not change the standard CAEN 4322 KB.
+- This MVP supports manual Q&A draft/edit/publish/unpublish; CSV/PDF imports and role-based multiuser admin are not yet available.
+- Do not insert private customer data, passwords, invented prices or unsupported company claims.
+- GitHub merge alone does not confirm Cloudflare deployment, database creation or tests on physical devices.
