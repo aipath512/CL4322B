@@ -39,3 +39,30 @@ test('handles unknown question without fabricated claims',async()=>{
  const result=await (await req('https://first.example','t1','zxqv 987 xyz')).json();
  assert.equal(result.source,'fallback');
 });
+
+test('returns actionable same-service follow-ups with funnel stage',async()=>{
+ const result=await (await req('https://first.example','t1','Ce presupune serviciul Montaj centrală termică?')).json();
+ assert.ok(Array.isArray(result.followups));
+ assert.ok(result.followups.length>=1 && result.followups.length<=3);
+ assert.ok(result.followups.every(x=>typeof x.question==='string' && x.question.length>0));
+ assert.ok(['TOFU','MOFU','BOFU'].includes(result.funnelStage));
+});
+test('offers tenant-specific follow-up only inside tenant',async()=>{
+ const a=await (await req('https://first.example','t1','Oferiti servicii sambata?')).json();
+ assert.equal(a.followups[0].question,'Doriti sa trimiteti cererea?');
+ const b=await (await req('https://second.example','t2','Oferiti servicii sambata?')).json();
+ assert.ok(!(b.followups||[]).some(x=>x.question==='Doriti sa trimiteti cererea?'));
+});
+test('safety response offers no commercial follow-up',async()=>{
+ const data=await (await req('https://first.example','t1','Miroase a gaz')).json();
+ assert.equal(data.intent,'siguranta');assert.deepEqual(data.followups,[]);
+});
+test('unknown question does not fabricate follow-up recommendations',async()=>{
+ const data=await (await req('https://first.example','t1','zzxvqqx ipsum 9890')).json();
+ assert.deepEqual(data.followups,[]);
+});
+test('widget supports resize, fullscreen, copying, selectable followups, mobile',async()=>{
+ const {readFileSync}=await import('node:fs');
+ const widget=readFileSync(new URL('../public/eva-4322-widget.js',import.meta.url),'utf8');
+ for(const feature of ['resize:both','fullscreen','ResizeObserver','localStorage','navigator.clipboard','copyAll','copyButton','submitMessage(question)','max-width:600px','aria-expanded'])assert.ok(widget.includes(feature),feature);
+});
