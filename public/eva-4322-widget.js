@@ -178,7 +178,7 @@
     input.value = ''; questionList([]);
     addMessage(message, 'user');
     try {
-      const res = await fetch(endpoint, {method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({message})});
+      const res = await fetch(endpoint, {method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({message,history:transcript.slice(-9,-1).filter(m=>m.role==='user'||m.role==='assistant').map(m=>({role:m.role,content:m.text}))})});
       const data = await res.json();
       if (!res.ok) throw new Error('API error ' + res.status);
       addMessage(data.reply || 'Nu există un răspuns disponibil.', 'assistant');
