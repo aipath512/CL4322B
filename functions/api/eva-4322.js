@@ -1,3 +1,4 @@
+import { C4322_FAQ_CANDIDATES } from './_eva4322_candidates.js';
 // EVA-4322 V0.1 — isolated API, no TCS INSTAL data.
 const rows=[
  ['centrala_apartament','Ce centrala aleg pentru apartament?','Alegerea depinde de pierderile de caldura, izolatie si necesarul de apa calda. Solicitati dimensionarea de catre un specialist.','Cate bai aveti?'],
@@ -29,9 +30,10 @@ export async function onRequest({request,env}){
  if(/miros (de )?gaz|scurgere de gaz|scapari de gaz/.test(norm(message)))
    return respond({reply:'Daca suspectati o scurgere de gaz, parasiti zona afectata. Nu actionati intrerupatoare electrice. Contactati operatorul de urgenta al retelei de gaze sau 112 in caz de pericol imediat.',intent:'siguranta',followup:'',source:'safety-rule'},200,cors);
  const qa=(Array.isArray(tenant.qa)?tenant.qa:[]).filter(r=>r&&r.question&&r.answer).map(r=>[r.id||'custom',r.question,r.answer,r.followup||'']);
- const all=[...qa,...rows],qt=terms(message),docs=all.map(r=>terms(r[1]+' '+r[2])),df=new Map();
+ const candidates=C4322_FAQ_CANDIDATES.map(f=>[f.id,f.question,f.answer,'']);
+ const all=[...qa,...rows,...candidates],qt=terms(message),docs=all.map(r=>terms(r[1]+' '+r[2])),df=new Map();
  for(const d of docs)for(const t of d)df.set(t,(df.get(t)||0)+1);
- const ranking=all.map((r,i)=>{let score=0,question=new Set(terms(r[1])),body=new Set(docs[i]);for(const t of qt){const idf=Math.log(1+(all.length-(df.get(t)||0)+.5)/((df.get(t)||0)+.5));score+=question.has(t)?3*idf:body.has(t)?idf:0}return {r,score}}).sort((a,b)=>b.score-a.score);
+ const ranking=all.map((r,i)=>{let score=0,question=new Set(terms(r[1])),body=new Set(docs[i]);for(const t of qt){const idf=Math.log(1+(all.length-(df.get(t)||0)+.5)/((df.get(t)||0)+.5));score+=question.has(t)?3*idf:body.has(t)?idf:0}return {r,score:score+(i<qa.length&&score>0?2:0)}}).sort((a,b)=>b.score-a.score);
  const best=ranking[0];if(!best||best.score<0.6)return respond({reply:'Nu am un raspuns verificat pentru aceasta intrebare. Contactati firma pentru clarificare.',followup:'Doriti datele de contact?',source:'fallback'},200,cors);
- return respond({reply:best.r[2],followup:best.r[3],source:best.r[0],tenant:id,version:'0.1.0'},200,cors);
+ return respond({reply:best.r[2],followup:best.r[3],source:best.r[0],tenant:id,version:'0.2.0',kbCount:rows.length+C4322_FAQ_CANDIDATES.length,reviewStatus:best.r[0].startsWith('FAQ-')?'demo-unverified':'pilot'},200,cors);
 }
