@@ -25,10 +25,31 @@ export async function onRequest({request,env}){
  if(request.method==='OPTIONS')return new Response(null,{status:204,headers:cors});
  if(request.method!=='POST')return respond({error:'Method not allowed'},405,cors);
  let text;try{text=await request.text();if(text.length>4096)throw Error()}catch{return respond({error:'Payload too large'},413,cors)}
- let message;try{message=String(JSON.parse(text).message||'').trim()}catch{return respond({error:'Invalid JSON'},400,cors)}
+ let message,history=[];
+ try{
+   const payload=JSON.parse(text);
+   message=String(payload.message||'').trim();
+   if(Array.isArray(payload.history))history=payload.history.slice(-8).filter(x=>x&&['user','assistant'].includes(x.role)&&typeof x.content==='string').map(x=>({role:x.role,content:x.content.slice(0,1000)}));
+ }catch{return respond({error:'Invalid JSON'},400,cors)}
  if(!message||message.length>1000)return respond({error:'Invalid message'},400,cors);
  if(/miros (de )?gaz|miroase (a |de )?gaz|scurgere de gaz|scapari de gaz|gaz in casa/.test(norm(message)))
    return respond({reply:'Daca suspectati o scurgere de gaz, parasiti zona afectata. Nu actionati intrerupatoare electrice. Contactati operatorul de urgenta al retelei de gaze sau 112 in caz de pericol imediat.',intent:'siguranta',followup:'',followups:[],source:'safety-rule'},200,cors);
+ // Follow-up context is ephemeral: the client sends only the last few messages.
+ // Treat client history as a retrieval hint, never as an authority for firm-specific facts.
+ const prevAssistant=[...history].reverse().find(m=>m.role==='assistant')?.content||'';
+ const prevUser=[...history].reverse().find(m=>m.role==='user')?.content||'';
+ const shortAnswer=terms(message).length<=3;
+ const contextQuestion=shortAnswer&&prevUser&&prevAssistant?prevUser:'';
+ const contextual=shortAnswer&&contextQuestion&&/\\b(doua|2) bai\\b/.test(norm(message))&&/centrala|apartament|24 kw/.test(norm(contextQuestion));
+ if(contextual){
+   return respond({
+     reply:'Pentru două băi, trebuie evaluat debitul de apă caldă solicitat simultan. O centrală combi de 24 kW nu garantează confort la două dușuri în același timp. Comparați debitul ACM declarat al modelelor și, dacă este necesar, un sistem cu acumulare.',
+     followup:'Folosiți simultan cele două dușuri?',
+     followups:[{question:'Folosiți simultan cele două dușuri?',stage:'MOFU'},{question:'Cum cer oferta pentru montaj de centrala?',stage:'BOFU'}],
+     funnelStage:'MOFU',source:'contextual-4322-two-bathrooms',tenant:id,version:'0.4.0',
+     contextUsed:true
+   },200,cors);
+ }
  const qa=(Array.isArray(tenant.qa)?tenant.qa:[]).filter(r=>r&&r.question&&r.answer).map(r=>[r.id||'custom',r.question,r.answer,r.followup||'']);
  const candidates=C4322_FAQ_CANDIDATES.map(f=>[f.id,f.question,f.answer,'']);
  const all=[...qa,...rows,...candidates],qt=terms(message),docs=all.map(r=>terms(r[1]+' '+r[2])),df=new Map();
