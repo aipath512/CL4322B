@@ -1,11 +1,11 @@
 {
- "generat": "2026-11-13T09:31:41Z",
+ "generat": "2026-11-14T08:58:14Z",
  "frecventa": "zilnic, automat (GitHub Actions)",
  "firme": [
   {
    "firma": "CPS — Conexiuni Professional Service",
    "url": "https://www.cps.com.ro/tarife",
-   "verificat": "2026-11-13T09:31:41Z",
+   "verificat": "2026-11-14T08:58:14Z",
    "status": 200,
    "ok": true,
    "preturi": [
@@ -44,7 +44,7 @@
   {
    "firma": "Future Line Instal (Termoserv)",
    "url": "https://www.termoserv.ro/contact/",
-   "verificat": "2026-11-13T09:31:41Z",
+   "verificat": "2026-11-14T08:58:14Z",
    "status": 200,
    "ok": true,
    "preturi": [
@@ -58,7 +58,7 @@
   {
    "firma": "PMC ServInstal (PMC Aer Condiționat)",
    "url": "https://pmcaerconditionat.ro/preturi-servicii/",
-   "verificat": "2026-11-13T09:31:41Z",
+   "verificat": "2026-11-14T08:58:14Z",
    "status": 200,
    "ok": true,
    "preturi": [
@@ -114,7 +114,7 @@
   {
    "firma": "Home Clima",
    "url": "https://home-clima.ro/montaj-aer-conditionat-bucuresti/",
-   "verificat": "2026-11-13T09:31:41Z",
+   "verificat": "2026-11-14T08:58:14Z",
    "status": 200,
    "ok": true,
    "preturi": [
@@ -133,7 +133,7 @@
   {
    "firma": "Instal AeroCris SRL",
    "url": "https://instal-aerocris.ro/instalare-aer-conditionat/",
-   "verificat": "2026-11-13T09:31:41Z",
+   "verificat": "2026-11-14T08:58:14Z",
    "status": 200,
    "ok": true,
    "preturi": [
@@ -153,7 +153,7 @@
   {
    "firma": "ACME Instal",
    "url": "https://acmeinstal.ro/",
-   "verificat": "2026-11-13T09:31:41Z",
+   "verificat": "2026-11-14T08:58:14Z",
    "status": 200,
    "ok": true,
    "preturi": [],
@@ -165,7 +165,7 @@
   {
    "firma": "Climatico",
    "url": "https://www.climatico.ro/informatii-de-contact",
-   "verificat": "2026-11-13T09:31:41Z",
+   "verificat": "2026-11-14T08:58:14Z",
    "ok": false,
    "eroare": "Site-ul refuză citirea automată (403). Se verifică manual.",
    "preturi": [],
@@ -176,7 +176,7 @@
   {
    "firma": "David Engineering",
    "url": "https://david-engineering.ro/instalatii-sanitare/instalator-autorizat-non-stop/",
-   "verificat": "2026-11-13T09:31:41Z",
+   "verificat": "2026-11-14T08:58:14Z",
    "status": 200,
    "ok": true,
    "preturi": [],
@@ -188,7 +188,7 @@
   {
    "firma": "Prodimar",
    "url": "https://www.prodimar.ro/instalatii-de-climatizare-oferte-preturi-a21",
-   "verificat": "2026-11-13T09:31:41Z",
+   "verificat": "2026-11-14T08:58:14Z",
    "status": 200,
    "ok": true,
    "preturi": [],
@@ -200,7 +200,7 @@
   {
    "firma": "Clima General Install",
    "url": "https://www.climageneralinstall.ro/despre-noi/",
-   "verificat": "2026-11-13T09:31:41Z",
+   "verificat": "2026-11-14T08:58:14Z",
    "status": 200,
    "ok": true,
    "preturi": [],
@@ -265,6 +265,11 @@
   },
   {
    "data": "2026-11-13T09:31:41Z",
+   "ok": 9,
+   "total": 10
+  },
+  {
+   "data": "2026-11-14T08:58:14Z",
    "ok": 9,
    "total": 10
   }
