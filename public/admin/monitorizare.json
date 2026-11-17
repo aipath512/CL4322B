@@ -1,11 +1,11 @@
 {
- "generat": "2026-11-16T09:43:55Z",
+ "generat": "2026-11-17T10:43:34Z",
  "frecventa": "zilnic, automat (GitHub Actions)",
  "firme": [
   {
    "firma": "CPS — Conexiuni Professional Service",
    "url": "https://www.cps.com.ro/tarife",
-   "verificat": "2026-11-16T09:43:55Z",
+   "verificat": "2026-11-17T10:43:34Z",
    "status": 200,
    "ok": true,
    "preturi": [
@@ -44,7 +44,7 @@
   {
    "firma": "Future Line Instal (Termoserv)",
    "url": "https://www.termoserv.ro/contact/",
-   "verificat": "2026-11-16T09:43:55Z",
+   "verificat": "2026-11-17T10:43:34Z",
    "status": 200,
    "ok": true,
    "preturi": [
@@ -58,7 +58,7 @@
   {
    "firma": "PMC ServInstal (PMC Aer Condiționat)",
    "url": "https://pmcaerconditionat.ro/preturi-servicii/",
-   "verificat": "2026-11-16T09:43:55Z",
+   "verificat": "2026-11-17T10:43:34Z",
    "status": 200,
    "ok": true,
    "preturi": [
@@ -67,8 +67,8 @@
     "9.000 BTU Pentru camere până la 25 m² — 600 lei",
     "750 lei",
     "12.000 BTU Pentru camere 25–35 m² — 600 lei",
-    "18.000 BTU Pentru spații 35–50 m² — 850 lei",
-    "24.000 BTU Pentru spații 50–70 m² — 950 lei",
+    "— — 850 lei",
+    "— — 950 lei",
     "extra peste lungimea standard — / metru liniar 10 lei",
     "set complet (perechi) — / set 80 lei",
     "set complet pentru aparate grele — / set 100 lei",
@@ -107,14 +107,14 @@
     "Constatare defect: este gratuită dacă facem reparația. Dacă vrei doar vizita tehnicianului, fără nicio lucrare, costă 150 lei.",
     "Răspuns rapid · Consultanță gratuită · 5 ani garanție la montaj"
    ],
-   "hash_preturi": "eefc9e6455328423",
-   "hash_pagina": "37afc2e37fd4ad22",
-   "ultima_schimbare": "2026-11-16T09:43:55Z"
+   "hash_preturi": "a02e54766c152544",
+   "hash_pagina": "61eff6f660c87608",
+   "ultima_schimbare": "2026-11-17T10:43:34Z"
   },
   {
    "firma": "Home Clima",
    "url": "https://home-clima.ro/montaj-aer-conditionat-bucuresti/",
-   "verificat": "2026-11-16T09:43:55Z",
+   "verificat": "2026-11-17T10:43:34Z",
    "status": 200,
    "ok": true,
    "preturi": [
@@ -133,7 +133,7 @@
   {
    "firma": "Instal AeroCris SRL",
    "url": "https://instal-aerocris.ro/instalare-aer-conditionat/",
-   "verificat": "2026-11-16T09:43:55Z",
+   "verificat": "2026-11-17T10:43:34Z",
    "status": 200,
    "ok": true,
    "preturi": [
@@ -153,7 +153,7 @@
   {
    "firma": "ACME Instal",
    "url": "https://acmeinstal.ro/",
-   "verificat": "2026-11-16T09:43:55Z",
+   "verificat": "2026-11-17T10:43:34Z",
    "status": 200,
    "ok": true,
    "preturi": [],
@@ -165,7 +165,7 @@
   {
    "firma": "Climatico",
    "url": "https://www.climatico.ro/informatii-de-contact",
-   "verificat": "2026-11-16T09:43:55Z",
+   "verificat": "2026-11-17T10:43:34Z",
    "ok": false,
    "eroare": "Site-ul refuză citirea automată (403). Se verifică manual.",
    "preturi": [],
@@ -176,7 +176,7 @@
   {
    "firma": "David Engineering",
    "url": "https://david-engineering.ro/instalatii-sanitare/instalator-autorizat-non-stop/",
-   "verificat": "2026-11-16T09:43:55Z",
+   "verificat": "2026-11-17T10:43:34Z",
    "status": 200,
    "ok": true,
    "preturi": [],
@@ -188,7 +188,7 @@
   {
    "firma": "Prodimar",
    "url": "https://www.prodimar.ro/instalatii-de-climatizare-oferte-preturi-a21",
-   "verificat": "2026-11-16T09:43:55Z",
+   "verificat": "2026-11-17T10:43:34Z",
    "status": 200,
    "ok": true,
    "preturi": [],
@@ -200,7 +200,7 @@
   {
    "firma": "Clima General Install",
    "url": "https://www.climageneralinstall.ro/despre-noi/",
-   "verificat": "2026-11-16T09:43:55Z",
+   "verificat": "2026-11-17T10:43:34Z",
    "status": 200,
    "ok": true,
    "preturi": [],
@@ -211,6 +211,19 @@
   }
  ],
  "evenimente": [
+  {
+   "data": "2026-11-17T10:43:34Z",
+   "firma": "PMC ServInstal (PMC Aer Condiționat)",
+   "tip": "Prețuri modificate",
+   "aparute": [
+    "— — 850 lei",
+    "— — 950 lei"
+   ],
+   "disparute": [
+    "18.000 BTU Pentru spații 35–50 m² — 850 lei",
+    "24.000 BTU Pentru spații 50–70 m² — 950 lei"
+   ]
+  },
   {
    "data": "2026-11-16T09:43:55Z",
    "firma": "PMC ServInstal (PMC Aer Condiționat)",
@@ -291,6 +304,11 @@
   },
   {
    "data": "2026-11-16T09:43:55Z",
+   "ok": 9,
+   "total": 10
+  },
+  {
+   "data": "2026-11-17T10:43:34Z",
    "ok": 9,
    "total": 10
   }
