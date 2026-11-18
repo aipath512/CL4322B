@@ -3,7 +3,7 @@
   "CPS — Conexiuni Professional Service": {
    "firma": "CPS — Conexiuni Professional Service",
    "url": "https://www.cps.com.ro/tarife",
-   "verificat": "2026-11-17T10:43:34Z",
+   "verificat": "2026-11-18T10:09:58Z",
    "status": 200,
    "ok": true,
    "preturi": [
@@ -42,7 +42,7 @@
   "Future Line Instal (Termoserv)": {
    "firma": "Future Line Instal (Termoserv)",
    "url": "https://www.termoserv.ro/contact/",
-   "verificat": "2026-11-17T10:43:34Z",
+   "verificat": "2026-11-18T10:09:58Z",
    "status": 200,
    "ok": true,
    "preturi": [
@@ -56,7 +56,7 @@
   "PMC ServInstal (PMC Aer Condiționat)": {
    "firma": "PMC ServInstal (PMC Aer Condiționat)",
    "url": "https://pmcaerconditionat.ro/preturi-servicii/",
-   "verificat": "2026-11-17T10:43:34Z",
+   "verificat": "2026-11-18T10:09:58Z",
    "status": 200,
    "ok": true,
    "preturi": [
@@ -82,17 +82,17 @@
     "la cerere — — 500 lei",
     "la cerere — — 600 lei",
     "Constatare defect: este gratuită dacă facem reparația. Dacă vrei doar vizita tehnicianului, fără nicio lucrare, costă 150 lei.",
-    "9.000 BTU Igienizare standard — 200 lei",
-    "12.000 BTU Igienizare standard — 200 lei",
-    "18.000 BTU Igienizare extinsă — 250 lei",
-    "24.000 BTU Igienizare extinsă — 295 lei",
+    "9.000 BTU Igienizare — 200 lei",
+    "12.000 BTU Igienizare — 200 lei",
+    "18.000 BTU Igienizare — 250 lei",
+    "24.000 BTU Igienizare — 295 lei",
     "Demontare + transport + remontare — 750 lei",
     "Demontare + transport + remontare ext. — 400 lei",
     "Demontare + transport + remontare int. — 400 lei",
     "Cu recuperare freon și sigilare conducte — între 150 lei – 300 lei",
-    "Capacitate freon < 500g (R134a/R1234yf) — 250 lei",
-    "Capacitate freon 500–700g — 300 lei",
-    "Capacitate freon > 700g — 350 lei",
+    "R134a 170 lei · R1234yf 440 lei",
+    "R134a 230 lei · R1234yf 640 lei",
+    "R134a 290 lei · R1234yf 840 lei",
     "Sector 1 Aviatorilor, Băneasa, Dorobanți, Pipera, Primăverii — 600 lei",
     "200 lei",
     "Sector 2 Colentina, Pantelimon, Tei, Obor, Iancului — 600 lei",
@@ -105,14 +105,14 @@
     "Constatare defect: este gratuită dacă facem reparația. Dacă vrei doar vizita tehnicianului, fără nicio lucrare, costă 150 lei.",
     "Răspuns rapid · Consultanță gratuită · 5 ani garanție la montaj"
    ],
-   "hash_preturi": "a02e54766c152544",
-   "hash_pagina": "61eff6f660c87608",
-   "ultima_schimbare": "2026-11-17T10:43:34Z"
+   "hash_preturi": "c24290f6fb377be0",
+   "hash_pagina": "9a6306d583237650",
+   "ultima_schimbare": "2026-11-18T10:09:58Z"
   },
   "Home Clima": {
    "firma": "Home Clima",
    "url": "https://home-clima.ro/montaj-aer-conditionat-bucuresti/",
-   "verificat": "2026-11-17T10:43:34Z",
+   "verificat": "2026-11-18T10:09:58Z",
    "status": 200,
    "ok": true,
    "preturi": [
@@ -131,27 +131,19 @@
   "Instal AeroCris SRL": {
    "firma": "Instal AeroCris SRL",
    "url": "https://instal-aerocris.ro/instalare-aer-conditionat/",
-   "verificat": "2026-11-17T10:43:34Z",
+   "verificat": "2026-11-18T10:09:58Z",
    "status": 200,
    "ok": true,
-   "preturi": [
-    "Instalare Aer Condiționat - Instal AeroCris — Montaj de la 600 LEI",
-    "Comenzi — 0,00 lei",
-    "≤12.000 BTU — 600 LEI",
-    "≤12.000 BTU — 850 LEI",
-    "18.000 BTU — 850 LEI",
-    "24.000 BTU — 950 LEI",
-    "Pentru lungimea standard (3 metri liniari), costurile sunt: 600 lei (până în 12.000 BTU inclusiv, fără kit de instalare); 850 lei (până în 18.000 BTU, kit de instalare inclus); 950 lei (24.000 BTU +, "
-   ],
+   "preturi": [],
    "promotii": [],
-   "hash_preturi": "41d6e70fcf58af66",
-   "hash_pagina": "15ab45c98e8a8b84",
-   "ultima_schimbare": "2026-11-08T14:48:41Z"
+   "hash_preturi": "e3b0c44298fc1c14",
+   "hash_pagina": "3d38eed30cf75241",
+   "ultima_schimbare": "2026-11-18T10:09:58Z"
   },
   "ACME Instal": {
    "firma": "ACME Instal",
    "url": "https://acmeinstal.ro/",
-   "verificat": "2026-11-17T10:43:34Z",
+   "verificat": "2026-11-18T10:09:58Z",
    "status": 200,
    "ok": true,
    "preturi": [],
@@ -163,7 +155,7 @@
   "Climatico": {
    "firma": "Climatico",
    "url": "https://www.climatico.ro/informatii-de-contact",
-   "verificat": "2026-11-17T10:43:34Z",
+   "verificat": "2026-11-18T10:09:58Z",
    "ok": false,
    "eroare": "Site-ul refuză citirea automată (403). Se verifică manual.",
    "preturi": [],
@@ -174,7 +166,7 @@
   "David Engineering": {
    "firma": "David Engineering",
    "url": "https://david-engineering.ro/instalatii-sanitare/instalator-autorizat-non-stop/",
-   "verificat": "2026-11-17T10:43:34Z",
+   "verificat": "2026-11-18T10:09:58Z",
    "status": 200,
    "ok": true,
    "preturi": [],
@@ -186,7 +178,7 @@
   "Prodimar": {
    "firma": "Prodimar",
    "url": "https://www.prodimar.ro/instalatii-de-climatizare-oferte-preturi-a21",
-   "verificat": "2026-11-17T10:43:34Z",
+   "verificat": "2026-11-18T10:09:58Z",
    "status": 200,
    "ok": true,
    "preturi": [],
@@ -198,7 +190,7 @@
   "Clima General Install": {
    "firma": "Clima General Install",
    "url": "https://www.climageneralinstall.ro/despre-noi/",
-   "verificat": "2026-11-17T10:43:34Z",
+   "verificat": "2026-11-18T10:09:58Z",
    "status": 200,
    "ok": true,
    "preturi": [],
@@ -257,6 +249,44 @@
     "18.000 BTU Pentru spații 35–50 m² — 850 lei",
     "24.000 BTU Pentru spații 50–70 m² — 950 lei"
    ]
+  },
+  {
+   "data": "2026-11-18T10:09:58Z",
+   "firma": "PMC ServInstal (PMC Aer Condiționat)",
+   "tip": "Prețuri modificate",
+   "aparute": [
+    "9.000 BTU Igienizare — 200 lei",
+    "12.000 BTU Igienizare — 200 lei",
+    "18.000 BTU Igienizare — 250 lei",
+    "24.000 BTU Igienizare — 295 lei",
+    "R134a 170 lei · R1234yf 440 lei",
+    "R134a 230 lei · R1234yf 640 lei",
+    "R134a 290 lei · R1234yf 840 lei"
+   ],
+   "disparute": [
+    "9.000 BTU Igienizare standard — 200 lei",
+    "12.000 BTU Igienizare standard — 200 lei",
+    "18.000 BTU Igienizare extinsă — 250 lei",
+    "24.000 BTU Igienizare extinsă — 295 lei",
+    "Capacitate freon < 500g (R134a/R1234yf) — 250 lei",
+    "Capacitate freon 500–700g — 300 lei",
+    "Capacitate freon > 700g — 350 lei"
+   ]
+  },
+  {
+   "data": "2026-11-18T10:09:58Z",
+   "firma": "Instal AeroCris SRL",
+   "tip": "Prețuri modificate",
+   "aparute": [],
+   "disparute": [
+    "Instalare Aer Condiționat - Instal AeroCris — Montaj de la 600 LEI",
+    "Comenzi — 0,00 lei",
+    "≤12.000 BTU — 600 LEI",
+    "≤12.000 BTU — 850 LEI",
+    "18.000 BTU — 850 LEI",
+    "24.000 BTU — 950 LEI",
+    "Pentru lungimea standard (3 metri liniari), costurile sunt: 600 lei (până în 12.000 BTU inclusiv, fără kit de instalare); 850 lei (până în 18.000 BTU, kit de instalare inclus); 950 lei (24.000 BTU +, "
+   ]
   }
  ],
  "rulari": [
@@ -307,6 +337,11 @@
   },
   {
    "data": "2026-11-17T10:43:34Z",
+   "ok": 9,
+   "total": 10
+  },
+  {
+   "data": "2026-11-18T10:09:58Z",
    "ok": 9,
    "total": 10
   }
