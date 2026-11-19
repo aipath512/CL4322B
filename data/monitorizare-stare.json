@@ -3,7 +3,7 @@
   "CPS — Conexiuni Professional Service": {
    "firma": "CPS — Conexiuni Professional Service",
    "url": "https://www.cps.com.ro/tarife",
-   "verificat": "2026-11-18T10:09:58Z",
+   "verificat": "2026-11-19T10:20:59Z",
    "status": 200,
    "ok": true,
    "preturi": [
@@ -42,7 +42,7 @@
   "Future Line Instal (Termoserv)": {
    "firma": "Future Line Instal (Termoserv)",
    "url": "https://www.termoserv.ro/contact/",
-   "verificat": "2026-11-18T10:09:58Z",
+   "verificat": "2026-11-19T10:20:59Z",
    "status": 200,
    "ok": true,
    "preturi": [
@@ -56,7 +56,7 @@
   "PMC ServInstal (PMC Aer Condiționat)": {
    "firma": "PMC ServInstal (PMC Aer Condiționat)",
    "url": "https://pmcaerconditionat.ro/preturi-servicii/",
-   "verificat": "2026-11-18T10:09:58Z",
+   "verificat": "2026-11-19T10:20:59Z",
    "status": 200,
    "ok": true,
    "preturi": [
@@ -112,7 +112,7 @@
   "Home Clima": {
    "firma": "Home Clima",
    "url": "https://home-clima.ro/montaj-aer-conditionat-bucuresti/",
-   "verificat": "2026-11-18T10:09:58Z",
+   "verificat": "2026-11-19T10:20:59Z",
    "status": 200,
    "ok": true,
    "preturi": [
@@ -131,19 +131,27 @@
   "Instal AeroCris SRL": {
    "firma": "Instal AeroCris SRL",
    "url": "https://instal-aerocris.ro/instalare-aer-conditionat/",
-   "verificat": "2026-11-18T10:09:58Z",
+   "verificat": "2026-11-19T10:20:59Z",
    "status": 200,
    "ok": true,
-   "preturi": [],
+   "preturi": [
+    "Instalare Aer Condiționat - Instal AeroCris — Montaj de la 600 LEI",
+    "Comenzi — 0,00 lei",
+    "≤12.000 BTU — 600 LEI",
+    "≤12.000 BTU — 850 LEI",
+    "18.000 BTU — 850 LEI",
+    "24.000 BTU — 950 LEI",
+    "Pentru lungimea standard (3 metri liniari), costurile sunt: 600 lei (până în 12.000 BTU inclusiv, fără kit de instalare); 850 lei (până în 18.000 BTU, kit de instalare inclus); 950 lei (24.000 BTU +, "
+   ],
    "promotii": [],
-   "hash_preturi": "e3b0c44298fc1c14",
-   "hash_pagina": "3d38eed30cf75241",
-   "ultima_schimbare": "2026-11-18T10:09:58Z"
+   "hash_preturi": "41d6e70fcf58af66",
+   "hash_pagina": "15ab45c98e8a8b84",
+   "ultima_schimbare": "2026-11-19T10:20:59Z"
   },
   "ACME Instal": {
    "firma": "ACME Instal",
    "url": "https://acmeinstal.ro/",
-   "verificat": "2026-11-18T10:09:58Z",
+   "verificat": "2026-11-19T10:20:59Z",
    "status": 200,
    "ok": true,
    "preturi": [],
@@ -155,7 +163,7 @@
   "Climatico": {
    "firma": "Climatico",
    "url": "https://www.climatico.ro/informatii-de-contact",
-   "verificat": "2026-11-18T10:09:58Z",
+   "verificat": "2026-11-19T10:20:59Z",
    "ok": false,
    "eroare": "Site-ul refuză citirea automată (403). Se verifică manual.",
    "preturi": [],
@@ -166,7 +174,7 @@
   "David Engineering": {
    "firma": "David Engineering",
    "url": "https://david-engineering.ro/instalatii-sanitare/instalator-autorizat-non-stop/",
-   "verificat": "2026-11-18T10:09:58Z",
+   "verificat": "2026-11-19T10:20:59Z",
    "status": 200,
    "ok": true,
    "preturi": [],
@@ -178,7 +186,7 @@
   "Prodimar": {
    "firma": "Prodimar",
    "url": "https://www.prodimar.ro/instalatii-de-climatizare-oferte-preturi-a21",
-   "verificat": "2026-11-18T10:09:58Z",
+   "verificat": "2026-11-19T10:20:59Z",
    "status": 200,
    "ok": true,
    "preturi": [],
@@ -190,7 +198,7 @@
   "Clima General Install": {
    "firma": "Clima General Install",
    "url": "https://www.climageneralinstall.ro/despre-noi/",
-   "verificat": "2026-11-18T10:09:58Z",
+   "verificat": "2026-11-19T10:20:59Z",
    "status": 200,
    "ok": true,
    "preturi": [],
@@ -287,6 +295,21 @@
     "24.000 BTU — 950 LEI",
     "Pentru lungimea standard (3 metri liniari), costurile sunt: 600 lei (până în 12.000 BTU inclusiv, fără kit de instalare); 850 lei (până în 18.000 BTU, kit de instalare inclus); 950 lei (24.000 BTU +, "
    ]
+  },
+  {
+   "data": "2026-11-19T10:20:59Z",
+   "firma": "Instal AeroCris SRL",
+   "tip": "Prețuri modificate",
+   "aparute": [
+    "Instalare Aer Condiționat - Instal AeroCris — Montaj de la 600 LEI",
+    "Comenzi — 0,00 lei",
+    "≤12.000 BTU — 600 LEI",
+    "≤12.000 BTU — 850 LEI",
+    "18.000 BTU — 850 LEI",
+    "24.000 BTU — 950 LEI",
+    "Pentru lungimea standard (3 metri liniari), costurile sunt: 600 lei (până în 12.000 BTU inclusiv, fără kit de instalare); 850 lei (până în 18.000 BTU, kit de instalare inclus); 950 lei (24.000 BTU +, "
+   ],
+   "disparute": []
   }
  ],
  "rulari": [
@@ -342,6 +365,11 @@
   },
   {
    "data": "2026-11-18T10:09:58Z",
+   "ok": 9,
+   "total": 10
+  },
+  {
+   "data": "2026-11-19T10:20:59Z",
    "ok": 9,
    "total": 10
   }
