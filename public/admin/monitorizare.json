@@ -1,11 +1,11 @@
 {
- "generat": "2026-11-27T10:51:14Z",
+ "generat": "2026-11-28T10:27:19Z",
  "frecventa": "zilnic, automat (GitHub Actions)",
  "firme": [
   {
    "firma": "CPS — Conexiuni Professional Service",
    "url": "https://www.cps.com.ro/tarife",
-   "verificat": "2026-11-27T10:51:14Z",
+   "verificat": "2026-11-28T10:27:19Z",
    "status": 200,
    "ok": true,
    "preturi": [
@@ -44,67 +44,128 @@
   {
    "firma": "Future Line Instal (Termoserv)",
    "url": "https://www.termoserv.ro/contact/",
-   "verificat": "2026-11-27T10:51:14Z",
+   "verificat": "2026-11-28T10:27:19Z",
    "status": 200,
    "ok": true,
-   "preturi": [],
+   "preturi": [
+    "EUID: ROONRC.J40/23350/1992 — Capital social: 210 lei"
+   ],
    "promotii": [],
-   "hash_preturi": "e3b0c44298fc1c14",
-   "hash_pagina": "1efa3bf2db4c7c49",
-   "ultima_schimbare": "2026-11-27T10:51:14Z"
+   "hash_preturi": "dce4f1050f914579",
+   "hash_pagina": "4de67b35d0dfa515",
+   "ultima_schimbare": "2026-11-28T10:27:19Z"
   },
   {
    "firma": "PMC ServInstal (PMC Aer Condiționat)",
    "url": "https://pmcaerconditionat.ro/preturi-servicii/",
-   "verificat": "2026-11-27T10:51:14Z",
+   "verificat": "2026-11-28T10:27:19Z",
    "status": 200,
    "ok": true,
-   "preturi": [],
-   "promotii": [],
-   "hash_preturi": "e3b0c44298fc1c14",
-   "hash_pagina": "1efa3bf2db4c7c49",
-   "ultima_schimbare": "2026-11-27T10:51:14Z"
+   "preturi": [
+    "/ — 0 lei",
+    "0 lei Deplasare la montaj și revizie",
+    "9.000 BTU Pentru camere până la 25 m² — 600 lei",
+    "750 lei",
+    "12.000 BTU Pentru camere 25–35 m² — 600 lei",
+    "— — 850 lei",
+    "— — 950 lei",
+    "extra peste lungimea standard — / metru liniar 10 lei",
+    "set complet (perechi) — / set 80 lei",
+    "set complet pentru aparate grele — / set 100 lei",
+    "Cupru izolat 1/4″ + 3/8″ — / metru liniar 110 lei",
+    "Cupru izolat 1/4″ + 1/2″ — / metru liniar 130 lei",
+    "Cupru izolat 3/8″ + 5/8″ — / metru liniar 149 lei",
+    "Pentru unități exterioare la înălțime — extra 150 lei",
+    "Gips-carton, OSB, BCA — / gaură 70 lei",
+    "Cărămidă plină, beton armat — / gaură 150 lei",
+    "9.000 BTU Doar diferența până la cantitatea optimă — 300 lei",
+    "400 lei",
+    "12.000 BTU Recomandat la pierderi mici de freon — 300 lei",
+    "la cerere — — 500 lei",
+    "la cerere — — 600 lei",
+    "Constatare defect: este gratuită dacă facem reparația. Dacă vrei doar vizita tehnicianului, fără nicio lucrare, costă 150 lei.",
+    "9.000 BTU Igienizare — 200 lei",
+    "12.000 BTU Igienizare — 200 lei",
+    "18.000 BTU Igienizare — 250 lei",
+    "24.000 BTU Igienizare — 295 lei",
+    "Demontare + transport + remontare — 750 lei",
+    "Demontare + transport + remontare ext. — 400 lei",
+    "Demontare + transport + remontare int. — 400 lei",
+    "Cu recuperare freon și sigilare conducte — între 150 lei – 300 lei",
+    "R134a 170 lei · R1234yf 440 lei",
+    "R134a 230 lei · R1234yf 640 lei",
+    "R134a 290 lei · R1234yf 840 lei",
+    "Sector 1 Aviatorilor, Băneasa, Dorobanți, Pipera, Primăverii — 600 lei",
+    "200 lei",
+    "Sector 2 Colentina, Pantelimon, Tei, Obor, Iancului — 600 lei",
+    "Sector 3 Titan, Dristor, Vitan, Centrul Vechi, Unirii — 600 lei",
+    "Sector 4 Berceni, Timpuri Noi, Tineretului, Văcărești — 600 lei",
+    "Sector 5 Rahova, Ferentari, Cotroceni, 13 Septembrie — 600 lei",
+    "Sector 6 Militari, Drumul Taberei, Crângași, Giulești — 600 lei"
+   ],
+   "promotii": [
+    "Constatare defect: este gratuită dacă facem reparația. Dacă vrei doar vizita tehnicianului, fără nicio lucrare, costă 150 lei.",
+    "Răspuns rapid · Consultanță gratuită · 5 ani garanție la montaj"
+   ],
+   "hash_preturi": "c24290f6fb377be0",
+   "hash_pagina": "7cda1259b8987c74",
+   "ultima_schimbare": "2026-11-28T10:27:19Z"
   },
   {
    "firma": "Home Clima",
    "url": "https://home-clima.ro/montaj-aer-conditionat-bucuresti/",
-   "verificat": "2026-11-27T10:51:14Z",
+   "verificat": "2026-11-28T10:27:19Z",
    "status": 200,
    "ok": true,
-   "preturi": [],
+   "preturi": [
+    "Montaj aer conditionat Bucuresti de la 500 ron , oferim garantie",
+    "Pachet revizie ( verificare , curățare, igienizare și completare cu freon 200gr ) = de la 300 lei",
+    "400 Lei (pentru aparatele cu kit inclus in cutia aparatului) -> click aici pentru mai multe detalii",
+    "700 Lei (pentru aparatele cu kit inclus in cutia aparatului) -> click aici pentru mai multe detalii",
+    "750 Lei (pentru aparatele ce nu contin kit de instalare) -> click aici pentru mai multe detalii",
+    "1100 Lei (pentru aparatele ce nu contin kit de instalare) -> click aici pentru mai multe detalii"
+   ],
    "promotii": [],
-   "hash_preturi": "e3b0c44298fc1c14",
-   "hash_pagina": "1efa3bf2db4c7c49",
-   "ultima_schimbare": "2026-11-27T10:51:14Z"
+   "hash_preturi": "aed352cf0a251969",
+   "hash_pagina": "2ddcacb62ecbf3eb",
+   "ultima_schimbare": "2026-11-28T10:27:19Z"
   },
   {
    "firma": "Instal AeroCris SRL",
    "url": "https://instal-aerocris.ro/instalare-aer-conditionat/",
-   "verificat": "2026-11-27T10:51:14Z",
+   "verificat": "2026-11-28T10:27:19Z",
    "status": 200,
    "ok": true,
-   "preturi": [],
+   "preturi": [
+    "Instalare Aer Condiționat - Instal AeroCris — Montaj de la 600 LEI",
+    "Comenzi — 0,00 lei",
+    "≤12.000 BTU — 600 LEI",
+    "≤12.000 BTU — 850 LEI",
+    "18.000 BTU — 850 LEI",
+    "24.000 BTU — 950 LEI",
+    "Pentru lungimea standard (3 metri liniari), costurile sunt: 600 lei (până în 12.000 BTU inclusiv, fără kit de instalare); 850 lei (până în 18.000 BTU, kit de instalare inclus); 950 lei (24.000 BTU +, "
+   ],
    "promotii": [],
-   "hash_preturi": "e3b0c44298fc1c14",
-   "hash_pagina": "1efa3bf2db4c7c49",
-   "ultima_schimbare": "2026-11-27T10:51:14Z"
+   "hash_preturi": "41d6e70fcf58af66",
+   "hash_pagina": "15ab45c98e8a8b84",
+   "ultima_schimbare": "2026-11-28T10:27:19Z"
   },
   {
    "firma": "ACME Instal",
    "url": "https://acmeinstal.ro/",
-   "verificat": "2026-11-27T10:51:14Z",
+   "verificat": "2026-11-28T10:27:19Z",
    "status": 200,
    "ok": true,
    "preturi": [],
    "promotii": [],
    "hash_preturi": "e3b0c44298fc1c14",
-   "hash_pagina": "1efa3bf2db4c7c49",
+   "hash_pagina": "5e425cc38f947afc",
    "ultima_schimbare": "2026-11-08T14:48:41Z"
   },
   {
    "firma": "Climatico",
    "url": "https://www.climatico.ro/informatii-de-contact",
-   "verificat": "2026-11-27T10:51:14Z",
+   "verificat": "2026-11-28T10:27:19Z",
    "ok": false,
    "eroare": "Site-ul refuză citirea automată (403). Se verifică manual.",
    "preturi": [],
@@ -115,41 +176,107 @@
   {
    "firma": "David Engineering",
    "url": "https://david-engineering.ro/instalatii-sanitare/instalator-autorizat-non-stop/",
-   "verificat": "2026-11-27T10:51:14Z",
+   "verificat": "2026-11-28T10:27:19Z",
    "status": 200,
    "ok": true,
    "preturi": [],
    "promotii": [],
    "hash_preturi": "e3b0c44298fc1c14",
-   "hash_pagina": "1efa3bf2db4c7c49",
+   "hash_pagina": "97bda4ba72f61a97",
    "ultima_schimbare": "2026-11-08T14:48:41Z"
   },
   {
    "firma": "Prodimar",
    "url": "https://www.prodimar.ro/instalatii-de-climatizare-oferte-preturi-a21",
-   "verificat": "2026-11-27T10:51:14Z",
+   "verificat": "2026-11-28T10:27:19Z",
    "status": 200,
    "ok": true,
    "preturi": [],
    "promotii": [],
    "hash_preturi": "e3b0c44298fc1c14",
-   "hash_pagina": "1efa3bf2db4c7c49",
+   "hash_pagina": "44289be0b2640f38",
    "ultima_schimbare": "2026-11-08T14:48:41Z"
   },
   {
    "firma": "Clima General Install",
    "url": "https://www.climageneralinstall.ro/despre-noi/",
-   "verificat": "2026-11-27T10:51:14Z",
+   "verificat": "2026-11-28T10:27:19Z",
    "status": 200,
    "ok": true,
    "preturi": [],
    "promotii": [],
    "hash_preturi": "e3b0c44298fc1c14",
-   "hash_pagina": "1efa3bf2db4c7c49",
+   "hash_pagina": "12b26c63b133834b",
    "ultima_schimbare": "2026-11-08T14:48:41Z"
   }
  ],
  "evenimente": [
+  {
+   "data": "2026-11-28T10:27:19Z",
+   "firma": "Instal AeroCris SRL",
+   "tip": "Prețuri modificate",
+   "aparute": [
+    "Instalare Aer Condiționat - Instal AeroCris — Montaj de la 600 LEI",
+    "Comenzi — 0,00 lei",
+    "≤12.000 BTU — 600 LEI",
+    "≤12.000 BTU — 850 LEI",
+    "18.000 BTU — 850 LEI",
+    "24.000 BTU — 950 LEI",
+    "Pentru lungimea standard (3 metri liniari), costurile sunt: 600 lei (până în 12.000 BTU inclusiv, fără kit de instalare); 850 lei (până în 18.000 BTU, kit de instalare inclus); 950 lei (24.000 BTU +, "
+   ],
+   "disparute": []
+  },
+  {
+   "data": "2026-11-28T10:27:19Z",
+   "firma": "Home Clima",
+   "tip": "Prețuri modificate",
+   "aparute": [
+    "Montaj aer conditionat Bucuresti de la 500 ron , oferim garantie",
+    "Pachet revizie ( verificare , curățare, igienizare și completare cu freon 200gr ) = de la 300 lei",
+    "400 Lei (pentru aparatele cu kit inclus in cutia aparatului) -> click aici pentru mai multe detalii",
+    "700 Lei (pentru aparatele cu kit inclus in cutia aparatului) -> click aici pentru mai multe detalii",
+    "750 Lei (pentru aparatele ce nu contin kit de instalare) -> click aici pentru mai multe detalii",
+    "1100 Lei (pentru aparatele ce nu contin kit de instalare) -> click aici pentru mai multe detalii"
+   ],
+   "disparute": []
+  },
+  {
+   "data": "2026-11-28T10:27:19Z",
+   "firma": "PMC ServInstal (PMC Aer Condiționat)",
+   "tip": "Promoție nouă",
+   "aparute": [
+    "Constatare defect: este gratuită dacă facem reparația. Dacă vrei doar vizita tehnicianului, fără nicio lucrare, costă 150 lei.",
+    "Răspuns rapid · Consultanță gratuită · 5 ani garanție la montaj"
+   ],
+   "disparute": []
+  },
+  {
+   "data": "2026-11-28T10:27:19Z",
+   "firma": "PMC ServInstal (PMC Aer Condiționat)",
+   "tip": "Prețuri modificate",
+   "aparute": [
+    "/ — 0 lei",
+    "0 lei Deplasare la montaj și revizie",
+    "9.000 BTU Pentru camere până la 25 m² — 600 lei",
+    "750 lei",
+    "12.000 BTU Pentru camere 25–35 m² — 600 lei",
+    "— — 850 lei",
+    "— — 950 lei",
+    "extra peste lungimea standard — / metru liniar 10 lei",
+    "set complet (perechi) — / set 80 lei",
+    "set complet pentru aparate grele — / set 100 lei"
+   ],
+   "disparute": []
+  },
+  {
+   "data": "2026-11-28T10:27:19Z",
+   "firma": "Future Line Instal (Termoserv)",
+   "tip": "Prețuri modificate",
+   "aparute": [
+    "EUID: ROONRC.J40/23350/1992 — Capital social: 210 lei"
+   ],
+   "disparute": []
+  },
   {
    "data": "2026-11-27T10:51:14Z",
    "firma": "Instal AeroCris SRL",
@@ -407,6 +534,11 @@
   },
   {
    "data": "2026-11-27T10:51:14Z",
+   "ok": 9,
+   "total": 10
+  },
+  {
+   "data": "2026-11-28T10:27:19Z",
    "ok": 9,
    "total": 10
   }
